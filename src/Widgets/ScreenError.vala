@@ -9,6 +9,8 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
+using Gtk;
+
 class Widgets.ScreenError : Gtk.Grid {
     public static string CODE = "error";
 
@@ -30,16 +32,14 @@ class Widgets.ScreenError : Gtk.Grid {
     //      this.show_all ();
     //  }
 
-    public void show_widget (Gtk.Widget widget) {
-        this.foreach ((child) => {
-            this.remove (child);
-        });
+    public void show_widget (Adw.AlertDialog widget) {
+        // todo - remove all child
 
-        this.add (widget);
-        this.show_all ();
+        widget.present (this);
+        this.attach (widget, 0, 0, 10, 10);
     }
 
-    public static Gtk.Widget build_error_docker_not_avialable (bool no_entry) {
+    public static Adw.AlertDialog build_error_docker_not_avialable (bool no_entry) {
         var description = _ (
             "It looks like Docker requires root rights to use it. Thus, the application " +
             "cannot connect to Docker Engine API. Find out how to run docker without root " +
@@ -57,17 +57,9 @@ class Widgets.ScreenError : Gtk.Grid {
             );
         }
 
-        var alert = new Granite.Widgets.AlertView (
-            _ ("The app cannot connect to Docker API"),
-            description,
-            "dialog-error"
-        );
+        var alert = new Adw.AlertDialog ("The app cannot connect to Docker API", description);
 
-        alert.get_style_context ().add_class ("alert");
-        alert.show_action (_ ("Open settings"));
-        alert.action_activated.connect (() => {
-            new Utils.SettingsDialog ();
-        });
+        //alert.show_action (_ ("Open settings")); // todo - make it so a button apears to open settings in the dialog
 
         return alert;
     }

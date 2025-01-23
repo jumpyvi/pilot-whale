@@ -11,7 +11,7 @@ using Gtk;
 
 public class Widgets.ScreenManager : Adw.Bin {
     private static ScreenManager? instance;
-    //private ScreenError screen_error; // todo
+    private ScreenError screen_error;
     private Gtk.Revealer overlay_revealer;
     private Gtk.Label overlay_label;
     private bool overlay_bar_visible = false;
@@ -43,13 +43,13 @@ public class Widgets.ScreenManager : Adw.Bin {
         this.overlay_revealer.halign = Gtk.Align.END;
         
 
-        //  this.screen_error = new ScreenError (); // todo
+        this.screen_error = new ScreenError ();
 
         var stack = new Gtk.Stack ();
         stack.transition_type = Gtk.StackTransitionType.OVER_LEFT_RIGHT;
         stack.transition_duration = 300;
 
-        //  stack.add_named (this.screen_error, ScreenError.CODE);
+        stack.add_named (this.screen_error, ScreenError.CODE);
         //  stack.add_named (new ScreenMain (), ScreenMain.CODE);
         //  stack.add_named (new ScreenDockerContainer (), ScreenDockerContainer.CODE); // todo
 
@@ -105,8 +105,8 @@ public class Widgets.ScreenManager : Adw.Bin {
         dialog.present (parent);
     }
 
-    public static void screen_error_show_widget (Gtk.Widget widget) {
-        //instance.screen_error.show_widget (widget);
+    public static void screen_error_show_widget (Adw.AlertDialog widget) {
+        instance.screen_error.show_widget (widget); // todo
         //State.Root.get_instance ().active_screen = ScreenError.CODE;
     }
 }
