@@ -9,12 +9,13 @@
 
 using Gtk;
 
-public class Widgets.ScreenManager : Gtk.Overlay {
+public class Widgets.ScreenManager : Adw.Bin {
     private static ScreenManager? instance;
     //private ScreenError screen_error; // todo
     private Gtk.Revealer overlay_revealer;
     private Gtk.Label overlay_label;
     private bool overlay_bar_visible = false;
+    private Gtk.Overlay overlay;
 
 
     construct {
@@ -23,6 +24,8 @@ public class Widgets.ScreenManager : Gtk.Overlay {
         // Create overlay components
         this.overlay_revealer = new Gtk.Revealer ();
         this.overlay_label = new Gtk.Label ("");
+        this.overlay = new Gtk.Overlay ();
+        child = overlay;
 
         var overlay_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
             margin_start = 12,
@@ -57,12 +60,12 @@ public class Widgets.ScreenManager : Gtk.Overlay {
         //      stack.set_visible_child_name (state.active_screen);
         //  }); // todo
 
-        this.show.connect (() => {
+        overlay.show.connect (() => {
             this.overlay_revealer.reveal_child = this.overlay_bar_visible;
         });
 
-        this.set_child (stack);
-        this.add_overlay (this.overlay_revealer);
+        overlay.set_child (stack);
+        overlay.add_overlay (this.overlay_revealer);
     }
 
     private ScreenManager () {
