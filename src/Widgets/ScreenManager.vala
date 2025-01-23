@@ -41,6 +41,7 @@ public class Widgets.ScreenManager : Adw.Bin {
         this.overlay_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
         this.overlay_revealer.valign = Gtk.Align.END;
         this.overlay_revealer.halign = Gtk.Align.END;
+        
 
         //  this.screen_error = new ScreenError (); // todo
 

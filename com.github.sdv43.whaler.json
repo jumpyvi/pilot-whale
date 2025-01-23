@@ -39,7 +39,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/jumpyvi/Projects"
+                    "url" : "file:///home/jumpyvi/Documents/School/Native/whaler-gtk4/"
                 }
             ],
             "config-opts" : [

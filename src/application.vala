@@ -1,6 +1,6 @@
 /* application.vala
  *
- * Copyright 2025 Vincent Laperle
+ * Copyright 2025 Whaler Developpers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,15 +47,15 @@ public class Newwhaler.Application : Adw.Application {
     }
 
     private void on_about_action () {
-        string[] developers = { "Vincent Laperle" };
+        string[] developers = { "Whaler Developpers" };
         var about = new Adw.AboutDialog () {
             application_name = "newwhaler",
             application_icon = "com.github.sdv43.whaler",
-            developer_name = "Vincent Laperle",
+            developer_name = "Whaler Developpers",
             translator_credits = _("translator-credits"),
             version = "0.1.0",
             developers = developers,
-            copyright = "© 2025 Vincent Laperle",
+            copyright = "© 2025 Whaler Developpers",
         };
 
         about.present (this.active_window);
