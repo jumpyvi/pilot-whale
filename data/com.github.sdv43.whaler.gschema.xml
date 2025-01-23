@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="newwhaler">
+	<schema id="com.github.sdv43.whaler" path="/com/github/sdv43/whaler/">
+	</schema>
+</schemalist>

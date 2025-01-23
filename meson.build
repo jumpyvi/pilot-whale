@@ -1,39 +1,34 @@
-project(
-    'com.github.sdv43.whaler', 'vala', 'c',
-    meson_version : '>= 0.49',
-    version: '1.2.3'
+project('newwhaler', ['c', 'vala'],
+          version: '0.1.0',
+    meson_version: '>= 1.0.0',
+  default_options: [ 'warning_level=2', 'werror=false', ],
 )
 
-#
 i18n = import('i18n')
-vapi_dir = meson.current_source_dir() / 'vapi'
+gnome = import('gnome')
+valac = meson.get_compiler('vala')
 
-add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language: 'c')
-add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 
-#
-subdir('po')
+srcdir = meson.project_source_root() / 'src'
+
+config_h = configuration_data()
+config_h.set_quoted('PACKAGE_VERSION', meson.project_version ())
+config_h.set_quoted('GETTEXT_PACKAGE', 'newwhaler')
+config_h.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
+configure_file(output: 'config.h', configuration: config_h)
+
+config_dep = valac.find_library ('config', dirs: srcdir)
+config_inc = include_directories('.')
+
+add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name () + '"', language: 'c')
+
+
 subdir('data')
 subdir('src')
+subdir('po')
 
-#
-executable(
-    meson.project_name(),
-    gresource,
-    constants,
-    sources,
-    dependencies: [
-        dependency('gio-2.0'),
-        dependency('gtk+-3.0'),
-        dependency('gee-0.8'),        
-        dependency('gdk-pixbuf-2.0'),
-        dependency('json-glib-1.0'),
-        dependency('granite'),
-        meson.get_compiler('vala').find_library('posix'),
-        meson.get_compiler('vala').find_library('libcurl', dirs: vapi_dir),
-        meson.get_compiler('c').find_library('libcurl', dirs: vapi_dir),
-    ],
-    install: true
+gnome.post_install(
+     glib_compile_schemas: true,
+    gtk_update_icon_cache: true,
+  update_desktop_database: true,
 )
-
-meson.add_install_script('meson/post_install.py')

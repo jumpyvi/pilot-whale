@@ -1,50 +1,46 @@
-# Gnome resources
-gnome = import('gnome')
-
-gresource = gnome.compile_resources(
-    'gresource',
-    'gresource.xml',
+desktop_file = i18n.merge_file(
+        input: 'com.github.sdv43.whaler.desktop.in',
+       output: 'com.github.sdv43.whaler.desktop',
+         type: 'desktop',
+       po_dir: '../po',
+      install: true,
+  install_dir: get_option('datadir') / 'applications'
 )
 
-# Icons
-icon_sizes = ['16', '24', '32', '48', '64', '128']
+desktop_utils = find_program('desktop-file-validate', required: false)
+if desktop_utils.found()
+  test('Validate desktop file', desktop_utils, args: [desktop_file])
+endif
 
-foreach i : icon_sizes
-    install_data(
-        'images/logo/' + i + '.png',
-        install_dir: get_option('datadir') + '/icons/hicolor/' + i + 'x' + i + '/apps',
-        rename: meson.project_name() + '.png'
-    )
-    
-    install_data(
-        'images/logo/' + i + '.png',
-        install_dir: get_option('datadir') + '/icons/hicolor/' + i + 'x' + i + '@2/apps',
-        rename: meson.project_name() + '.png'
-    )
-endforeach
-
-# Settings
-install_data (
-    'gschema.xml',
-    install_dir: get_option('datadir') + '/glib-2.0/schemas',
-    rename: meson.project_name() + '.gschema.xml'
+appstream_file = i18n.merge_file(
+        input: 'com.github.sdv43.whaler.metainfo.xml.in',
+       output: 'com.github.sdv43.whaler.metainfo.xml',
+       po_dir: '../po',
+      install: true,
+  install_dir: get_option('datadir') / 'metainfo'
 )
 
-# Desktop file
-i18n.merge_file(
-    type: 'desktop',
-    input: meson.project_name() + '.desktop.in',
-    output: meson.project_name() + '.desktop',
-    po_dir: meson.source_root() + '/po',
-    install_dir: get_option('datadir') + '/applications',
-    install: true
+appstreamcli = find_program('appstreamcli', required: false, disabler: true)
+test('Validate appstream file', appstreamcli,
+     args: ['validate', '--no-net', '--explain', appstream_file])
+
+install_data('com.github.sdv43.whaler.gschema.xml',
+  install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 
-# Metainfo file
-i18n.merge_file(
-    input: meson.project_name() + '.appdata.xml.in',
-    output: meson.project_name() + '.appdata.xml',
-    po_dir: meson.source_root() + '/po',
-    install_dir: get_option('datadir') + '/metainfo',
-    install: true
+compile_schemas = find_program('glib-compile-schemas', required: false, disabler: true)
+test('Validate schema file',
+     compile_schemas,
+     args: ['--strict', '--dry-run', meson.current_source_dir()])
+
+
+service_conf = configuration_data()
+service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
+configure_file(
+  input: 'com.github.sdv43.whaler.service.in',
+  output: 'com.github.sdv43.whaler.service',
+  configuration: service_conf,
+  install_dir: get_option('datadir') / 'dbus-1' / 'services'
 )
+
+subdir('icons')

@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Whaler
-GenericName=Docker Client
-Comment=Manage your Docker containers
-Categories=GTK;Development;Utility;
-Exec=com.github.sdv43.whaler
+Name=newwhaler
+Exec=newwhaler
 Icon=com.github.sdv43.whaler
 Terminal=false
 Type=Application
-Keywords=Docker;Virtualizaton;Development;
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true
