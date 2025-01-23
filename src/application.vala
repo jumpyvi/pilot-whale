@@ -43,12 +43,6 @@ public class Newwhaler.Application : Adw.Application {
         base.activate ();
         var win = this.active_window ?? new Newwhaler.Window (this);
 
-        var error_widget = ScreenError.build_error_docker_not_avialable (
-                        true
-                    );
-
-                    ScreenManager.screen_error_show_widget (error_widget);
-
         win.present ();
     }
 

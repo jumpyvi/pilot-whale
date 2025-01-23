@@ -106,7 +106,9 @@ public class Widgets.ScreenManager : Adw.Bin {
     }
 
     public static void screen_error_show_widget (Adw.AlertDialog widget) {
-        instance.screen_error.show_widget (widget); // todo
+        widget.add_response ("dismiss", "Dismiss");
+
+        instance.screen_error.show_widget (widget);
         //State.Root.get_instance ().active_screen = ScreenError.CODE;
     }
 }
