@@ -11,13 +11,12 @@ newwhaler_deps = [
   dependency('libadwaita-1', version: '>= 1.4'),
 ]
 
-newwhaler_sources += gnome.compile_resources('newwhaler-resources',
-  'newwhaler.gresource.xml',
-  c_name: 'newwhaler'
-)
+newwhaler_sources += gnome.compile_resources('newwhaler-resources', 'newwhaler.gresource.xml', c_name: 'newwhaler')
 
-executable('newwhaler', newwhaler_sources,
+executable(
+  'newwhaler',
+  newwhaler_sources,
   dependencies: newwhaler_deps,
   include_directories: config_inc,
-       install: true,
+  install: true,
 )

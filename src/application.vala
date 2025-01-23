@@ -36,13 +36,12 @@ public class Newwhaler.Application : Adw.Application {
         };
         this.add_action_entries (action_entries, this);
         this.set_accels_for_action ("app.quit", {"<primary>q"});
+
     }
 
     public override void activate () {
         base.activate ();
         var win = this.active_window ?? new Newwhaler.Window (this);
-
-        win.set_child (ScreenManager.get_instance());
 
         win.present ();
     }

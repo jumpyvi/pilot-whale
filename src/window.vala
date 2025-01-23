@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-
+using Widgets;
 [GtkTemplate (ui = "/com/github/sdv43/whaler/window.ui")]
 public class Newwhaler.Window : Adw.ApplicationWindow {
     [GtkChild]
@@ -25,5 +25,6 @@ public class Newwhaler.Window : Adw.ApplicationWindow {
 
     public Window (Gtk.Application app) {
         Object (application: app);
+        this.set_content (ScreenManager.get_instance());
     }
 }
