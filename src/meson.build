@@ -4,6 +4,7 @@ newwhaler_sources = [
   'window.vala',
   'Widgets/ScreenManager.vala',
   'Widgets/ScreenError.vala',
+  'Widgets/Utils/SettingsWindow.vala',
 ]
 
 newwhaler_deps = [
