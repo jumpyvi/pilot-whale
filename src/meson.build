@@ -26,6 +26,12 @@ newwhaler_sources = [
   'Utils/DockerContainer.vala',
   'Utils/Helpers.vala',
 
+  # Utils/Sorting
+  'Utils/Sorting/SortingInterface.vala',
+  'Utils/Sorting/SortingName.vala',
+  'Utils/Sorting/SortingStatus.vala',
+  'Utils/Sorting/SortingType.vala',
+
   # Docker
   'Docker/ApiClient.vala',
   'Docker/ContainerLogWatcher.vala',
