@@ -1,11 +1,31 @@
+configuration = configuration_data()
+
+configuration.set_quoted('APP_ID', meson.project_name())
+configuration.set_quoted('APP_VERSION', meson.project_version())
+configuration.set_quoted('LOCALE_DIR', join_paths(get_option('prefix'), get_option('localedir')))
+
+constants = configure_file(
+  input: 'Utils/Constants.vala.in',
+  output: 'Constants.vala',
+  configuration: configuration,
+)
+
 newwhaler_sources = [
+  # Main
   'main.vala',
   'application.vala',
   'window.vala',
+
+  # Widgets
   'Widgets/ScreenManager.vala',
   'Widgets/ScreenError.vala',
   'Widgets/Utils/SettingsWindow.vala',
+
+  # Utils
   'Utils/HttpClient.vala',
+
+  # Docker
+  'Docker/ApiClient.vala',
 ]
 
 newwhaler_deps = [
@@ -13,6 +33,7 @@ newwhaler_deps = [
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
   dependency('libadwaita-1', version: '>= 1.4'),
+  dependency('json-glib-1.0'),
   dependency('gio-2.0'),
   meson.get_compiler('vala').find_library('posix'),
   meson.get_compiler('vala').find_library('libcurl', dirs: vapi_dir),
@@ -23,6 +44,7 @@ newwhaler_sources += gnome.compile_resources('newwhaler-resources', 'newwhaler.g
 
 executable(
   'newwhaler',
+  constants,
   newwhaler_sources,
   dependencies: newwhaler_deps,
   include_directories: config_inc,
