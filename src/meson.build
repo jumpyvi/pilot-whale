@@ -35,6 +35,11 @@ newwhaler_sources = [
   # Docker
   'Docker/ApiClient.vala',
   'Docker/ContainerLogWatcher.vala',
+
+  # States
+  'State/Root.vala',
+  'State/ScreenMain.vala',
+  'State/ScreenDockerContainer.vala',
 ]
 
 newwhaler_deps = [
