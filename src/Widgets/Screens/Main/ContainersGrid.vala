@@ -44,32 +44,30 @@ class Widgets.Screens.Main.ContainersGrid : Gtk.Stack {
     private Gtk.Widget build_grid () {
         var state = State.Root.get_instance ();
         var state_main = state.screen_main;
-        var root = new Gtk.ScrolledWindow (null, null);
+        var root = new Gtk.ScrolledWindow ();
 
         var flow_box = new Gtk.FlowBox ();
-        flow_box.get_style_context ().add_class ("docker-containers-grid");
+        flow_box.get_style_context ().add_class ("docker-containers-grid"); // todo
         flow_box.homogeneous = true;
         flow_box.valign = Gtk.Align.START;
         flow_box.min_children_per_line = 2;
         flow_box.max_children_per_line = 7;
         flow_box.selection_mode = Gtk.SelectionMode.NONE;
         flow_box.activate_on_single_click = true;
-        flow_box.child_activated.connect ((child) => {
-            state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];
-            state.next_screen (Widgets.ScreenDockerContainer.CODE);
-        });
-        root.add (flow_box);
+        //  flow_box.child_activated.connect ((child) => {
+        //      state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];
+        //      state.next_screen (Widgets.ScreenDockerContainer.CODE);
+        //  }); // todo
+        root.set_child (flow_box);
 
         this.container_cards_updated.connect (() => {
-            flow_box.foreach ((child) => {
-                flow_box.remove (child);
-            });
+            flow_box.remove_all ();
 
             foreach (var container in state_main.containers_prepared) {
-                flow_box.add (new ContainerCard (container));
+                flow_box.append (new ContainerCard (container));
             }
 
-            flow_box.show_all ();
+            // todo flow_box.show_all ();
         });
 
         return root;

@@ -17,9 +17,16 @@ newwhaler_sources = [
   'window.vala',
 
   # Widgets
+  'Widgets/ScreenMain.vala',
   'Widgets/ScreenManager.vala',
   'Widgets/ScreenError.vala',
   'Widgets/Utils/SettingsWindow.vala',
+  'Widgets/Utils/DockerContainerStatusLabel.vala',
+
+  'Widgets/Screens/Main/ContainersGrid.vala',
+  'Widgets/Screens/Main/ContainersGridFilter.vala',
+  'Widgets/Screens/Main/ContainerCard.vala',
+  'Widgets/Screens/Main/ContainerCardActions.vala',
 
   # Utils
   'Utils/HttpClient.vala',

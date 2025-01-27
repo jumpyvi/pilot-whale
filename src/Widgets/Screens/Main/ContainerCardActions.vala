@@ -19,8 +19,8 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
         this.orientation = Gtk.Orientation.HORIZONTAL;
         this.spacing = 0;
         this.get_style_context ().add_class ("docker-container-actions");
-        this.pack_start (this.build_button_main_action (), false, false);
-        this.pack_start (this.build_button_menu_action (), false, false);
+        this.prepend (this.build_button_main_action());
+        // this.prepend (this.build_button_menu_action ()); // todo
     }
 
     private Gtk.Widget build_button_main_action () {
@@ -30,7 +30,7 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
             icon_name = "media-playback-stop-symbolic";
         }
 
-        var button = new Gtk.Button.from_icon_name (icon_name, Gtk.IconSize.MENU);
+        var button = new Gtk.Button.from_icon_name (icon_name);
         button.valign = Gtk.Align.CENTER;
         button.clicked.connect (() => {
             this.sensitive = false;
@@ -44,119 +44,119 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
         return button;
     }
 
-    private Gtk.Widget build_button_menu_action () {
-        var menu = ContainerCardActions.build_menu (this.container, this);
+    //  private Gtk.Widget build_button_menu_action () { // todo
+    //      var menu = ContainerCardActions.build_menu (this.container, this);
 
-        var button = new Gtk.Button.from_icon_name ("view-more-symbolic", Gtk.IconSize.BUTTON);
-        button.valign = Gtk.Align.CENTER;
-        button.clicked.connect ((widget) => {
-            menu.popup_at_widget (
-                widget,
-                Gdk.Gravity.NORTH_WEST,
-                Gdk.Gravity.NORTH_WEST,
-                null
-            );
-        });
+    //      var button = new Gtk.Button.from_icon_name ("view-more-symbolic");
+    //      button.valign = Gtk.Align.CENTER;
+    //      button.clicked.connect ((widget) => {
+    //          menu.popup_at_widget (
+    //              widget,
+    //              Gdk.Gravity.NORTH_WEST,
+    //              Gdk.Gravity.NORTH_WEST,
+    //              null
+    //          );
+    //      });
 
-        return button;
-    }
+    //      return button;
+    //  }
 
-    public static Gtk.Menu build_menu (DockerContainer container, Gtk.Widget actions_widget) {
-        var state = State.Root.get_instance ();
+    //  public static Gtk.Menu build_menu (DockerContainer container, Gtk.Widget actions_widget) { // todo Use Gtk.PopoverMenu
+    //      var state = State.Root.get_instance ();
 
-        var item_pause = new Gtk.MenuItem.with_label (_ ("Pause"));
-        item_pause.sensitive = container.state == DockerContainerState.RUNNING;
-        item_pause.activate.connect (() => {
-            var err_msg = _ ("Container pause error");
-            actions_widget.sensitive = false;
+    //      var item_pause = new Gtk.MenuItem.with_label (_ ("Pause"));
+    //      item_pause.sensitive = container.state == DockerContainerState.RUNNING;
+    //      item_pause.activate.connect (() => {
+    //          var err_msg = _ ("Container pause error");
+    //          actions_widget.sensitive = false;
 
-            state.container_pause.begin (container, (_, res) => {
-                try {
-                    state.container_pause.end (res);
-                } catch (Docker.ApiClientError error) {
-                    ScreenManager.dialog_error_show (err_msg, error.message);
-                } finally {
-                    actions_widget.sensitive = true;
-                }
-            });
-        });
-        item_pause.show ();
+    //          state.container_pause.begin (container, (_, res) => {
+    //              try {
+    //                  state.container_pause.end (res);
+    //              } catch (Docker.ApiClientError error) {
+    //                  ScreenManager.dialog_error_show (err_msg, error.message);
+    //              } finally {
+    //                  actions_widget.sensitive = true;
+    //              }
+    //          });
+    //      });
+    //      item_pause.show ();
 
-        var item_restart = new Gtk.MenuItem.with_label (_ ("Restart"));
-        item_restart.activate.connect (() => {
-            var err_msg = _ ("Container restart error");
+    //      var item_restart = new Gtk.MenuItem.with_label (_ ("Restart"));
+    //      item_restart.activate.connect (() => {
+    //          var err_msg = _ ("Container restart error");
 
-            actions_widget.sensitive = false;
-            ScreenManager.overlay_bar_show (_ ("Restarting container"));
+    //          actions_widget.sensitive = false;
+    //          ScreenManager.overlay_bar_show (_ ("Restarting container"));
 
-            state.container_restart.begin (container, (_, res) => {
-                try {
-                    state.container_restart.end (res);
-                } catch (Docker.ApiClientError error) {
-                    ScreenManager.dialog_error_show (err_msg, error.message);
-                } finally {
-                    actions_widget.sensitive = true;
-                    ScreenManager.overlay_bar_hide ();
-                }
-            });
-        });
-        item_restart.show ();
+    //          state.container_restart.begin (container, (_, res) => {
+    //              try {
+    //                  state.container_restart.end (res);
+    //              } catch (Docker.ApiClientError error) {
+    //                  ScreenManager.dialog_error_show (err_msg, error.message);
+    //              } finally {
+    //                  actions_widget.sensitive = true;
+    //                  ScreenManager.overlay_bar_hide ();
+    //              }
+    //          });
+    //      });
+    //      item_restart.show ();
 
-        var item_remove = new Gtk.MenuItem.with_label (_ ("Remove"));
-        item_remove.activate.connect (() => {
-            var confirm = new Utils.ConfirmationDialog (
-                _ ("Do you really want to remove container?"),
-                _ ("Yes, remove"),
-                _ ("Cancel")
-            );
+    //      var item_remove = new Gtk.MenuItem.with_label (_ ("Remove"));
+    //      item_remove.activate.connect (() => {
+    //          var confirm = new Utils.ConfirmationDialog (
+    //              _ ("Do you really want to remove container?"),
+    //              _ ("Yes, remove"),
+    //              _ ("Cancel")
+    //          );
 
-            actions_widget.sensitive = false;
+    //          actions_widget.sensitive = false;
 
-            confirm.accept.connect (() => {
-                var err_msg = _ ("Container remove error");
+    //          confirm.accept.connect (() => {
+    //              var err_msg = _ ("Container remove error");
 
-                ScreenManager.overlay_bar_show (_ ("Removing container"));
+    //              ScreenManager.overlay_bar_show (_ ("Removing container"));
 
-                state.container_remove.begin (container, (_, res) => {
-                    try {
-                        state.container_remove.end (res);
-                    } catch (Docker.ApiClientError error) {
-                        ScreenManager.dialog_error_show (err_msg, error.message);
-                    } finally {
-                        actions_widget.sensitive = true;
-                        ScreenManager.overlay_bar_hide ();
-                    }
-                });
-            });
+    //              state.container_remove.begin (container, (_, res) => {
+    //                  try {
+    //                      state.container_remove.end (res);
+    //                  } catch (Docker.ApiClientError error) {
+    //                      ScreenManager.dialog_error_show (err_msg, error.message);
+    //                  } finally {
+    //                      actions_widget.sensitive = true;
+    //                      ScreenManager.overlay_bar_hide ();
+    //                  }
+    //              });
+    //          });
 
-            confirm.cancel.connect (() => {
-                actions_widget.sensitive = true;
-            });
-        });
-        item_remove.show ();
+    //          confirm.cancel.connect (() => {
+    //              actions_widget.sensitive = true;
+    //          });
+    //      });
+    //      item_remove.show ();
 
-        var item_info = new Gtk.MenuItem.with_label (_ ("Info"));
-        item_info.activate.connect (() => {
-            var err_msg = _ ("Cannot get information");
+    //      var item_info = new Gtk.MenuItem.with_label (_ ("Info"));
+    //      item_info.activate.connect (() => {
+    //          var err_msg = _ ("Cannot get information");
 
-            state.container_inspect.begin (container, (_, res) => {
-                try {
-                    new Utils.ContainerInfoDialog (state.container_inspect.end (res));
-                } catch (Docker.ApiClientError error) {
-                    ScreenManager.dialog_error_show (err_msg, error.message);
-                }
-            });
-        });
-        item_info.show ();
+    //          state.container_inspect.begin (container, (_, res) => {
+    //              try {
+    //                  new Utils.ContainerInfoDialog (state.container_inspect.end (res));
+    //              } catch (Docker.ApiClientError error) {
+    //                  ScreenManager.dialog_error_show (err_msg, error.message);
+    //              }
+    //          });
+    //      });
+    //      item_info.show ();
 
-        var menu = new Gtk.Menu ();
-        menu.append (item_pause);
-        menu.append (item_restart);
-        menu.append (item_remove);
-        menu.append (item_info);
+    //      var menu = new Gtk.Menu ();
+    //      menu.append (item_pause);
+    //      menu.append (item_restart);
+    //      menu.append (item_remove);
+    //      menu.append (item_info);
 
-        return menu;
-    }
+    //      return menu;
+    //  }
 
     public static async void button_main_action_handler (DockerContainer container) {
         var state = State.Root.get_instance ();
@@ -182,11 +182,13 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
                     break;
 
                 case DockerContainerState.UNKNOWN:
-                    ScreenManager.dialog_error_show (err_msg, _ ("Container state is unknown"));
+                    var error_widget = new Adw.AlertDialog (err_msg, _ ("Container state is unknown"));
+                    ScreenManager.screen_error_show_widget (error_widget);
                     break;
             }
         } catch (Docker.ApiClientError error) {
-            ScreenManager.dialog_error_show (err_msg, error.message);
+            var error_widget = new Adw.AlertDialog (err_msg, error.message);
+            ScreenManager.screen_error_show_widget (error_widget);
         } finally {
             ScreenManager.overlay_bar_hide ();
         }

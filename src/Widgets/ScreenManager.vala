@@ -19,7 +19,7 @@ public class Widgets.ScreenManager : Adw.Bin {
 
 
     construct {
-        // var state = State.Root.get_instance (); // todo
+        var state = State.Root.get_instance ();
 
         // Create overlay components
         this.overlay_revealer = new Gtk.Revealer ();
@@ -50,16 +50,16 @@ public class Widgets.ScreenManager : Adw.Bin {
         stack.transition_duration = 300;
 
         stack.add_named (this.screen_error, ScreenError.CODE);
-        //  stack.add_named (new ScreenMain (), ScreenMain.CODE);
+        stack.add_named (new ScreenMain (), ScreenMain.CODE);
         //  stack.add_named (new ScreenDockerContainer (), ScreenDockerContainer.CODE); // todo
 
-        //  stack.show.connect (() => {
-        //      stack.set_visible_child_name (state.active_screen);
-        //  });
+        stack.show.connect (() => {
+            stack.set_visible_child_name (state.active_screen);
+        });
 
-        //  state.notify["active-screen"].connect (() => {
-        //      stack.set_visible_child_name (state.active_screen);
-        //  }); // todo
+        state.notify["active-screen"].connect (() => {
+            stack.set_visible_child_name (state.active_screen);
+        });
 
         overlay.show.connect (() => {
             this.overlay_revealer.reveal_child = this.overlay_bar_visible;
@@ -94,15 +94,6 @@ public class Widgets.ScreenManager : Adw.Bin {
     public static void overlay_bar_hide () {
         instance.overlay_bar_visible = false;
         instance.overlay_revealer.reveal_child = false;
-    }
-
-    public static void dialog_error_show (Gtk.Widget parent, string title, string description) {
-        var dialog = new Adw.AlertDialog (
-            title,
-            description
-        );
-        dialog.add_response ("confirm", "OK");
-        dialog.present (parent);
     }
 
     public static void screen_error_show_widget (Adw.AlertDialog widget) {
