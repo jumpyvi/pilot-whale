@@ -23,9 +23,12 @@ newwhaler_sources = [
 
   # Utils
   'Utils/HttpClient.vala',
+  'Utils/DockerContainer.vala',
+  'Utils/Helpers.vala',
 
   # Docker
   'Docker/ApiClient.vala',
+  'Docker/ContainerLogWatcher.vala',
 ]
 
 newwhaler_deps = [
@@ -35,6 +38,7 @@ newwhaler_deps = [
   dependency('libadwaita-1', version: '>= 1.4'),
   dependency('json-glib-1.0'),
   dependency('gio-2.0'),
+  dependency('gee-0.8'),
   meson.get_compiler('vala').find_library('posix'),
   meson.get_compiler('vala').find_library('libcurl', dirs: vapi_dir),
   meson.get_compiler('c').find_library('libcurl', dirs: vapi_dir),
