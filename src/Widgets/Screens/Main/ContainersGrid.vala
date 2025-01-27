@@ -9,28 +9,30 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Widgets.Screens.Main.ContainersGrid : Gtk.Stack {
+public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
     public const string CODE = "main";
+    private Gtk.Stack stack;
 
     private signal void container_cards_updated();
 
-    public ContainersGrid () {
+    construct {
         var state = State.Root.get_instance ();
         var state_main = state.screen_main;
+        child = stack;
 
-        this.add_named (this.build_loader (), "loader");
-        this.add_named (this.build_notice (), "no-containers");
-        this.add_named (this.build_grid (), "containers");
+        stack.add_named (this.build_loader (), "loader");
+        stack.add_named (this.build_notice (), "no-containers");
+        stack.add_named (this.build_grid (), "containers");
 
         state_main.notify["containers-prepared"].connect (() => {
             if (state_main.containers_prepared.size > 0) {
-                this.set_visible_child_name ("containers");
+                stack.set_visible_child_name ("containers");
 
                 if (state.active_screen == ContainersGrid.CODE) {
                     this.container_cards_updated ();
                 }
             } else {
-                this.set_visible_child_name ("no-containers");
+                stack.set_visible_child_name ("no-containers");
             }
         });
 
@@ -41,6 +43,11 @@ class Widgets.Screens.Main.ContainersGrid : Gtk.Stack {
         });
     }
 
+    public ContainersGrid () {
+        Object ();
+    }
+
+    
     private Gtk.Widget build_grid () {
         var state = State.Root.get_instance ();
         var state_main = state.screen_main;
@@ -73,7 +80,7 @@ class Widgets.Screens.Main.ContainersGrid : Gtk.Stack {
         return root;
     }
 
-    private Gtk.Widget build_loader () {
+    private Gtk.Widget build_loader () { // todo port to adw spinner
         var loader = new Gtk.Spinner ();
 
         loader.width_request = 32;

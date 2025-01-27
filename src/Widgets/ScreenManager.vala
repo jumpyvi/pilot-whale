@@ -7,8 +7,6 @@
  * You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Gtk;
-
 public class Widgets.ScreenManager : Adw.Bin {
     private static ScreenManager? instance;
     private ScreenError screen_error;
