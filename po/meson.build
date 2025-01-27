@@ -1,1 +1,1 @@
-i18n.gettext('newwhaler', preset: 'glib')
+i18n.gettext('whaler', preset: 'glib')

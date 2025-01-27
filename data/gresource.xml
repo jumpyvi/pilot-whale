@@ -11,7 +11,7 @@
       compressed="true"
     >images/icons/docker-container.svg</file>
 
-    <file compressed="true">style/dist/elementary-light.css</file>    
-    <file compressed="true">style/dist/elementary-dark.css</file>    
+    <!-- <file compressed="true">style/dist/elementary-light.css</file>    
+    <file compressed="true">style/dist/elementary-dark.css</file>     -->
   </gresource>
 </gresources>

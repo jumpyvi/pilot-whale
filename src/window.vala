@@ -21,7 +21,7 @@ using Widgets;
 using Adw;
 
 [GtkTemplate (ui = "/com/github/sdv43/whaler/window.ui")]
-public class Newwhaler.Window : Adw.ApplicationWindow {
+public class Whaler.Window : Adw.ApplicationWindow {
     [GtkChild]
     private unowned Adw.Bin screen_manager_placeholder;
 

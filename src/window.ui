@@ -2,8 +2,8 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
-  <template class="NewwhalerWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">NewWhaler</property>
+  <template class="WhalerWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">Whaler</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
     <property name="content">

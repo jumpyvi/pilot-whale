@@ -20,7 +20,7 @@
 
 using Widgets;
 
-public class Newwhaler.Application : Adw.Application {
+public class Whaler.Application : Adw.Application {
     public Application () {
         Object (
             application_id: "com.github.sdv43.whaler",
@@ -41,7 +41,7 @@ public class Newwhaler.Application : Adw.Application {
 
     public override void activate () {
         base.activate ();
-        var win = this.active_window ?? new Newwhaler.Window (this);
+        var win = this.active_window ?? new Whaler.Window (this);
 
         // --- Error Widget test --- //
         //var error_widget = ScreenError.build_error_docker_not_avialable (
@@ -57,7 +57,7 @@ public class Newwhaler.Application : Adw.Application {
     private void on_about_action () {
         string[] developers = { "Whaler Developpers" };
         var about = new Adw.AboutDialog () {
-            application_name = "newwhaler",
+            application_name = "whaler",
             application_icon = "com.github.sdv43.whaler",
             developer_name = "Whaler Developpers",
             translator_credits = _("translator-credits"),

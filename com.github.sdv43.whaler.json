@@ -6,7 +6,7 @@
     "sdk-extensions" : [
         "org.freedesktop.Sdk.Extension.vala"
     ],
-    "command" : "newwhaler",
+    "command" : "whaler",
     "finish-args" : [
         "--share=network",
         "--share=ipc",
@@ -33,7 +33,7 @@
     ],
     "modules" : [
         {
-            "name" : "newwhaler",
+            "name" : "whaler",
             "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [

@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=com.github.sdv43.whaler
-Exec=@bindir@/newwhaler --gapplication-service

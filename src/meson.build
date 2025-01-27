@@ -10,7 +10,7 @@ constants = configure_file(
   configuration: configuration,
 )
 
-newwhaler_sources = [
+sources = [
   # Main
   'main.vala',
   'application.vala',
@@ -49,7 +49,7 @@ newwhaler_sources = [
   'State/ScreenDockerContainer.vala',
 ]
 
-newwhaler_deps = [
+whaler_deps = [
   config_dep,
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
@@ -62,13 +62,13 @@ newwhaler_deps = [
   meson.get_compiler('c').find_library('libcurl', dirs: vapi_dir),
 ]
 
-newwhaler_sources += gnome.compile_resources('newwhaler-resources', 'newwhaler.gresource.xml', c_name: 'newwhaler')
+sources += gnome.compile_resources('whaler-resources', 'whaler.gresource.xml', c_name: 'whaler')
 
 executable(
-  'newwhaler',
+  meson.project_name(),
   constants,
-  newwhaler_sources,
-  dependencies: newwhaler_deps,
+  sources,
+  dependencies: whaler_deps,
   include_directories: config_inc,
   install: true,
 )
