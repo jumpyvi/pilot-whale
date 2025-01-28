@@ -47,8 +47,9 @@ public class Widgets.ScreenManager : Adw.Bin {
         stack.transition_type = Gtk.StackTransitionType.OVER_LEFT_RIGHT;
         stack.transition_duration = 300;
 
-        stack.add_named (this.screen_error, ScreenError.CODE);
         stack.add_named (new ScreenMain (), ScreenMain.CODE);
+        stack.add_named (this.screen_error, ScreenError.CODE);
+        
         //  stack.add_named (new ScreenDockerContainer (), ScreenDockerContainer.CODE); // todo
 
         stack.show.connect (() => {
@@ -64,7 +65,7 @@ public class Widgets.ScreenManager : Adw.Bin {
         });
 
         overlay.set_child (stack);
-        overlay.add_overlay (this.overlay_revealer);
+        //overlay.add_overlay (this.overlay_revealer);
     }
 
     private ScreenManager () {
