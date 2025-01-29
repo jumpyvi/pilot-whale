@@ -3,5 +3,14 @@
   <gresource prefix="/com/github/sdv43/whaler">
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+    <file 
+      alias="/icons/scalable/mimetypes/docker-container-group-symbolic.svg"
+      compressed="true"
+    >../data/images/icons/docker-container-group.svg</file>
+    
+    <file 
+      alias="/icons/scalable/mimetypes/docker-container-symbolic.svg"
+      compressed="true"
+    >../data/images/icons/docker-container.svg</file>
   </gresource>
 </gresources>
