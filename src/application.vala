@@ -51,7 +51,7 @@ public class Whaler.Application : Adw.Application {
         //            ScreenManager.screen_error_show_widget (error_widget); 
         win.set_child (ScreenManager.get_instance ());
         win.present ();
-        //State.Root.get_instance ().init.begin ();
+        State.Root.get_instance ().init.begin ();
     }
 
     private void on_about_action () {

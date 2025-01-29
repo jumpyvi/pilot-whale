@@ -61,7 +61,7 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
     //      return button;
     //  }
 
-    //  public static Gtk.Menu build_menu (DockerContainer container, Gtk.Widget actions_widget) { // todo Use Gtk.PopoverMenu
+    //  public static Gtk.Menu build_menu (DockerContainer container, Gtk.Widget actions_widget) { // todo - Use Gtk.PopoverMenu
     //      var state = State.Root.get_instance ();
 
     //      var item_pause = new Gtk.MenuItem.with_label (_ ("Pause"));

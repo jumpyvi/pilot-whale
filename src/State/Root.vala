@@ -76,6 +76,7 @@ class State.Root : Object {
     }
 
     public async void containers_load () throws ApiClientError {
+        print("container added");
         this.containers.clear ();
 
         // grouping containers into applications

@@ -64,10 +64,6 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
         var root = new Gtk.ScrolledWindow() {
             hexpand = true,
             vexpand = true,
-            margin_start = 12,
-            margin_end = 12,
-            margin_top = 12,
-            margin_bottom = 12
         };
         
         // Configure FlowBox
@@ -83,20 +79,22 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
             selection_mode = Gtk.SelectionMode.NONE,
             activate_on_single_click = true
         };
+        //  flow_box.child_activated.connect ((child) => {
+        //      state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];
+        //      state.next_screen (Widgets.ScreenDockerContainer.CODE);
+        // todo - Create ScreenDockerContainer  });
         
         root.set_child(flow_box);
-        
+
         // Update container cards
         this.container_cards_updated.connect(() => {
             flow_box.remove_all();
-            foreach (var container in state_main.containers_prepared) {
+            foreach (var container in state_main.containers_prepared) { // todo - is empty
                 var card = new ContainerCard(container);
                 // Ensure each card is visible
                 card.visible = true;
                 flow_box.append(card);
             }
-            // Make flow_box itself visible
-            flow_box.visible = true;
         });
         
         return root;
