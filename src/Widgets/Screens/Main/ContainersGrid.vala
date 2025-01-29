@@ -31,7 +31,7 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
         stack.add_named(build_grid(), "containers");
         
         // Set default stack
-        stack.visible_child_name = "containers";
+        stack.visible_child_name = "loader";
         
         state_main.notify["containers-prepared"].connect(() => {
             if (state_main.containers_prepared.size > 0) {
@@ -89,7 +89,7 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
         // Update container cards
         this.container_cards_updated.connect(() => {
             flow_box.remove_all();
-            foreach (var container in state_main.containers_prepared) { // todo - is empty
+            foreach (var container in state_main.containers_prepared) {
                 var card = new ContainerCard(container);
                 // Ensure each card is visible
                 card.visible = true;
@@ -100,15 +100,13 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
         return root;
 }
 
-    private Gtk.Widget build_loader () { // todo port to adw spinner
-        var loader = new Gtk.Spinner ();
+    private Gtk.Widget build_loader () {
+        var loader = new Adw.Spinner ();
 
         loader.width_request = 32;
         loader.height_request = 32;
         loader.halign = Gtk.Align.CENTER;
         loader.valign = Gtk.Align.CENTER;
-
-        loader.start ();
 
         return loader;
     }
