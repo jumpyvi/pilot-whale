@@ -109,6 +109,7 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
         loader.valign = Gtk.Align.CENTER;
 
         return loader;
+        return null;
     }
 
     private Gtk.Widget build_notice () {
