@@ -12,5 +12,8 @@
       alias="/icons/scalable/mimetypes/docker-container-symbolic.svg"
       compressed="true"
     >../data/images/icons/docker-container.svg</file>
+
+     <file alias="index.css" compressed="true">../data/resources/stylesheets/index.css</file>
+     <file alias="animations.css" compressed="true">../data/resources/stylesheets/animations.css</file>
   </gresource>
 </gresources>

@@ -27,7 +27,8 @@ class Widgets.Screens.Main.ContainerCard : Gtk.FlowBoxChild {
         grid.attach (this.build_container_status_label () ?? this.build_container_image (), 2, 2, 1, 1);
         grid.attach (card_actions, 3, 1, 1, 2);
 
-        this.get_style_context ().add_class ("docker-container");
+        this.add_css_class ("card");
+
         this.set_child (grid);
 
         if (container.state == DockerContainerState.UNKNOWN) {
@@ -38,8 +39,6 @@ class Widgets.Screens.Main.ContainerCard : Gtk.FlowBoxChild {
     private Gtk.Widget build_container_name () {
         var label = new Gtk.Label (this.container.name);
 
-        label.get_style_context ().add_class ("primary");
-        label.get_style_context ().add_class ("docker-container-name");
         label.max_width_chars = 16;
         label.ellipsize = Pango.EllipsizeMode.END;
         label.halign = Gtk.Align.START;
@@ -64,7 +63,6 @@ class Widgets.Screens.Main.ContainerCard : Gtk.FlowBoxChild {
     private Gtk.Widget build_container_image () {
         var label = new Gtk.Label (this.container.image);
 
-        label.get_style_context ().add_class ("docker-container-image");
         label.max_width_chars = 16;
         label.ellipsize = Pango.EllipsizeMode.END;
         label.halign = Gtk.Align.START;

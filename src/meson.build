@@ -22,6 +22,7 @@ sources = [
   'Widgets/ScreenError.vala',
   'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
+  'Widgets/Utils/ReloadButton.vala',
 
   'Widgets/Screens/Main/ContainersGrid.vala',
   'Widgets/Screens/Main/ContainersGridFilter.vala',

@@ -18,16 +18,20 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 using Widgets;
+using Widgets.Utils;
 using Adw;
 
 [GtkTemplate (ui = "/com/github/sdv43/whaler/window.ui")]
 public class Whaler.Window : Adw.ApplicationWindow {
     [GtkChild]
     private unowned Adw.Bin screen_manager_placeholder;
+    [GtkChild]
+    private unowned Adw.Bin refresh_button_placeholder;
 
     public Window (Gtk.Application app) {
         Object (application: app);
 
         screen_manager_placeholder.set_child (ScreenManager.get_instance ());
+        refresh_button_placeholder.set_child (ReloadButton.get_instance());
     }
 }

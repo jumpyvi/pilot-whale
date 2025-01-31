@@ -18,16 +18,17 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
         this.container = container;
         this.orientation = Gtk.Orientation.HORIZONTAL;
         this.spacing = 0;
-        this.get_style_context ().add_class ("docker-container-actions");
         this.prepend (this.build_button_main_action());
         // this.prepend (this.build_button_menu_action ()); // todo
     }
 
     private Gtk.Widget build_button_main_action () {
         var icon_name = "media-playback-start-symbolic";
+        string css_class = "suggested-action";
 
         if (this.container.state == DockerContainerState.RUNNING) {
             icon_name = "media-playback-stop-symbolic";
+            css_class = "destructive-action";
         }
 
         var button = new Gtk.Button.from_icon_name (icon_name);
@@ -40,7 +41,8 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
                 this.sensitive = true;
             });
         });
-
+        
+        button.add_css_class (css_class);
         return button;
     }
 

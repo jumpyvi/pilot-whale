@@ -49,6 +49,14 @@ public class Whaler.Application : Adw.Application {
         //            );
         //
         //            ScreenManager.screen_error_show_widget (error_widget); 
+        var provider = new Gtk.CssProvider ();
+		provider.load_from_resource ("/com/github/sdv43/whaler/index.css");
+
+        // Nothing has replaced this yet, will need to be update when gtk5 releases
+		Gtk.StyleContext.add_provider_for_display (
+			Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+			);
+
         win.set_child (ScreenManager.get_instance ());
         win.present ();
         State.Root.get_instance ().init.begin ();
