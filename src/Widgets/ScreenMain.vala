@@ -24,7 +24,7 @@ class Widgets.ScreenMain : Gtk.Box {
         ContainersGridFilter container_grid_filter = new ContainersGridFilter ();
         ContainersGrid container_grid = new ContainersGrid ();
 
-        this.prepend (container_grid_filter);
         this.prepend (container_grid);
+        this.prepend (container_grid_filter);
     }
 }
