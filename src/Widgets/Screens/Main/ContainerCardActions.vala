@@ -19,7 +19,7 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
         this.orientation = Gtk.Orientation.HORIZONTAL;
         this.spacing = 0;
         this.prepend (this.build_button_main_action());
-        // this.prepend (this.build_button_menu_action ()); // todo
+        this.prepend (this.build_button_menu_action ()); // todo
     }
 
     private Gtk.Widget build_button_main_action () {
@@ -46,119 +46,72 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
         return button;
     }
 
-    //  private Gtk.Widget build_button_menu_action () { // todo
-    //      var menu = ContainerCardActions.build_menu (this.container, this);
+    private Gtk.MenuButton build_button_menu_action () {
+        var menu_button = new Gtk.MenuButton ();
+        menu_button.has_frame = false;
+        menu_button.icon_name = "view-more-symbolic";
+        menu_button.sensitive = true;
+        menu_button.set_popover (build_menu (this));
 
-    //      var button = new Gtk.Button.from_icon_name ("view-more-symbolic");
-    //      button.valign = Gtk.Align.CENTER;
-    //      button.clicked.connect ((widget) => {
-    //          menu.popup_at_widget (
-    //              widget,
-    //              Gdk.Gravity.NORTH_WEST,
-    //              Gdk.Gravity.NORTH_WEST,
-    //              null
-    //          );
-    //      });
 
-    //      return button;
-    //  }
+        return menu_button;
+    }
 
-    //  public static Gtk.Menu build_menu (DockerContainer container, Gtk.Widget actions_widget) { // todo - Use Gtk.PopoverMenu
-    //      var state = State.Root.get_instance ();
+    private Gtk.PopoverMenu build_menu (Gtk.Widget parent) {
+        Gtk.PopoverMenu menu = new Gtk.PopoverMenu.from_model (build_menu_model());
+        
+        parent.insert_action_group ("container", create_actions ());
 
-    //      var item_pause = new Gtk.MenuItem.with_label (_ ("Pause"));
-    //      item_pause.sensitive = container.state == DockerContainerState.RUNNING;
-    //      item_pause.activate.connect (() => {
-    //          var err_msg = _ ("Container pause error");
-    //          actions_widget.sensitive = false;
+        return menu;
+    }
 
-    //          state.container_pause.begin (container, (_, res) => {
-    //              try {
-    //                  state.container_pause.end (res);
-    //              } catch (Docker.ApiClientError error) {
-    //                  ScreenManager.dialog_error_show (err_msg, error.message);
-    //              } finally {
-    //                  actions_widget.sensitive = true;
-    //              }
-    //          });
-    //      });
-    //      item_pause.show ();
+    private GLib.MenuModel build_menu_model (){
+        Menu menu_content = new Menu ();
+        menu_content.append ("Pause", "container.pause");
+        menu_content.append ("Restart", "container.restart");
+        menu_content.append ("Remove", "container.remove");
+        menu_content.append ("Info", "container.info");
 
-    //      var item_restart = new Gtk.MenuItem.with_label (_ ("Restart"));
-    //      item_restart.activate.connect (() => {
-    //          var err_msg = _ ("Container restart error");
+        return menu_content;
+    }
 
-    //          actions_widget.sensitive = false;
-    //          ScreenManager.overlay_bar_show (_ ("Restarting container"));
+    private SimpleActionGroup create_actions (){
+        SimpleActionGroup action_group = new SimpleActionGroup ();
 
-    //          state.container_restart.begin (container, (_, res) => {
-    //              try {
-    //                  state.container_restart.end (res);
-    //              } catch (Docker.ApiClientError error) {
-    //                  ScreenManager.dialog_error_show (err_msg, error.message);
-    //              } finally {
-    //                  actions_widget.sensitive = true;
-    //                  ScreenManager.overlay_bar_hide ();
-    //              }
-    //          });
-    //      });
-    //      item_restart.show ();
+        // Pause action
+        SimpleAction pause_action = new SimpleAction ("pause", null);
+        pause_action.activate.connect ((parameter) => {
+            print("Pausing...\n");
+        });
 
-    //      var item_remove = new Gtk.MenuItem.with_label (_ ("Remove"));
-    //      item_remove.activate.connect (() => {
-    //          var confirm = new Utils.ConfirmationDialog (
-    //              _ ("Do you really want to remove container?"),
-    //              _ ("Yes, remove"),
-    //              _ ("Cancel")
-    //          );
+        // Restart action
+        SimpleAction restart_action = new SimpleAction ("restart", null);
+        restart_action.activate.connect ((parameter) => {
+            print("Restarting...\n");
+        });
 
-    //          actions_widget.sensitive = false;
+        // Remove action
+        SimpleAction remove_action = new SimpleAction ("remove", null);
+        remove_action.activate.connect ((parameter) => {
+            print("Removing...\n");
+        });
 
-    //          confirm.accept.connect (() => {
-    //              var err_msg = _ ("Container remove error");
+        // Info action
+        SimpleAction info_action = new SimpleAction ("info", null);
+        info_action.activate.connect ((parameter) => {
+            print("Infoing...\n");
+        });
 
-    //              ScreenManager.overlay_bar_show (_ ("Removing container"));
+        // Add actions to the action group
+        action_group.add_action (pause_action);
+        action_group.add_action (restart_action);
+        action_group.add_action (remove_action);
+        action_group.add_action (info_action);
 
-    //              state.container_remove.begin (container, (_, res) => {
-    //                  try {
-    //                      state.container_remove.end (res);
-    //                  } catch (Docker.ApiClientError error) {
-    //                      ScreenManager.dialog_error_show (err_msg, error.message);
-    //                  } finally {
-    //                      actions_widget.sensitive = true;
-    //                      ScreenManager.overlay_bar_hide ();
-    //                  }
-    //              });
-    //          });
+        return action_group;
+    }
 
-    //          confirm.cancel.connect (() => {
-    //              actions_widget.sensitive = true;
-    //          });
-    //      });
-    //      item_remove.show ();
 
-    //      var item_info = new Gtk.MenuItem.with_label (_ ("Info"));
-    //      item_info.activate.connect (() => {
-    //          var err_msg = _ ("Cannot get information");
-
-    //          state.container_inspect.begin (container, (_, res) => {
-    //              try {
-    //                  new Utils.ContainerInfoDialog (state.container_inspect.end (res));
-    //              } catch (Docker.ApiClientError error) {
-    //                  ScreenManager.dialog_error_show (err_msg, error.message);
-    //              }
-    //          });
-    //      });
-    //      item_info.show ();
-
-    //      var menu = new Gtk.Menu ();
-    //      menu.append (item_pause);
-    //      menu.append (item_restart);
-    //      menu.append (item_remove);
-    //      menu.append (item_info);
-
-    //      return menu;
-    //  }
 
     public static async void button_main_action_handler (DockerContainer container) {
         var state = State.Root.get_instance ();
