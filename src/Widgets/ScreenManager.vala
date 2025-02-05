@@ -7,7 +7,7 @@
  * You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-public class Widgets.ScreenManager : Adw.Bin { // TODO - This should be a Gtk.Box (replacing the one in constructor)
+public class Widgets.ScreenManager : Gtk.Box {
     private static ScreenManager? instance;
     private ScreenError screen_error;
     private Adw.ToastOverlay toast_overlay;
@@ -15,7 +15,7 @@ public class Widgets.ScreenManager : Adw.Bin { // TODO - This should be a Gtk.Bo
 
     construct {
         var state = State.Root.get_instance ();
-        Gtk.Box main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0); // see class todo
+        this.orientation = Gtk.Orientation.VERTICAL;
 
         this.toast_overlay = new Adw.ToastOverlay ();
               
@@ -38,9 +38,8 @@ public class Widgets.ScreenManager : Adw.Bin { // TODO - This should be a Gtk.Bo
         state.notify["active-screen"].connect (() => {
             stack.set_visible_child_name (state.active_screen);
         });
-        main_box.append (stack);
-        main_box.append (toast_overlay);
-        child = main_box;  
+        this.append (stack);
+        this.append (toast_overlay);
     }
 
     private ScreenManager () {
