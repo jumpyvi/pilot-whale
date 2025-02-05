@@ -8,6 +8,7 @@
 
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
+using Utils.Constants;
 
 class Widgets.Utils.SettingsWindow : Adw.PreferencesDialog {
     public SettingsWindow(){
@@ -23,20 +24,25 @@ class Widgets.Utils.SettingsWindow : Adw.PreferencesDialog {
 }
 
 private Adw.PreferencesPage get_pref(){
-  var page = new Adw.PreferencesPage();
-  page.title = "Preferences";
-  page.name = "preferences";
+    var page = new Adw.PreferencesPage();
+    page.title = "Preferences";
+    page.name = "preferences";
+
+    var settings = new Settings(APP_ID);
+    
 
     var docker_sock_entry = new Adw.EntryRow () {
 			title = _("API socket path"),
-			text = "/run/docker.sock",
 			show_apply_button = true,
       tooltip_text = "Usally /run/docker.sock or /var/run/docker.sock"
 		};
 
+     settings.bind ("docker-api-socket-path", docker_sock_entry, "text", SettingsBindFlags.DEFAULT);
+
 
     var docker_group = new Adw.PreferencesGroup ();
 		docker_group.title = _("Docker");
+
 		var docker_socket_row = new Adw.ActionRow ();
 		docker_socket_row.activatable = false;
 		docker_socket_row.title = _("Docker Socket");
@@ -46,6 +52,7 @@ private Adw.PreferencesPage get_pref(){
   
     var privacy_group = new Adw.PreferencesGroup ();
 		privacy_group.title = _("Privacy");
+
 		var privacy_policy_row = new Adw.ActionRow ();
 		privacy_policy_row.activatable = false;
 		privacy_policy_row.title = _("Privacy Policy");

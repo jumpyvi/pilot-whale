@@ -43,7 +43,8 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
                 try {
                     state.container_pause.end(res);
                 }catch (Docker.ApiClientError error){
-                    print(error.message); // TODO - add GUI error
+                    print(error.message);
+                    ScreenManager.show_toast_with_content (error.message, 5);
                 } finally {
                     pause_button.sensitive = true;
                     pause_button.label = "Paused";

@@ -24,7 +24,7 @@
         {
             "label": "Launch application",
             "type": "shell",
-            "command": "./build/src/com.github.sdv43.whaler",
+            "command": "dbus-daemon --session --fork && ./build/src/com.github.sdv43.whaler",
             "problemMatcher": [],
             "icon": {
                 "id": "run"
