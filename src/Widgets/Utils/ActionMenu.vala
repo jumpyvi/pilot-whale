@@ -19,11 +19,10 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
         Gtk.Popover popover = new Gtk.Popover();
         Gtk.Box action_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
 
-        Gtk.Button restart_action = new Gtk.Button.with_label("Restart");
         Gtk.Button remove_action = new Gtk.Button.with_label("Remove");
         Gtk.Button info_action = new Gtk.Button.with_label("Info");
         action_box.append(create_pause_button(container));
-        action_box.append(restart_action);
+        action_box.append(create_restart_button(container));
         action_box.append(remove_action);
         action_box.append(info_action);
 
@@ -34,11 +33,11 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
 
     private Gtk.Button create_pause_button(DockerContainer container) {
         var state = State.Root.get_instance ();
-        var button = new Gtk.Button.with_label("Pause");
-        button.sensitive = container.state == DockerContainerState.RUNNING;
-        button.clicked.connect(() => {
-            button.label = "Pausing...";
-            button.sensitive = false;
+        var pause_button = new Gtk.Button.with_label("Pause");
+        pause_button.sensitive = container.state == DockerContainerState.RUNNING;
+        pause_button.clicked.connect(() => {
+            pause_button.label = "Pausing...";
+            pause_button.sensitive = false;
 
             state.container_pause.begin(container, (_, res) => {
                 try {
@@ -46,11 +45,37 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
                 }catch (Docker.ApiClientError error){
                     print(error.message); // TODO - add GUI error
                 } finally {
-                    button.sensitive = true;
+                    pause_button.sensitive = true;
+                    pause_button.label = "Paused";
                 }
             });
         });
         
-        return button;
+        return pause_button;
+    }
+
+    private Gtk.Button create_restart_button(DockerContainer container){
+        var restart_button = new Gtk.Button.with_label("Restart");
+        var state = State.Root.get_instance ();
+
+        restart_button.clicked.connect (() => {
+            print("restarting..");
+            var err_msg = _ ("Container restart error");
+            restart_button.sensitive = false;
+            restart_button.label = "Restarting...";
+            
+            state.container_restart.begin (container, (_, res) => {
+                try {
+                    state.container_restart.end (res);
+                } catch (Docker.ApiClientError error) {
+                    print(error.message); // TODO - add GUI error
+                } finally {
+                    restart_button.sensitive = true;
+                    ScreenManager.overlay_bar_hide ();
+                }
+            });
+        });
+
+        return restart_button;
     }
 }

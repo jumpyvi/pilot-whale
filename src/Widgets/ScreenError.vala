@@ -33,7 +33,7 @@ class Widgets.ScreenError : Gtk.Grid {
     //  }
 
     public void show_widget (Adw.AlertDialog widget) {
-        // todo - remove all child
+        // TODO - remove all child
 
         widget.present (this);
         this.attach (widget, 0, 0, 10, 10);
@@ -59,7 +59,7 @@ class Widgets.ScreenError : Gtk.Grid {
 
         var alert = new Adw.AlertDialog ("The app cannot connect to Docker API", description);
 
-        //alert.show_action (_ ("Open settings")); // todo - make it so a button apears to open settings in the dialog
+        //alert.show_action (_ ("Open settings")); // TODO - make it so a button apears to open settings in the dialog
 
         return alert;
     }

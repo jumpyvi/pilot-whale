@@ -50,7 +50,7 @@ public class Widgets.ScreenManager : Adw.Bin {
         stack.add_named (new ScreenMain (), ScreenMain.CODE);
         stack.add_named (this.screen_error, ScreenError.CODE);
         
-        // todo - add this stack back
+        // TODO - add this stack back
         // stack.add_named (new ScreenDockerContainer (), ScreenDockerContainer.CODE); 
 
         stack.show.connect (() => {

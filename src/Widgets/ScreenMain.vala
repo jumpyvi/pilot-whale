@@ -18,7 +18,7 @@ class Widgets.ScreenMain : Gtk.Box {
         this.orientation = Gtk.Orientation.VERTICAL;
         this.spacing = 0;
 
-        // todo - replace this fonction
+        // TODO - replace this fonction
         // this.get_style_context ().add_class ("screen-main");
 
         ContainersGridFilter container_grid_filter = new ContainersGridFilter ();
