@@ -49,6 +49,7 @@ public class Whaler.Application : Adw.Application {
         //            );
         //
         //            ScreenManager.screen_error_show_widget (error_widget); 
+
         var provider = new Gtk.CssProvider ();
 		provider.load_from_resource ("/com/github/sdv43/whaler/index.css");
 
