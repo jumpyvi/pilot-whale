@@ -63,6 +63,7 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
             var err_msg = _ ("Container restart error");
             restart_button.sensitive = false;
             restart_button.label = "Restarting...";
+            ScreenManager.show_toast_with_content("Restarting ...", 2);
             
             state.container_restart.begin (container, (_, res) => {
                 try {
@@ -71,7 +72,6 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
                     print(error.message); // TODO - add GUI error
                 } finally {
                     restart_button.sensitive = true;
-                    ScreenManager.overlay_bar_hide ();
                 }
             });
         });

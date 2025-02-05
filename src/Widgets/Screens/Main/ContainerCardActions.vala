@@ -56,13 +56,13 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
             switch (container.state) {
                 case DockerContainerState.RUNNING:
                     err_msg = _ ("Container stop error");
-                    ScreenManager.overlay_bar_show (_ ("Stopping container"));
+                    // TODO - Replace with ToastOverlay ScreenManager.overlay_bar_show (_ ("Stopping container"));
                     yield state.container_stop(container);
                     break;
 
                 case DockerContainerState.STOPPED:
                     err_msg = _ ("Container start error");
-                    ScreenManager.overlay_bar_show (_ ("Starting container"));
+                    // TODO - Replace with ToastOverlay ScreenManager.overlay_bar_show (_ ("Starting container"));
                     yield state.container_start(container);
                     break;
 
@@ -80,7 +80,7 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
             var error_widget = new Adw.AlertDialog (err_msg, error.message);
             ScreenManager.screen_error_show_widget (error_widget);
         } finally {
-            ScreenManager.overlay_bar_hide ();
+            
         }
     }
 }
