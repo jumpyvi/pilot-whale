@@ -1,31 +1,27 @@
-/*
- * This file is part of Whaler.
- * Whaler is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- * Whaler is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
- */
- public class Widgets.Utils.ActionMenu : Adw.Bin {
-    public ActionMenu(){
-        Gtk.MenuButton menu_button = new Gtk.MenuButton ();
+using Utils;
+using Widgets;
+
+class Widgets.Utils.ActionMenu : Adw.Bin {
+    private Gtk.MenuButton menu_button;
+
+    public ActionMenu(DockerContainer container) {
+        menu_button = new Gtk.MenuButton ();
         menu_button.has_frame = false;
         menu_button.icon_name = "view-more-symbolic";
         menu_button.sensitive = true;
-        menu_button.set_popover (build_menu (this));
+        menu_button.set_popover (build_menu (this, container));
 
         this.set_child (menu_button);
     }
 
-    private Gtk.PopoverMenu build_menu (Gtk.Widget parent) {
+    private Gtk.PopoverMenu build_menu (Gtk.Widget parent, DockerContainer container) {
         Gtk.PopoverMenu menu = new Gtk.PopoverMenu.from_model (build_menu_model());
-        
-        parent.insert_action_group ("container", create_actions ());
+        parent.insert_action_group ("container", create_actions (container));
 
         return menu;
     }
 
-    private GLib.MenuModel build_menu_model (){
+    private GLib.MenuModel build_menu_model () {
         Menu menu_content = new Menu ();
         menu_content.append ("Pause", "container.pause");
         menu_content.append ("Restart", "container.restart");
@@ -35,13 +31,25 @@
         return menu_content;
     }
 
-    private SimpleActionGroup create_actions (){
+    private SimpleActionGroup create_actions (DockerContainer container) {
         SimpleActionGroup action_group = new SimpleActionGroup ();
+        var state = State.Root.get_instance ();
 
         // Pause action
         SimpleAction pause_action = new SimpleAction ("pause", null);
         pause_action.activate.connect ((parameter) => {
-            print("Pausing...\n");
+            var err_msg = "Cant pause";
+            state.container_pause.begin (container, (_, res) => {
+                try {
+                    state.container_pause.end (res);
+                } catch (Docker.ApiClientError error) {
+                    // TODO - dialog
+                    print ("pausing error");
+                } finally {
+                    // TODO - When the action is done, set the MenuButton to sensitive
+                    print ("pausing success");
+                }
+            });
         });
 
         // Restart action
@@ -70,5 +78,4 @@
 
         return action_group;
     }
-    
- }
+}

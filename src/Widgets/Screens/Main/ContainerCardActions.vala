@@ -20,7 +20,7 @@ class Widgets.Screens.Main.ContainerCardActions : Gtk.Box {
         this.orientation = Gtk.Orientation.HORIZONTAL;
         this.spacing = 0;
         this.prepend (this.build_button_main_action());
-        this.prepend (new Widgets.Utils.ActionMenu());
+        this.prepend (new Widgets.Utils.ActionMenu(container));
     }
 
     private Gtk.Widget build_button_main_action () {
