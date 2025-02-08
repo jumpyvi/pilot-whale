@@ -28,8 +28,7 @@ public class Widgets.ScreenManager : Gtk.Box {
         stack.add_named (new ScreenMain (), ScreenMain.CODE);
         stack.add_named (this.screen_error, ScreenError.CODE);
         
-        // TODO - add this stack back
-        // stack.add_named (new ScreenDockerContainer (), ScreenDockerContainer.CODE); 
+        stack.add_named (new ScreenDockerContainer (), ScreenDockerContainer.CODE); 
 
         stack.show.connect (() => {
             stack.set_visible_child_name (state.active_screen);

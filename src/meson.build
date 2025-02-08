@@ -20,6 +20,7 @@ sources = [
   'Widgets/ScreenMain.vala',
   'Widgets/ScreenManager.vala',
   'Widgets/ScreenError.vala',
+  'Widgets/ScreenDockerContainer.vala',
   'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
@@ -29,6 +30,14 @@ sources = [
   'Widgets/Screens/Main/ContainersGridFilter.vala',
   'Widgets/Screens/Main/ContainerCard.vala',
   'Widgets/Screens/Main/ContainerCardActions.vala',
+
+  # 'Widgets/Screens/Main/DockerContainer/Log.vala',
+  # 'Widgets/Screens/Main/DockerContainer/LogOutput.vala',
+  # 'Widgets/Screens/Main/DockerContainer/TopBar.vala',
+  # 'Widgets/Screens/Main/DockerContainer/TopBarActions.vala',
+  'Widgets/Screens/Main/DockerContainer/SideBarItem.vala',
+  'Widgets/Screens/Main/DockerContainer/SideBar.vala',
+  'Widgets/Screens/Main/DockerContainer/SideBarSeparator.vala',
 
   # Utils
   'Utils/HttpClient.vala',

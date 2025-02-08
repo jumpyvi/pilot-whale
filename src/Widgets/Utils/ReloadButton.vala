@@ -57,7 +57,7 @@
         });
     }
 
-    private  ReloadButton () {
+    private ReloadButton () {
         Object ();
     }
 

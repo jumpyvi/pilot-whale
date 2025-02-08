@@ -79,10 +79,10 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
             selection_mode = Gtk.SelectionMode.NONE,
             activate_on_single_click = true
         };
-        //  flow_box.child_activated.connect ((child) => {
-        //      state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];
-        //      state.next_screen (Widgets.ScreenDockerContainer.CODE);
-        // TODO - Create ScreenDockerContainer  });
+        flow_box.child_activated.connect ((child) => {
+            state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];
+            state.next_screen (Widgets.ScreenDockerContainer.CODE);
+        });
         
         root.set_child(flow_box);
 
