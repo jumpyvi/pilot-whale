@@ -6,6 +6,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
+ using Utils;
  public class Widgets.Utils.ReloadButton : Gtk.Button {
     private Adw.ButtonContent button_content = new Adw.ButtonContent ();
     private static ReloadButton? instance;
@@ -29,21 +30,7 @@
                 return false;
             }, Priority.LOW);
 
-            state.containers_load.begin ((_, res) => {
-                try {
-                    state.containers_load.end (res);
-
-                    if (state.active_screen == ScreenError.CODE) {
-                        state.active_screen = ScreenMain.CODE;
-                    }
-                } catch (Docker.ApiClientError error) {
-                    var error_widget = ScreenError.build_error_docker_not_avialable (
-                        error is Docker.ApiClientError.ERROR_NO_ENTRY
-                    );
-
-                    ScreenManager.screen_error_show_widget (error_widget);
-                }
-            });
+            Reloader.reload();
         });
 
         this.show.connect (() => {

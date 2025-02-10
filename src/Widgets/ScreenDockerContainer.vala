@@ -19,14 +19,10 @@ class Widgets.ScreenDockerContainer : Adw.Bin {
         view = new Adw.OverlaySplitView ();
         var state = State.Root.get_instance ();
         view.set_sidebar_position (Gtk.PackType.START);
-        // TODO - add log output / view.set_content (build_log_output ());
+        view.set_content (build_log_output ());
         view.set_show_sidebar (state.screen_docker_container.is_sidebar_enabled);
-        print("bool " + state.screen_docker_container.is_sidebar_enabled.to_string ());
         view.set_collapsed (false);
 
-        Gtk.Label content_label = new Gtk.Label ("log view");
-
-        view.set_content (content_label);
         view.set_sidebar (new Widgets.Screens.Container.SideBar (this));
 
         child = view;
@@ -39,7 +35,7 @@ class Widgets.ScreenDockerContainer : Adw.Bin {
     private Gtk.Widget build_log_output () {
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-        //box.prepend (new Screens.Container.TopBar ());
+        box.prepend (new Screens.Container.TopBar ());
         //box.append (new Screens.Container.Log ());
 
         return box;

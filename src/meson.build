@@ -24,6 +24,7 @@ sources = [
   'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
+
   'Widgets/Utils/ActionMenu.vala',
 
   'Widgets/Screens/Main/ContainersGrid.vala',
@@ -33,8 +34,8 @@ sources = [
 
   # 'Widgets/Screens/Main/DockerContainer/Log.vala',
   # 'Widgets/Screens/Main/DockerContainer/LogOutput.vala',
-  # 'Widgets/Screens/Main/DockerContainer/TopBar.vala',
-  # 'Widgets/Screens/Main/DockerContainer/TopBarActions.vala',
+  'Widgets/Screens/Main/DockerContainer/TopBar.vala',
+  'Widgets/Screens/Main/DockerContainer/TopBarActions.vala',
   'Widgets/Screens/Main/DockerContainer/SideBarItem.vala',
   'Widgets/Screens/Main/DockerContainer/SideBar.vala',
   'Widgets/Screens/Main/DockerContainer/SideBarSeparator.vala',
@@ -43,6 +44,7 @@ sources = [
   'Utils/HttpClient.vala',
   'Utils/DockerContainer.vala',
   'Utils/Helpers.vala',
+  'Utils/Reloader.vala',
 
   # Utils/Sorting
   'Utils/Sorting/SortingInterface.vala',
