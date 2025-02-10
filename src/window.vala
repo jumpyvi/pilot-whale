@@ -32,6 +32,6 @@ public class Whaler.Window : Adw.ApplicationWindow {
         Object (application: app);
 
         screen_manager_placeholder.set_child (ScreenManager.get_instance ());
-        refresh_button_placeholder.set_child (ReloadButton.get_instance());
+        refresh_button_placeholder.set_child (new ReloadButton());
     }
 }

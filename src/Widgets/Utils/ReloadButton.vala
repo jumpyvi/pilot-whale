@@ -9,7 +9,6 @@
  using Utils;
  public class Widgets.Utils.ReloadButton : Gtk.Button {
     private Adw.ButtonContent button_content = new Adw.ButtonContent ();
-    private static ReloadButton? instance;
     private const string BUTTON_ICON_NAME = "view-refresh-symbolic";
     private const string TOOLTIP_CONTENT = "Refresh";
 
@@ -44,15 +43,8 @@
         });
     }
 
-    private ReloadButton () {
+    public ReloadButton () {
         Object ();
-    }
-
-    public static ReloadButton get_instance () {
-        if (ReloadButton.instance == null) {
-            ReloadButton.instance = new ReloadButton ();
-        }
-        return ReloadButton.instance;
     }
 
  }
