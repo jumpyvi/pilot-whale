@@ -19,7 +19,7 @@
               </object>
             </child>
             <child type="end">
-              <object class="AdwBin" id="refresh_button_placeholder"></object>
+              <object class="GtkBox" id="headerbar_buttons_box"></object>
             </child>
           </object>
         </child>

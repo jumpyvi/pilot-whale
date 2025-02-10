@@ -26,12 +26,13 @@ public class Whaler.Window : Adw.ApplicationWindow {
     [GtkChild]
     private unowned Adw.Bin screen_manager_placeholder;
     [GtkChild]
-    private unowned Adw.Bin refresh_button_placeholder;
+    private unowned Gtk.Box headerbar_buttons_box;
 
     public Window (Gtk.Application app) {
         Object (application: app);
 
         screen_manager_placeholder.set_child (ScreenManager.get_instance ());
-        refresh_button_placeholder.set_child (new ReloadButton());
+        headerbar_buttons_box.append (new BackButton());
+        headerbar_buttons_box.append (new ReloadButton());
     }
 }

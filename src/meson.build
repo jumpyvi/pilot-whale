@@ -24,6 +24,7 @@ sources = [
   'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
+  'Widgets/Utils/BackButton.vala',
 
   'Widgets/Utils/ActionMenu.vala',
 
