@@ -15,12 +15,14 @@ class State.ScreenDockerContainer : Object {
     private Root root;
 
     public bool is_sidebar_enabled {get; set;}
+    public bool is_autoscroll_enabled;
     public DockerContainer? container {get; set;}
     public DockerContainer? service {get; set;}
 
     public ScreenDockerContainer (Root root) {
         this.root = root;
         this.is_sidebar_enabled = false;
+        this.is_autoscroll_enabled = false;
         this.container = null;
         this.service = null;
 

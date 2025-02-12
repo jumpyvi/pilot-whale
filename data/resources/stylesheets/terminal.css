@@ -1,0 +1,19 @@
+.log-frame {
+    margin: 1rem;
+}
+
+.terminal {
+    background-color: #1e1e1e;
+    color: #EEEEEE;
+    font-family: "Monospace", monospace;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 9px;
+    white-space: pre-wrap;
+    overflow: auto;
+    min-height: 200px;
+}
+
+scrollbar {
+    color: white;
+}

@@ -14,9 +14,11 @@ using Utils;
 class Widgets.ScreenDockerContainer : Adw.Bin {
     public static string CODE = "docker-container";
     private Adw.OverlaySplitView view;
+    public bool is_autoscroll_enabled;
 
     construct {
         view = new Adw.OverlaySplitView ();
+        is_autoscroll_enabled = true;
         var state = State.Root.get_instance ();
         view.set_sidebar_position (Gtk.PackType.START);
         view.set_content (build_log_output ());
@@ -35,8 +37,8 @@ class Widgets.ScreenDockerContainer : Adw.Bin {
     private Gtk.Widget build_log_output () {
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-        box.prepend (new Screens.Container.TopBar ());
-        //box.append (new Screens.Container.Log ());
+        box.append (new Screens.Container.TopBar ());
+        box.append (new Screens.Container.LogViewer ());
 
         return box;
     }

@@ -61,7 +61,6 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
 
         restart_button.clicked.connect (() => {
             print("restarting..");
-            var err_msg = _ ("Container restart error");
             restart_button.sensitive = false;
             restart_button.label = "Restarting...";
             ScreenManager.show_toast_with_content("Restarting ...", 2);
@@ -70,7 +69,7 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
                 try {
                     state.container_restart.end (res);
                 } catch (Docker.ApiClientError error) {
-                    print(error.message); // TODO - add GUI error
+                    ScreenManager.show_toast_with_content("There was a problem restarting the container", 3);
                 } finally {
                     restart_button.sensitive = true;
                 }

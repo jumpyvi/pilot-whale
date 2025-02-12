@@ -33,8 +33,7 @@ sources = [
   'Widgets/Screens/Main/ContainerCard.vala',
   'Widgets/Screens/Main/ContainerCardActions.vala',
 
-  # 'Widgets/Screens/Main/DockerContainer/Log.vala',
-  # 'Widgets/Screens/Main/DockerContainer/LogOutput.vala',
+  'Widgets/Screens/Main/DockerContainer/LogViewer.vala',
   'Widgets/Screens/Main/DockerContainer/TopBar.vala',
   'Widgets/Screens/Main/DockerContainer/TopBarActions.vala',
   'Widgets/Screens/Main/DockerContainer/SideBarItem.vala',

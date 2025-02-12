@@ -16,5 +16,6 @@
      <file alias="index.css" compressed="true">../data/resources/stylesheets/index.css</file>
      <file alias="animations.css" compressed="true">../data/resources/stylesheets/animations.css</file>
      <file alias="widgets.css" compressed="true">../data/resources/stylesheets/widgets.css</file>
+     <file alias="terminal.css" compressed="true">../data/resources/stylesheets/terminal.css</file>
   </gresource>
 </gresources>
