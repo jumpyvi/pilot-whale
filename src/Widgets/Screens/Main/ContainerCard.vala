@@ -72,10 +72,10 @@ class Widgets.Screens.Main.ContainerCard : Gtk.FlowBoxChild {
     }
 
     private Gtk.Widget build_container_icon () {
-        var icon_name = "docker-container-group-symbolic";
+        var icon_name = "docker-container-symbolic";
 
         if (this.container.type == DockerContainerType.GROUP) {
-            icon_name = "docker-container-symbolic";
+            icon_name = "docker-container-group-symbolic";
         }
 
         var image = new Gtk.Image.from_icon_name (icon_name);
