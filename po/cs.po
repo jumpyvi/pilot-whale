@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.sdv43.whaler\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-04 08:24+0300\n"
+"POT-Creation-Date: 2025-02-13 21:57+0000\n"
 "PO-Revision-Date: 2023-04-22 17:53+0200\n"
 "Last-Translator: Amerey.eu <info@amerey.eu>\n"
 "Language-Team: \n"
@@ -18,6 +18,16 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.1.1\n"
 
+#: data/com.github.sdv43.whaler.desktop.in:3
+#: data/com.github.sdv43.whaler.appdata.xml.in:5
+msgid "Whaler"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.desktop.in:4
+#, fuzzy
+msgid "Docker Client"
+msgstr "Docker Container Management"
+
 #: data/com.github.sdv43.whaler.desktop.in:5
 msgid "Manage your Docker containers"
 msgstr "Spravujte své kontejnery Docker"
@@ -26,11 +36,15 @@ msgstr "Spravujte své kontejnery Docker"
 msgid "Docker;Virtualizaton;Development;"
 msgstr "Docker;Virtualizaton;Development;"
 
-#: data/com.github.sdv43.whaler.appdata.xml.in:5
+#: data/com.github.sdv43.whaler.appdata.xml.in:6
 msgid "Docker Container Management"
 msgstr "Docker Container Management"
 
-#: data/com.github.sdv43.whaler.appdata.xml.in:10
+#: data/com.github.sdv43.whaler.appdata.xml.in:9
+msgid "Selivestrov Dmitriy"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:11
 msgid ""
 "Whaler provides basic functionality for managing Docker containers. The app "
 "can start and stop both standalone containers and docker-compose "
@@ -40,7 +54,7 @@ msgstr ""
 "spouštět a zastavovat jak samostatné kontejnery, tak aplikace složené z "
 "dockeru. Podporuje také prohlížení protokolů kontejnerů."
 
-#: data/com.github.sdv43.whaler.appdata.xml.in:15
+#: data/com.github.sdv43.whaler.appdata.xml.in:16
 msgid ""
 "The solution is perfect for those who are looking for a simple tool to "
 "perform some basic actions. For the app to run correctly, make sure that "
@@ -50,94 +64,171 @@ msgstr ""
 "některých základních akcí. Aby aplikace fungovala správně, ujistěte se, že "
 "je ve vašem systému nainstalován Docker."
 
-#: src/Utils/Sorting/SortingName.vala:12
-#: src/Widgets/Utils/ContainerInfoDialog.vala:52
+#: data/com.github.sdv43.whaler.appdata.xml.in:26
+msgid "Add license file"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:27
+msgid "Fix logs reading when tty is enabled"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:28
+#: data/com.github.sdv43.whaler.appdata.xml.in:36
+#: data/com.github.sdv43.whaler.appdata.xml.in:45
+msgid "Update flatpak runtime version"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:29
+msgid "Update Italian translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:37
+msgid "Fix app crashing with huge logs"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:38
+msgid "Add Czech translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:52
+#, fuzzy
+msgid "Add sorting by container status"
+msgstr "Restartování kontejneru"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:53
+msgid "Add settings popup"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:54
+msgid "Add Italian translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:55
+msgid "Add French translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:56
+msgid "Update to io.elementary.Platform 7"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:57
+msgid "Few bug fixes and improvements"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:64
+#, fuzzy
+msgid "Add container status labels"
+msgstr "Chyba spuštění kontejneru"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:65
+msgid "Show overlay bar for lingering actions"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:66
+msgid "Add \"Info\" in container context menu"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:67
+#, fuzzy
+msgid "Add \"Restart\" in container context menu"
+msgstr "Restartování kontejneru"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:68
+msgid "Add more user-friendly error messages"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:69
+msgid "Update screenshots"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:76
+msgid "Code refactoring"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:77
+msgid "Add homepage and bugtracker links"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:78
+msgid "Set elementary theme as default"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:79
+msgid "Fix incorrect window position at startup"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:80
+msgid "Fix wrong language choice"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:90
+#, fuzzy
+msgid "Containers list"
+msgstr "Chyba zastavení kontejneru"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:95
+msgid "Docker compose app"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:101
+#, fuzzy
+msgid "Single container app"
+msgstr "Zastavování kontejneru"
+
+#: src/Utils/Sorting/SortingName.vala:23
 msgid "Name"
 msgstr "Název"
 
-#: src/Utils/Sorting/SortingType.vala:10
+#: src/Utils/Sorting/SortingType.vala:21
 msgid "Type"
 msgstr "Typ"
 
-#: src/Widgets/Utils/SettingsDialog.vala:11
-#: src/Widgets/Utils/ContainerInfoDialog.vala:13
-msgid "Close"
-msgstr "Zavřít"
-
-#: src/Widgets/Utils/SettingsDialog.vala:26
-msgid "Settings"
-msgstr "Nastavení"
-
-#: src/Widgets/Utils/SettingsDialog.vala:41
-msgid "API socket path:"
+#: src/Widgets/Utils/SettingsWindow.vala:35
+#, fuzzy
+msgid "API socket path"
 msgstr "Cesta k soketu rozhraní API:"
 
-#: src/Widgets/Utils/SettingsDialog.vala:104
-msgid "Check connection"
-msgstr "Zkontrolovat připojení"
+#: src/Widgets/Utils/SettingsWindow.vala:44
+msgid "Docker"
+msgstr ""
 
-#: src/Widgets/Utils/SettingsDialog.vala:124
-msgid "Success"
-msgstr "Úspěch"
+#: src/Widgets/Utils/SettingsWindow.vala:48
+msgid "Docker Socket"
+msgstr ""
 
-#: src/Widgets/Utils/SettingsDialog.vala:124
-msgid "Error"
-msgstr "Chyba"
+#: src/Widgets/Utils/SettingsWindow.vala:49
+msgid "/var/run/docker.sock"
+msgstr ""
 
-#: src/Widgets/Utils/SettingsDialog.vala:141
-#, c-format
-msgid "Incorrect socket path \"%s\""
-msgstr "Nesprávná cesta soketu \"%s\""
+#: src/Widgets/Utils/SettingsWindow.vala:54
+msgid "Privacy"
+msgstr ""
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:11
+#: src/Widgets/Utils/SettingsWindow.vala:58
+msgid "Privacy Policy"
+msgstr ""
+
+#: src/Widgets/Utils/SettingsWindow.vala:59
+msgid "We collect absolutely nothing"
+msgstr ""
+
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:38
 msgid "Running"
 msgstr "Běží"
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:16
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:42
 msgid "Paused"
 msgstr "Pozastaven"
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:21
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:46
 msgid "Stopped"
 msgstr "Zastaven"
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:26
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:50
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: src/Widgets/Utils/ContainerInfoDialog.vala:53
-msgid "Image"
-msgstr "Obrázek"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:54
-msgid "Status"
-msgstr "Stav"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:57
-msgid "Ports"
-msgstr "Porty"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:61
-msgid "Binds"
-msgstr "Propojení"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:65
-msgid "Env"
-msgstr "Prostředí"
-
-#: src/Widgets/HeaderBar.vala:15
-msgid "Back"
-msgstr "Zpět"
-
-#: src/Widgets/HeaderBar.vala:40
-msgid "Update docker container list"
-msgstr "Aktualizovat seznam kontejnerů"
-
-#: src/Widgets/HeaderBar.vala:87 src/Widgets/ScreenError.vala:56
-msgid "Open settings"
-msgstr "Otevřít nastavení"
-
-#: src/Widgets/ScreenError.vala:33
+#: src/Widgets/ScreenError.vala:44
 msgid ""
 "It looks like Docker requires root rights to use it. Thus, the application "
 "cannot connect to Docker Engine API. Find out how to run docker without root "
@@ -151,7 +242,7 @@ msgstr ""
 "linux-postinstall/\">příručkách k dockeru</a>, jinak aplikace nebude "
 "fungovat správně. Nebo zkontrolujte cestu soketu k Docker API v Nastavení."
 
-#: src/Widgets/ScreenError.vala:42
+#: src/Widgets/ScreenError.vala:53
 msgid ""
 "It looks like Docker is not installed on your system. To find out how to "
 "install it, see <a href=\"https://docs.docker.com/engine/install/\">Docker "
@@ -162,114 +253,130 @@ msgstr ""
 "install/\">příručky docker</a>. Nebo zkontrolujte cestu soketu k Docker API "
 "v Nastavení."
 
-#: src/Widgets/ScreenError.vala:50
-msgid "The app cannot connect to Docker API"
-msgstr "Aplikace se nemůže připojit k Docker API"
-
-#: src/Widgets/Screens/DockerContainer/Log.vala:39
-msgid "Autoscroll"
-msgstr "Automatické posouvání"
-
-#: src/Widgets/Screens/DockerContainer/Log.vala:51
-msgid "Enable autoscroll to bottom border"
-msgstr "Povolit automatické posouvání k dolnímu okraji"
-
-#: src/Widgets/Screens/DockerContainer/TopBarActions.vala:19
-msgid "Start"
-msgstr "Spustit"
-
-#: src/Widgets/Screens/DockerContainer/TopBarActions.vala:23
-msgid "Stop"
-msgstr "Zastavit"
-
-#: src/Widgets/Screens/DockerContainer/TopBarActions.vala:25
-msgid "Unpause"
-msgstr "Zrušit pozastavení"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:56
-msgid "Pause"
-msgstr "Pozastavit"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:59
-msgid "Container pause error"
-msgstr "Chyba pozastavení kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:74
-msgid "Restart"
-msgstr "Restartovat"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:76
-msgid "Container restart error"
-msgstr "Chyba restartování kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:79
-msgid "Restarting container"
-msgstr "Restartování kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:94
-msgid "Remove"
-msgstr "Odstranit"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:97
-msgid "Do you really want to remove container?"
-msgstr "Opravdu chcete odstranit kontejner?"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:98
-msgid "Yes, remove"
-msgstr "Ano, odstranit"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:99
-msgid "Cancel"
-msgstr "Zrušit"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:105
-msgid "Container remove error"
-msgstr "Chyba při odstraňování kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:107
-msgid "Removing container"
-msgstr "Odstraňování kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:127
-msgid "Info"
-msgstr "Informace"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:129
-msgid "Cannot get information"
-msgstr "Nelze získat informace"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:152
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:53
 msgid "Container action error"
 msgstr "Chyba akce s kontejnerem"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:157
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:58
 msgid "Container stop error"
 msgstr "Chyba zastavení kontejneru"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:158
-msgid "Stopping container"
-msgstr "Zastavování kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:163
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:64
 msgid "Container start error"
 msgstr "Chyba spuštění kontejneru"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:164
-msgid "Starting container"
-msgstr "Spouštění kontejneru"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:169
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:70
 msgid "Container unpause error"
 msgstr "Chyba při zrušení pozastavení kontejneru"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:174
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:76
 msgid "Container state is unknown"
 msgstr "Stav kontejneru není znám"
 
-#: src/Widgets/Screens/Main/ContainersGrid.vala:81
+#: src/Widgets/Screens/Main/ContainersGrid.vala:120
 msgid "No containers"
 msgstr "Žádné kontejnery"
 
-#: src/Widgets/Screens/Main/ContainersGridFilter.vala:53
+#: src/Widgets/Screens/Main/ContainersGridFilter.vala:60
 msgid "Sort by:"
 msgstr "Řadit podle:"
+
+#~ msgid "Close"
+#~ msgstr "Zavřít"
+
+#~ msgid "Settings"
+#~ msgstr "Nastavení"
+
+#~ msgid "Check connection"
+#~ msgstr "Zkontrolovat připojení"
+
+#~ msgid "Success"
+#~ msgstr "Úspěch"
+
+#~ msgid "Error"
+#~ msgstr "Chyba"
+
+#, c-format
+#~ msgid "Incorrect socket path \"%s\""
+#~ msgstr "Nesprávná cesta soketu \"%s\""
+
+#~ msgid "Image"
+#~ msgstr "Obrázek"
+
+#~ msgid "Status"
+#~ msgstr "Stav"
+
+#~ msgid "Ports"
+#~ msgstr "Porty"
+
+#~ msgid "Binds"
+#~ msgstr "Propojení"
+
+#~ msgid "Env"
+#~ msgstr "Prostředí"
+
+#~ msgid "Back"
+#~ msgstr "Zpět"
+
+#~ msgid "Update docker container list"
+#~ msgstr "Aktualizovat seznam kontejnerů"
+
+#~ msgid "Open settings"
+#~ msgstr "Otevřít nastavení"
+
+#~ msgid "The app cannot connect to Docker API"
+#~ msgstr "Aplikace se nemůže připojit k Docker API"
+
+#~ msgid "Autoscroll"
+#~ msgstr "Automatické posouvání"
+
+#~ msgid "Enable autoscroll to bottom border"
+#~ msgstr "Povolit automatické posouvání k dolnímu okraji"
+
+#~ msgid "Start"
+#~ msgstr "Spustit"
+
+#~ msgid "Stop"
+#~ msgstr "Zastavit"
+
+#~ msgid "Unpause"
+#~ msgstr "Zrušit pozastavení"
+
+#~ msgid "Pause"
+#~ msgstr "Pozastavit"
+
+#~ msgid "Container pause error"
+#~ msgstr "Chyba pozastavení kontejneru"
+
+#~ msgid "Restart"
+#~ msgstr "Restartovat"
+
+#~ msgid "Container restart error"
+#~ msgstr "Chyba restartování kontejneru"
+
+#~ msgid "Remove"
+#~ msgstr "Odstranit"
+
+#~ msgid "Do you really want to remove container?"
+#~ msgstr "Opravdu chcete odstranit kontejner?"
+
+#~ msgid "Yes, remove"
+#~ msgstr "Ano, odstranit"
+
+#~ msgid "Cancel"
+#~ msgstr "Zrušit"
+
+#~ msgid "Container remove error"
+#~ msgstr "Chyba při odstraňování kontejneru"
+
+#~ msgid "Removing container"
+#~ msgstr "Odstraňování kontejneru"
+
+#~ msgid "Info"
+#~ msgstr "Informace"
+
+#~ msgid "Cannot get information"
+#~ msgstr "Nelze získat informace"
+
+#~ msgid "Starting container"
+#~ msgstr "Spouštění kontejneru"

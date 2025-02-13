@@ -63,7 +63,6 @@ sources = [
 ]
 
 whaler_deps = [
-  config_dep,
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
   dependency('libadwaita-1', version: '>= 1.4'),
@@ -82,6 +81,5 @@ executable(
   constants,
   sources,
   dependencies: whaler_deps,
-  include_directories: config_inc,
   install: true,
 )

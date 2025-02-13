@@ -1,8 +1,0 @@
-# List of source files containing translatable strings.
-# Please keep this file sorted alphabetically.
-data/com.github.sdv43.whaler.desktop.in
-data/com.github.sdv43.whaler.metainfo.xml.in
-data/com.github.sdv43.whaler.gschema.xml
-src/main.vala
-src/window.vala
-src/window.ui

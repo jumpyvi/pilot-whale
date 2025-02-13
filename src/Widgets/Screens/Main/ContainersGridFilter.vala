@@ -40,7 +40,7 @@ class Widgets.Screens.Main.ContainersGridFilter : Gtk.Box {
         entry.search_changed.connect (() => {
             state.screen_main.search_term = entry.text.down (entry.text.length);
         });
-        entry.placeholder_text = "Search container...";
+        entry.placeholder_text = _("Search container...");
 
         settings.bind ("main-screen-search-term", entry, "text", SettingsBindFlags.DEFAULT);
 
