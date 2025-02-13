@@ -16,6 +16,7 @@ class Widgets.Screens.Container.SideBar : Adw.Bin {
         var state = State.Root.get_instance ().screen_docker_container;
         Gtk.ScrolledWindow scrolled_windows = new Gtk.ScrolledWindow ();
         var list_box = new Gtk.ListBox ();
+        list_box.add_css_class ("list_box");
         child = scrolled_windows;
 
         scrolled_windows.width_request = 300;
@@ -37,37 +38,36 @@ class Widgets.Screens.Container.SideBar : Adw.Bin {
         state.notify["container"].connect (() => {
 
 
-            if (state.container.type == DockerContainerType.GROUP) {
-                this.visible = true;
-                parent.set_show_sidebar(true);
-            }else{
-                parent.set_show_sidebar(false);
+        this.visible = (state.container.type == DockerContainerType.GROUP);
+        parent.set_show_sidebar(this.visible);
+
+
+        list_box.remove_all ();
+
+        var main_container_item = new SideBarItem (state.container);
+        var separator_item = new SideBarSeparator (_ ("Services"));
+        separator_item.margin_top = 15;
+        separator_item.add_css_class ("separator");
+
+        list_box.append (main_container_item);
+        list_box.append (separator_item);
+
+        var selected_item = main_container_item;
+
+        foreach (var service in state.container.services) {
+            var item = new SideBarItem (service);
+
+            list_box.append (item);
+
+            if (state.service != null && state.service.id == service.id) {
+                selected_item = item;
             }
+        }
 
-            list_box.remove_all ();
+        state.service = selected_item.service;
 
-            var main_container_item = new SideBarItem (state.container);
-            var separator_item = new SideBarSeparator (_ ("Services"));
-
-            list_box.append (main_container_item);
-            list_box.append (separator_item);
-
-            var selected_item = main_container_item;
-
-            foreach (var service in state.container.services) {
-                var item = new SideBarItem (service);
-
-                list_box.append (item);
-
-                if (state.service != null && state.service.id == service.id) {
-                    selected_item = item;
-                }
-            }
-
-            state.service = selected_item.service;
-
-            list_box.select_row (selected_item);
-            list_box.show ();
-        });
+        list_box.select_row (selected_item);
+        list_box.show ();
+    });
     }
 }

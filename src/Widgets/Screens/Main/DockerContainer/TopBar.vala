@@ -20,6 +20,7 @@ namespace Widgets.Screens.Container {
 
             this.orientation = Gtk.Orientation.HORIZONTAL;
             this.spacing = 0;
+            this.margin_start = 20;
 
 
             state_docker_container.notify["service"].connect (() => {
@@ -63,7 +64,6 @@ namespace Widgets.Screens.Container {
 
         private Gtk.Widget build_container_image () {
             var label = new Gtk.Label (this.container.image);
-            label.get_style_context ().add_class ("container-image");
             label.halign = Gtk.Align.START;
 
             return label;

@@ -77,7 +77,11 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
             min_children_per_line = 2,
             max_children_per_line = 7,
             selection_mode = Gtk.SelectionMode.NONE,
-            activate_on_single_click = true
+            activate_on_single_click = true,
+            margin_top = 12,
+            margin_bottom = 12,
+            margin_start = 12,
+            margin_end = 12
         };
         flow_box.child_activated.connect ((child) => {
             state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];

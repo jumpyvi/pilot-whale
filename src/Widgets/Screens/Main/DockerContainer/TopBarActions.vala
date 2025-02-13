@@ -21,6 +21,7 @@ namespace Widgets.Screens.Container {
             this.sensitive = container.state != DockerContainerState.UNKNOWN;
             this.orientation = Gtk.Orientation.HORIZONTAL;
             this.spacing = 0;
+            this.margin_start = 15;
             this.prepend (this.build_button_main_action ());
             //this.append (this.build_button_menu_action ());
         }
@@ -50,7 +51,7 @@ namespace Widgets.Screens.Container {
             return button;
     }
 
-        //  private Gtk.Widget build_button_menu_action () {
+        //  private Gtk.Widget build_button_menu_action () { // TODO - Reimplement this (as an object, preferably)
         //      var button = new Gtk.Button ();
         //      var menu = ContainerCardActions.build_menu (this.container, this);
 
