@@ -22,7 +22,7 @@ public class Widgets.ScreenManager : Gtk.Box {
         this.screen_error = new ScreenError ();
 
         var stack = new Gtk.Stack ();
-        stack.transition_type = Gtk.StackTransitionType.OVER_LEFT_RIGHT;
+        stack.transition_type = Gtk.StackTransitionType.SLIDE_UP_DOWN;
         stack.transition_duration = 300;
 
         stack.add_named (new ScreenMain (), ScreenMain.CODE);

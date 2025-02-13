@@ -17,7 +17,7 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
     construct {
         // Initialize stack first
         stack = new Gtk.Stack();
-        stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
+        stack.transition_type = Gtk.StackTransitionType.OVER_UP_DOWN;
         
         var state = State.Root.get_instance();
         var state_main = state.screen_main;

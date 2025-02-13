@@ -17,7 +17,7 @@ using Docker;
 class State.Root : Object {
     private ApiClient api_client;
     private static Root? instance;
-    private string? previuos_screen;
+    private string? previous_screen;
 
     public bool button_back_visible {get; set;}
     public string active_screen {get; set;}
@@ -60,17 +60,16 @@ class State.Root : Object {
     }
 
     public void prev_screen () {
-        if (previuos_screen == null) {
+        if (previous_screen == null) {
             return;
         }
-
-        this.active_screen = this.previuos_screen;
-        this.previuos_screen = null;
+        this.active_screen = this.previous_screen;
+        this.previous_screen = null;
         this.button_back_visible = false;
     }
 
     public void next_screen (string code) {
-        this.previuos_screen = this.active_screen;
+        this.previous_screen = this.active_screen;
         this.active_screen = code;
         this.button_back_visible = true;
     }

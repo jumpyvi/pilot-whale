@@ -40,7 +40,9 @@ class Widgets.Screens.Container.SideBar : Adw.Bin {
             if (state.container.type == DockerContainerType.GROUP) {
                 this.visible = true;
                 parent.set_show_sidebar(true);
-            };
+            }else{
+                parent.set_show_sidebar(false);
+            }
 
             list_box.remove_all ();
 
