@@ -25,6 +25,7 @@ sources = [
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
   'Widgets/Utils/BackButton.vala',
+  'Widgets/Utils/ContainerInfoDialog.vala',
 
   'Widgets/Utils/ActionMenu.vala',
   'Widgets/Utils/MainAction.vala',

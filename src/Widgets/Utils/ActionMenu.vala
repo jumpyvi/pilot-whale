@@ -20,11 +20,10 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
         Gtk.Box action_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
 
 
-        Gtk.Button info_action = new Gtk.Button.with_label("Info");
         action_box.append(create_pause_button(container));
         action_box.append(create_restart_button(container));
         action_box.append(create_remove_button(container));
-        action_box.append(info_action);
+        action_box.append(create_info_button(container));
 
         popover.set_child(action_box);
 
@@ -114,5 +113,29 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
         });
 
         return remove_button;
+    }
+
+    private Gtk.Button create_info_button(DockerContainer container){
+        var info_button = new Gtk.Button.with_label("Info");
+        var state = State.Root.get_instance ();
+
+        info_button.clicked.connect (() => {
+            print("info..");
+            info_button.sensitive = false;
+            
+            state.container_inspect.begin (container, (_, res) => {
+                try {
+                    Utils.ContainerInfoDialog dialog = new Utils.ContainerInfoDialog(state.container_inspect.end (res));
+                    menu_button.popover.closed();
+                    dialog.present(this);
+                    info_button.sensitive = true;
+                } catch (Docker.ApiClientError error) {
+                    ScreenManager.show_toast_with_content("Cannot get info", 3);
+                }
+            });
+            
+        });
+
+        return info_button;
     }
 }
