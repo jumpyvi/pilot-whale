@@ -27,6 +27,7 @@ sources = [
   'Widgets/Utils/BackButton.vala',
 
   'Widgets/Utils/ActionMenu.vala',
+  'Widgets/Utils/MainAction.vala',
 
   'Widgets/Screens/Main/ContainersGrid.vala',
   'Widgets/Screens/Main/ContainersGridFilter.vala',
@@ -45,6 +46,7 @@ sources = [
   'Utils/DockerContainer.vala',
   'Utils/Helpers.vala',
   'Utils/Reloader.vala',
+  'Utils/ActionHandler.vala',
 
   # Utils/Sorting
   'Utils/Sorting/SortingInterface.vala',

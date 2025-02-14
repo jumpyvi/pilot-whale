@@ -9,8 +9,6 @@
     font-size: 14px;
     padding: 12px;
     border-radius: 9px;
-    white-space: pre-wrap;
-    overflow: auto;
     min-height: 200px;
 }
 

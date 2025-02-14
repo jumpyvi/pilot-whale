@@ -22,54 +22,8 @@ namespace Widgets.Screens.Container {
             this.orientation = Gtk.Orientation.HORIZONTAL;
             this.spacing = 0;
             this.margin_start = 15;
-            this.prepend (this.build_button_main_action ());
-            //this.append (this.build_button_menu_action ());
+            this.prepend (new Widgets.Utils.MainAction (this.container));
+            this.append (new Widgets.Utils.ActionMenu (this.container));
         }
-
-        private Gtk.Widget build_button_main_action () {
-            var icon_name = "media-playback-start-symbolic";
-            string css_class = "suggested-action";
-
-            if (this.container.state == DockerContainerState.RUNNING) {
-                icon_name = "media-playback-stop-symbolic";
-                css_class = "destructive-action";
-            }
-
-            var button = new Gtk.Button.from_icon_name (icon_name);
-            button.valign = Gtk.Align.CENTER;
-            button.clicked.connect (() => {
-                this.sensitive = false;
-
-                ContainerCardActions.button_main_action_handler.begin (this.container, (_, res) => {
-                    ContainerCardActions.button_main_action_handler.end (res);
-                    this.sensitive = true;
-                });
-
-            });
-            
-            button.add_css_class (css_class);
-            return button;
-    }
-
-        //  private Gtk.Widget build_button_menu_action () { // TODO - Reimplement this (as an object, preferably)
-        //      var button = new Gtk.Button ();
-        //      var menu = ContainerCardActions.build_menu (this.container, this);
-
-        //      button.get_style_context ().add_class ("button-menu");
-        //      button.valign = Gtk.Align.FILL;
-        //      button.clicked.connect ((widget) => {
-        //          menu.popup_at_widget (
-        //              widget,
-        //              Gdk.Gravity.NORTH_WEST,
-        //              Gdk.Gravity.NORTH_WEST,
-        //              null
-        //          );
-        //      });
-
-        //      var icon = new Gtk.Image.from_icon_name ("pan-down-symbolic", Gtk.IconSize.BUTTON);
-        //      button.add (icon);
-
-        //      return button;
-        //  }
     }
 }
