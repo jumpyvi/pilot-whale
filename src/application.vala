@@ -64,16 +64,20 @@ public class Whaler.Application : Adw.Application {
     }
 
     private void on_about_action () {
-        string[] developers = { "Whaler Developpers" };
         var about = new Adw.AboutDialog () {
             application_name = "whaler",
             application_icon = "com.github.sdv43.whaler",
             developer_name = "Whaler Developpers",
             translator_credits = _("translator-credits"),
-            version = "0.1.0",
-            developers = developers,
-            copyright = "© 2025 Whaler Developpers",
+            version = "4.0.0-a.1",
+            license_type = Gtk.License.GPL_3_0,
+            issue_url = "https://github.com/jumpyvi/whaler-gtk4/issues",
         };
+
+        about.add_credit_section ("Original code and project", {"sdv43"});
+        about.add_credit_section ("Adwaita fork", {"jumpyvi"});
+        about.add_link ("Get source code", "github.com/jumpyvi/whaler-gtk4");
+        about.add_link ("Get original project", "github.com/sdv43/whaler");
 
         about.present (this.active_window);
     }

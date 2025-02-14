@@ -31,7 +31,8 @@
 				"mesonbuild.mesonbuild",
 				"vivaxy.vscode-conventional-commits",
 				"zachflower.uncrustify",
-				"prince781.vala"
+				"prince781.vala",
+				"bierner.markdown-preview-github-styles"
 			]
 		}
 	}
