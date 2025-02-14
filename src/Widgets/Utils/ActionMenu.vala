@@ -19,11 +19,11 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
         Gtk.Popover popover = new Gtk.Popover();
         Gtk.Box action_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
 
-        Gtk.Button remove_action = new Gtk.Button.with_label("Remove");
+
         Gtk.Button info_action = new Gtk.Button.with_label("Info");
         action_box.append(create_pause_button(container));
         action_box.append(create_restart_button(container));
-        action_box.append(remove_action);
+        action_box.append(create_remove_button(container));
         action_box.append(info_action);
 
         popover.set_child(action_box);
@@ -77,5 +77,42 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
         });
 
         return restart_button;
+    }
+
+    private Gtk.Button create_remove_button(DockerContainer container){
+        var remove_button = new Gtk.Button.with_label("Remove");
+        var state = State.Root.get_instance ();
+
+        remove_button.clicked.connect (() => {
+            var dialog = new Adw.AlertDialog("Confirm Removal","Are you sure you want to remove this container?");
+            dialog.add_response("cancel", "Cancel");
+            dialog.add_response("confirm", "Remove");
+            dialog.set_default_response("cancel");
+            dialog.set_response_appearance("confirm", Adw.ResponseAppearance.DESTRUCTIVE);
+
+            dialog.response.connect((response) => {
+                if (response == "confirm") {
+                    print("removing..");
+                    remove_button.sensitive = false;
+                    remove_button.label = "Removing...";
+                    ScreenManager.show_toast_with_content("Removing ...", 2);
+                    
+                    state.container_remove.begin (container, (_, res) => {
+                        try {
+                            state.container_remove.end (res);
+                        } catch (Docker.ApiClientError error) {
+                            ScreenManager.show_toast_with_content("There was a problem removing the container", 3);
+                        } finally {
+                            remove_button.sensitive = true;
+                        }
+                    });
+                }
+                dialog.close();
+            });
+            menu_button.popover.closed();
+            dialog.present(remove_button);
+        });
+
+        return remove_button;
     }
 }
