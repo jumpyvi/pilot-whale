@@ -15,7 +15,6 @@ class Widgets.ScreenError : Gtk.Grid {
     public static string CODE = "error";
 
     public ScreenError () {
-        this.get_style_context ().add_class ("screen-error");
         this.valign = Gtk.Align.CENTER;
         this.halign = Gtk.Align.CENTER;
     }

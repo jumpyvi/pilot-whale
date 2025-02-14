@@ -113,13 +113,12 @@ public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
         loader.valign = Gtk.Align.CENTER;
 
         return loader;
-        return null;
     }
 
     private Gtk.Widget build_notice () {
         var label = new Gtk.Label (_ ("No containers"));
 
-        label.get_style_context ().add_class ("h3");
+        label.add_css_class ("h3");
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
 

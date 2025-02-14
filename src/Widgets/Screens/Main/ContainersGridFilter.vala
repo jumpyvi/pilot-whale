@@ -23,7 +23,7 @@ class Widgets.Screens.Main.ContainersGridFilter : Gtk.Box {
         this.add_css_class ("grid_search_bar");
 
         this.prepend (search_entry);
-        this.append (this.build_sorting_combobox ());
+        this.append (this.build_sorting_dropdown ());
 
         state.notify["containers"].connect (() => {
             this.sensitive = state.containers.size > 0;
@@ -47,32 +47,34 @@ class Widgets.Screens.Main.ContainersGridFilter : Gtk.Box {
         return entry;
     }
 
-    private Gtk.Widget build_sorting_combobox () {
+    private Gtk.Widget build_sorting_dropdown () {
         SortingInterface[] sortings = {
             new SortingStatus (),
             new SortingName (),
             new SortingType ()
         };
-
+        
         var state = State.Root.get_instance ();
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-
         var label = new Gtk.Label (_ ("Sort by:"));
         box.prepend (label);
-
-        var combo = new Gtk.ComboBoxText ();
+        
+        var string_list = new Gtk.StringList (null);
         foreach (var sorting in sortings) {
-            combo.append_text (sorting.name);
+            string_list.append (sorting.name);
         }
-        box.append (combo);
+        
+        var dropdown = new Gtk.DropDown (string_list, null);
+        box.append (dropdown); 
+        
 
-        combo.changed.connect ((combo) => {
-            state.screen_main.sorting = sortings[combo.active];
+        dropdown.notify["selected"].connect (() => {
+            state.screen_main.sorting = sortings[dropdown.selected];
         });
-
+        
         var settings = new Settings (APP_ID);
-        settings.bind ("main-screen-sorting", combo, "active", SettingsBindFlags.DEFAULT);
-
+        settings.bind ("main-screen-sorting", dropdown, "selected", SettingsBindFlags.DEFAULT);
+        
         return box;
     }
 
