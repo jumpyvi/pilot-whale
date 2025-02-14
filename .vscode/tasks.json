@@ -30,41 +30,5 @@
                 "id": "run"
             }
         },
-        {
-            "label": "Switch to dark mode",
-            "type": "shell",
-            "command": "gsettings set org.gnome.desktop.interface color-scheme prefer-dark",
-            "problemMatcher": [],
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "close": true,
-                "clear": false,
-                "showReuseMessage": false,
-                "panel": "new"
-            },
-            "icon": {
-                "id": "eye"
-            }
-        },
-        {
-            "label": "Switch to light mode",
-            "type": "shell",
-            "command": "gsettings set org.gnome.desktop.interface color-scheme prefer-light",
-            "problemMatcher": [],
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "close": true,
-                "clear": false,
-                "showReuseMessage": false,
-                "panel": "new"
-            },
-            "icon": {
-                "id": "eye"
-            }
-        }
     ]
 }

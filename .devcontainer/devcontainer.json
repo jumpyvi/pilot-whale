@@ -21,6 +21,9 @@
 		"--volume=/var/run/docker.sock:/var/run/docker.sock",
 		"--device=/dev/dri"
 	],
+	"mounts": [
+		"source=${localEnv:HOME}/.Xauthority,target=/root/.Xauthority,type=bind,consistency=cached"
+	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
