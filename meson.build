@@ -1,7 +1,7 @@
 project(
   'com.github.sdv43.whaler',
   ['vala', 'c'],
-  version: 'adw-0.1.0',
+  version: 'adw-0.1.1',
   meson_version: '>= 1.0.0',
   default_options: [
     'warning_level=2',
