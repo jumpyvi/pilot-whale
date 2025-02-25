@@ -69,7 +69,7 @@ public class Whaler.Application : Adw.Application {
             application_icon = "com.github.sdv43.whaler",
             developer_name = "Whaler Developpers",
             translator_credits = _("translator-credits"),
-            version = "4.0.0-a.1",
+            version = "adw-0.1.0",
             license_type = Gtk.License.GPL_3_0,
             issue_url = "https://www.github.com/jumpyvi/whaler-gtk4/issues",
         };
