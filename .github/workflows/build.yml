@@ -1,6 +1,6 @@
 on:
   push:
-    branches: ["pipeline-flatpak", "master"]
+    branches: ["master"]
   pull_request:
 
 concurrency:
