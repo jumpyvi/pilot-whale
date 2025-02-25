@@ -1,4 +1,12 @@
 configuration = configuration_data()
+configuration.set_quoted('GETTEXT_PACKAGE', 'whaler')
+configuration.set_quoted('APPLICATION_ID', 'com.github.sdv43.whaler')
+configuration.set_quoted('VERSION', meson.project_version())
+configuration.set_quoted('PREFIX', get_option('prefix'))
+configuration.set_quoted('DATADIR', join_paths(get_option('prefix'), get_option('datadir')))
+configuration.set_quoted('PROFILE', 'default')
+configuration.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
+configuration.set_quoted('GNOMELOCALEDIR', join_paths(get_option('prefix'), get_option('localedir'), 'gnome'))
 
 configuration.set_quoted('APP_ID', meson.project_name())
 configuration.set_quoted('APP_VERSION', meson.project_version())
@@ -9,6 +17,8 @@ constants = configure_file(
   output: 'Constants.vala',
   configuration: configuration,
 )
+
+
 
 sources = [
   # Main
@@ -65,6 +75,9 @@ sources = [
   'State/ScreenDockerContainer.vala',
 ]
 
+
+
+
 whaler_deps = [
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
@@ -79,6 +92,12 @@ whaler_deps = [
 
 sources += gnome.compile_resources('whaler-resources', 'whaler.gresource.xml', c_name: 'whaler')
 
+sources += configure_file(
+    input : 'Build.vala.in',
+    output : 'Build.vala',
+    configuration : configuration
+)
+
 executable(
   meson.project_name(),
   constants,
@@ -86,3 +105,4 @@ executable(
   dependencies: whaler_deps,
   install: true,
 )
+
