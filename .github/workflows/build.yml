@@ -1,0 +1,29 @@
+on:
+  push:
+    branches: ["pipeline-flatpak"]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+name: CI
+
+jobs:
+  flatpak-builder:
+    name: "Flatpak Builder"
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v4
+    - uses: flathub-infra/flatpak-github-actions/flatpak-builder@4388a4c5fc8bab58e1dfb7fc63267dca0f7b4976
+      with:
+        bundle: "com.github.sdv43.whaler.flatpak"
+        #run-tests: true
+        manifest-path: "com.github.sdv43.whaler.yml"
+        cache-key: "flatpak-builder-$(git rev-parse --short HEAD)"
+        arch: x86_64
+        repository-name: flathub
+        repository-url: https://dl.flathub.org/repo/flathub.flatpakrepo
