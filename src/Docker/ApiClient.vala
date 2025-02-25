@@ -31,6 +31,14 @@ namespace Docker {
         public string? label_workdir;
     }
 
+    struct Image {
+        public string? description;
+        public bool is_official;
+        public bool is_automated;
+        public string name;
+        public int64 star_count;
+    }
+
     struct ContainerInspectInfo {
         public string name;
         public string image;
@@ -140,6 +148,71 @@ namespace Docker {
                 }
 
                 return container_list;
+            } catch (HttpClientError error) {
+                if (error is HttpClientError.ERROR_NO_ENTRY) {
+                    throw new ApiClientError.ERROR_NO_ENTRY (error.message);
+                } else if (error is HttpClientError.ERROR_ACCESS) {
+                    throw new ApiClientError.ERROR_ACCESS (error.message);
+                } else {
+                    throw new ApiClientError.ERROR (error.message);
+                }
+            } catch (IOError error) {
+                throw new ApiClientError.ERROR (error.message);
+            }
+        }
+
+        public async Image[] find_remote_image_from_string (string search_string) throws ApiClientError {
+            try {
+                var image_list = new Image[0];
+                var resp = yield this.http_client.r_get ("/images/search?term=" + search_string);
+
+                //
+                if (resp.code == 400) {
+                    throw new ApiClientError.ERROR ("Bad parameter");
+                }
+                if (resp.code == 500) {
+                    throw new ApiClientError.ERROR ("Server error");
+                }
+
+                //
+                var json = "";
+                string? line = null;
+
+                while ((line = yield resp.body_data_stream.read_line_utf8_async ()) != null) {
+                    json += line;
+                }
+
+                //
+                var root_node = parse_json (json);
+                var root_array = root_node.get_array ();
+                assert_nonnull (root_array);
+
+                foreach (var image_node in root_array.get_elements ()) {
+                    var image = Image ();
+                    var container_object = image_node.get_object ();
+                    assert_nonnull (container_object);
+
+                    //
+                    image.star_count = container_object.get_int_member_with_default ("star_count", 0);
+                    image.is_official = container_object.get_boolean_member_with_default ("is_official", false);
+                    image.name = container_object.get_string_member ("name");
+                    image.is_automated = container_object.get_boolean_member_with_default ("is_automated", false);
+                    image.description = container_object.get_string_member_with_default ("description", "No description found");
+
+                    //
+                    var name_array = container_object.get_array_member ("name");
+
+                    foreach (var name_node in name_array.get_elements ()) {
+                        image.name = name_node.get_string ();
+                        assert_nonnull (image.name);
+                        break;
+                    }
+
+                    //
+                    image_list += image;
+                }
+
+                return image_list;
             } catch (HttpClientError error) {
                 if (error is HttpClientError.ERROR_NO_ENTRY) {
                     throw new ApiClientError.ERROR_NO_ENTRY (error.message);

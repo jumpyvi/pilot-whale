@@ -31,6 +31,17 @@ class Widgets.Dialogs.ContainerPullDialog : Adw.Dialog {
         var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
         box.append(new Utils.ContainerPullSearchBar());
         box.append(build_image_list_area());
+        var api_client = new ApiClient();
+        api_client.find_remote_image_from_string.begin("radarr", (obj, res) => {
+            try {
+            var images = api_client.find_remote_image_from_string.end(res);
+            foreach (var image in images) {
+                print("Image: %s\n", image.name);
+            }
+            } catch (Error e) {
+            print("Error: %s\n", e.message);
+            }
+        });
         return box;
     }
 
