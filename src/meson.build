@@ -34,8 +34,10 @@ sources = [
   'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
+  'Widgets/Utils/ContainerPullButton.vala',
   'Widgets/Utils/BackButton.vala',
   'Widgets/Utils/ContainerInfoDialog.vala',
+  'Widgets/Utils/ContainerPullSearchBar.vala',
 
   'Widgets/Utils/ActionMenu.vala',
   'Widgets/Utils/MainAction.vala',
@@ -51,6 +53,9 @@ sources = [
   'Widgets/Screens/Main/DockerContainer/SideBarItem.vala',
   'Widgets/Screens/Main/DockerContainer/SideBar.vala',
   'Widgets/Screens/Main/DockerContainer/SideBarSeparator.vala',
+
+  # Dialogs
+  'Widgets/Dialogs/ContainerPullDialog.vala',
 
   # Utils
   'Utils/HttpClient.vala',
