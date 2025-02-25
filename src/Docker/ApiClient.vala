@@ -171,7 +171,7 @@ namespace Docker {
                     throw new ApiClientError.ERROR ("Bad parameter");
                 }
                 if (resp.code == 500) {
-                    throw new ApiClientError.ERROR ("Server error");
+                    throw new ApiClientError.ERROR ("Server error (ignore if pulling from link)");
                 }
 
                 //
