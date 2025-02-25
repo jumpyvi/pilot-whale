@@ -20,6 +20,7 @@
 
 using Widgets;
 
+
 public class Whaler.Application : Adw.Application {
     public Application () {
         Object (
@@ -69,11 +70,10 @@ public class Whaler.Application : Adw.Application {
             application_icon = "com.github.sdv43.whaler",
             developer_name = "Whaler Developpers",
             translator_credits = _("translator-credits"),
-            version = "4.0.0-a.1",
+            version = Build.VERSION,
             license_type = Gtk.License.GPL_3_0,
             issue_url = "https://www.github.com/jumpyvi/whaler-gtk4/issues",
         };
-
         about.add_credit_section ("Original code and project", {"sdv43"});
         about.add_credit_section ("Adwaita fork", {"jumpyvi"});
         about.add_link ("Get source code", "https://www.github.com/jumpyvi/whaler-gtk4");

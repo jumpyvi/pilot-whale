@@ -1,16 +1,35 @@
-app-id: com.github.sdv43.whaler
-runtime: io.elementary.Platform
-runtime-version: '8'
-sdk: io.elementary.Sdk
-command: com.github.sdv43.whaler
+id: com.github.sdv43.whaler
+runtime: org.gnome.Platform
+runtime-version: "47"
+sdk: "org.gnome.Sdk"
+sdk-extensions:
+    - org.freedesktop.Sdk.Extension.vala
+command: "com.github.sdv43.whaler"
 finish-args:
-  - '--share=ipc'
-  - '--socket=fallback-x11'
-  - '--socket=wayland'
-  - '--filesystem=/run/docker.sock'
-  - '--filesystem=xdg-run/docker.sock'
-  - '--filesystem=/run/podman/podman.sock'
-  - '--filesystem=xdg-run/podman/podman.sock'
+    - '--share=network'
+    - '--share=ipc'
+    - '--socket=fallback-x11'
+    - '--device=dri'
+    - '--socket=wayland'
+    - '--filesystem=/run/docker.sock'
+    - '--filesystem=xdg-run/docker.sock'
+    - '--filesystem=/run/podman/podman.sock'
+    - '--filesystem=xdg-run/podman/podman.sock'
+build-options:
+    append-path: /usr/lib/sdk/vala/bin
+    prepend-ld-library-path: /usr/lib/sdk/vala/lib
+    env: {}
+cleanup:
+    - /include
+    - /lib/pkgconfig
+    - /man
+    - /share/doc
+    - /share/gtk-doc
+    - /share/man
+    - /share/pkgconfig
+    - /share/vala
+    - '*.la'
+    - '*.a'
 modules:
   - name: whaler
     buildsystem: meson

@@ -1,0 +1,48 @@
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+name: CI
+
+jobs:
+  flatpak-builder:
+    name: "Flatpak Builder"
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
+      options: --privileged
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Generate release tag
+      id: tag
+      run: |
+        TAG=$(sed -n "s/^.*version: '\([^']*\)'.*$/\1/p" meson.build | head -n1)
+        echo "release_tag=${TAG:-adw-0.0.1}" >> $GITHUB_OUTPUT
+
+    - name: Create and push tag
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git tag ${{ steps.tag.outputs.release_tag }} || echo "Tag already exists"
+        git push origin ${{ steps.tag.outputs.release_tag }} || echo "Tag push skipped"
+
+    - uses: flathub-infra/flatpak-github-actions/flatpak-builder@4388a4c5fc8bab58e1dfb7fc63267dca0f7b4976
+      with:
+        bundle: "whaler-gtk4-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak"
+        manifest-path: "com.github.sdv43.whaler.yml"
+        arch: x86_64
+
+    - name: Publish release package
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        files: whaler-gtk4-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
