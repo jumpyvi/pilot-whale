@@ -9,24 +9,41 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Widgets.ScreenDockerContainer : Gtk.Box {
+using Utils;
+
+class Widgets.ScreenDockerContainer : Adw.Bin {
     public static string CODE = "docker-container";
+    private Adw.OverlaySplitView view;
+    public bool is_autoscroll_enabled;
+
+    construct {
+        view = new Adw.OverlaySplitView ();
+        is_autoscroll_enabled = true;
+        var state = State.Root.get_instance ();
+        view.set_sidebar_position (Gtk.PackType.START);
+        view.set_content (build_log_output ());
+        view.set_show_sidebar (state.screen_docker_container.is_sidebar_enabled);
+        view.set_collapsed (false);
+
+        view.set_sidebar (new Widgets.Screens.Container.SideBar (this));
+
+        child = view;
+    }
 
     public ScreenDockerContainer () {
-        this.orientation = Gtk.Orientation.HORIZONTAL;
-        this.spacing = 0;
-
-        this.get_style_context ().add_class ("screen-docker-container");
-        this.pack_start (new Screens.Container.SideBar (), false);
-        this.pack_end (this.build_log_output (), true, true);
+        Object ();
     }
 
     private Gtk.Widget build_log_output () {
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-        box.pack_start (new Screens.Container.TopBar (), false);
-        box.pack_end (new Screens.Container.Log (), true, true);
+        box.append (new Screens.Container.TopBar ());
+        box.append (new Screens.Container.LogViewer ());
 
         return box;
+    }
+
+    public void set_show_sidebar(bool is_showed){
+        view.set_show_sidebar (is_showed);
     }
 }

@@ -9,81 +9,108 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Widgets.Screens.Main.ContainersGrid : Gtk.Stack {
+public class Widgets.Screens.Main.ContainersGrid : Adw.Bin {
     public const string CODE = "main";
-
+    private Gtk.Stack stack;
     private signal void container_cards_updated();
 
-    public ContainersGrid () {
-        var state = State.Root.get_instance ();
+    construct {
+        // Initialize stack first
+        stack = new Gtk.Stack();
+        stack.transition_type = Gtk.StackTransitionType.OVER_UP_DOWN;
+        
+        var state = State.Root.get_instance();
         var state_main = state.screen_main;
-
-        this.add_named (this.build_loader (), "loader");
-        this.add_named (this.build_notice (), "no-containers");
-        this.add_named (this.build_grid (), "containers");
-
-        state_main.notify["containers-prepared"].connect (() => {
+        
+        // Set child after stack is initialized
+        child = stack;
+        
+        // Add named children to stack
+        stack.add_named(build_loader(), "loader");
+        stack.add_named(build_notice(), "no-containers");
+        stack.add_named(build_grid(), "containers");
+        
+        // Set default stack
+        stack.visible_child_name = "loader";
+        
+        state_main.notify["containers-prepared"].connect(() => {
             if (state_main.containers_prepared.size > 0) {
-                this.set_visible_child_name ("containers");
-
+                stack.set_visible_child_name("containers");
                 if (state.active_screen == ContainersGrid.CODE) {
-                    this.container_cards_updated ();
+                    this.container_cards_updated();
                 }
             } else {
-                this.set_visible_child_name ("no-containers");
+                stack.set_visible_child_name("no-containers");
             }
         });
-
-        state.notify["active-screen"].connect (() => {
+        
+        state.notify["active-screen"].connect(() => {
             if (state.active_screen == ContainersGrid.CODE) {
-                this.container_cards_updated ();
+                this.container_cards_updated();
             }
         });
     }
 
-    private Gtk.Widget build_grid () {
-        var state = State.Root.get_instance ();
-        var state_main = state.screen_main;
-        var root = new Gtk.ScrolledWindow (null, null);
+    public ContainersGrid () {
+        Object ();
+    }
 
-        var flow_box = new Gtk.FlowBox ();
-        flow_box.get_style_context ().add_class ("docker-containers-grid");
-        flow_box.homogeneous = true;
-        flow_box.valign = Gtk.Align.START;
-        flow_box.min_children_per_line = 2;
-        flow_box.max_children_per_line = 7;
-        flow_box.selection_mode = Gtk.SelectionMode.NONE;
-        flow_box.activate_on_single_click = true;
+    
+    private Gtk.Widget build_grid() {
+        var state = State.Root.get_instance();
+        var state_main = state.screen_main;
+        
+        // Configure ScrolledWindow
+        var root = new Gtk.ScrolledWindow() {
+            hexpand = true,
+            vexpand = true,
+        };
+        
+        // Configure FlowBox
+        var flow_box = new Gtk.FlowBox() {
+            homogeneous = true,
+            valign = Gtk.Align.START,
+            halign = Gtk.Align.FILL,
+            hexpand = true,
+            row_spacing = 12,
+            column_spacing = 12,
+            min_children_per_line = 2,
+            max_children_per_line = 7,
+            selection_mode = Gtk.SelectionMode.NONE,
+            activate_on_single_click = true,
+            margin_top = 12,
+            margin_bottom = 12,
+            margin_start = 12,
+            margin_end = 12
+        };
         flow_box.child_activated.connect ((child) => {
             state.screen_docker_container.container = state_main.containers_prepared[child.get_index ()];
             state.next_screen (Widgets.ScreenDockerContainer.CODE);
         });
-        root.add (flow_box);
+        
+        root.set_child(flow_box);
 
-        this.container_cards_updated.connect (() => {
-            flow_box.foreach ((child) => {
-                flow_box.remove (child);
-            });
-
+        // Update container cards
+        this.container_cards_updated.connect(() => {
+            flow_box.remove_all();
             foreach (var container in state_main.containers_prepared) {
-                flow_box.add (new ContainerCard (container));
+                var card = new ContainerCard(container);
+                // Ensure each card is visible
+                card.visible = true;
+                flow_box.append(card);
             }
-
-            flow_box.show_all ();
         });
-
+        
         return root;
-    }
+}
 
     private Gtk.Widget build_loader () {
-        var loader = new Gtk.Spinner ();
+        var loader = new Adw.Spinner ();
 
         loader.width_request = 32;
         loader.height_request = 32;
         loader.halign = Gtk.Align.CENTER;
         loader.valign = Gtk.Align.CENTER;
-
-        loader.start ();
 
         return loader;
     }
@@ -91,7 +118,7 @@ class Widgets.Screens.Main.ContainersGrid : Gtk.Stack {
     private Gtk.Widget build_notice () {
         var label = new Gtk.Label (_ ("No containers"));
 
-        label.get_style_context ().add_class ("h3");
+        label.add_css_class ("h3");
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
 

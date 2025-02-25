@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.sdv43.whaler\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-04 08:24+0300\n"
+"POT-Creation-Date: 2025-02-13 21:57+0000\n"
 "PO-Revision-Date: 2022-07-04 00:02+0200\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: \n"
@@ -18,6 +18,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.1\n"
 
+#: data/com.github.sdv43.whaler.desktop.in:3
+#: data/com.github.sdv43.whaler.appdata.xml.in:5
+msgid "Whaler"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.desktop.in:4
+#, fuzzy
+msgid "Docker Client"
+msgstr "Gestion des conteneurs Docker"
+
 #: data/com.github.sdv43.whaler.desktop.in:5
 msgid "Manage your Docker containers"
 msgstr "Gérez vos conteneurs Docker"
@@ -26,11 +36,15 @@ msgstr "Gérez vos conteneurs Docker"
 msgid "Docker;Virtualizaton;Development;"
 msgstr "Docker;Virtualisation;Développement;"
 
-#: data/com.github.sdv43.whaler.appdata.xml.in:5
+#: data/com.github.sdv43.whaler.appdata.xml.in:6
 msgid "Docker Container Management"
 msgstr "Gestion des conteneurs Docker"
 
-#: data/com.github.sdv43.whaler.appdata.xml.in:10
+#: data/com.github.sdv43.whaler.appdata.xml.in:9
+msgid "Selivestrov Dmitriy"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:11
 msgid ""
 "Whaler provides basic functionality for managing Docker containers. The app "
 "can start and stop both standalone containers and docker-compose "
@@ -41,7 +55,7 @@ msgstr ""
 "les applications composées de Docker. Elle permet également de visualiser "
 "les journaux des conteneurs."
 
-#: data/com.github.sdv43.whaler.appdata.xml.in:15
+#: data/com.github.sdv43.whaler.appdata.xml.in:16
 msgid ""
 "The solution is perfect for those who are looking for a simple tool to "
 "perform some basic actions. For the app to run correctly, make sure that "
@@ -51,94 +65,171 @@ msgstr ""
 "accomplir des actions basiques. Pour que l'application fonctionne "
 "correctement, assurez-vous que Docker est installé sur votre système."
 
-#: src/Utils/Sorting/SortingName.vala:12
-#: src/Widgets/Utils/ContainerInfoDialog.vala:52
+#: data/com.github.sdv43.whaler.appdata.xml.in:26
+msgid "Add license file"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:27
+msgid "Fix logs reading when tty is enabled"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:28
+#: data/com.github.sdv43.whaler.appdata.xml.in:36
+#: data/com.github.sdv43.whaler.appdata.xml.in:45
+msgid "Update flatpak runtime version"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:29
+msgid "Update Italian translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:37
+msgid "Fix app crashing with huge logs"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:38
+msgid "Add Czech translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:52
+#, fuzzy
+msgid "Add sorting by container status"
+msgstr "Redémarrage du conteneur"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:53
+msgid "Add settings popup"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:54
+msgid "Add Italian translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:55
+msgid "Add French translation"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:56
+msgid "Update to io.elementary.Platform 7"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:57
+msgid "Few bug fixes and improvements"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:64
+#, fuzzy
+msgid "Add container status labels"
+msgstr "Erreur de démarrage du conteneur"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:65
+msgid "Show overlay bar for lingering actions"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:66
+msgid "Add \"Info\" in container context menu"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:67
+#, fuzzy
+msgid "Add \"Restart\" in container context menu"
+msgstr "Redémarrage du conteneur"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:68
+msgid "Add more user-friendly error messages"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:69
+msgid "Update screenshots"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:76
+msgid "Code refactoring"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:77
+msgid "Add homepage and bugtracker links"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:78
+msgid "Set elementary theme as default"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:79
+msgid "Fix incorrect window position at startup"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:80
+msgid "Fix wrong language choice"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:90
+#, fuzzy
+msgid "Containers list"
+msgstr "Erreur d’arrêt du conteneur"
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:95
+msgid "Docker compose app"
+msgstr ""
+
+#: data/com.github.sdv43.whaler.appdata.xml.in:101
+#, fuzzy
+msgid "Single container app"
+msgstr "Arrêt du conteneur"
+
+#: src/Utils/Sorting/SortingName.vala:23
 msgid "Name"
 msgstr "Nom"
 
-#: src/Utils/Sorting/SortingType.vala:10
+#: src/Utils/Sorting/SortingType.vala:21
 msgid "Type"
 msgstr "Type"
 
-#: src/Widgets/Utils/SettingsDialog.vala:11
-#: src/Widgets/Utils/ContainerInfoDialog.vala:13
-msgid "Close"
-msgstr "Fermer"
-
-#: src/Widgets/Utils/SettingsDialog.vala:26
-msgid "Settings"
-msgstr "Paramètres"
-
-#: src/Widgets/Utils/SettingsDialog.vala:41
-msgid "API socket path:"
+#: src/Widgets/Utils/SettingsWindow.vala:35
+#, fuzzy
+msgid "API socket path"
 msgstr "Chemin de la prise de l’API :"
 
-#: src/Widgets/Utils/SettingsDialog.vala:104
-msgid "Check connection"
-msgstr "Vérifier la connexion"
+#: src/Widgets/Utils/SettingsWindow.vala:44
+msgid "Docker"
+msgstr ""
 
-#: src/Widgets/Utils/SettingsDialog.vala:124
-msgid "Success"
-msgstr "Succès"
+#: src/Widgets/Utils/SettingsWindow.vala:48
+msgid "Docker Socket"
+msgstr ""
 
-#: src/Widgets/Utils/SettingsDialog.vala:124
-msgid "Error"
-msgstr "Erreur"
+#: src/Widgets/Utils/SettingsWindow.vala:49
+msgid "/var/run/docker.sock"
+msgstr ""
 
-#: src/Widgets/Utils/SettingsDialog.vala:141
-#, c-format
-msgid "Incorrect socket path \"%s\""
-msgstr "Chemin de prise incorrect « %s »"
+#: src/Widgets/Utils/SettingsWindow.vala:54
+msgid "Privacy"
+msgstr ""
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:11
+#: src/Widgets/Utils/SettingsWindow.vala:58
+msgid "Privacy Policy"
+msgstr ""
+
+#: src/Widgets/Utils/SettingsWindow.vala:59
+msgid "We collect absolutely nothing"
+msgstr ""
+
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:38
 msgid "Running"
 msgstr "En cours d’exécution"
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:16
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:42
 msgid "Paused"
 msgstr "En pause"
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:21
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:46
 msgid "Stopped"
 msgstr "Arrêté"
 
-#: src/Widgets/Utils/DockerContainerStatusLabel.vala:26
+#: src/Widgets/Utils/DockerContainerStatusLabel.vala:50
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: src/Widgets/Utils/ContainerInfoDialog.vala:53
-msgid "Image"
-msgstr "Image"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:54
-msgid "Status"
-msgstr "État"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:57
-msgid "Ports"
-msgstr "Connexions"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:61
-msgid "Binds"
-msgstr "Liens"
-
-#: src/Widgets/Utils/ContainerInfoDialog.vala:65
-msgid "Env"
-msgstr "Env"
-
-#: src/Widgets/HeaderBar.vala:15
-msgid "Back"
-msgstr "Retour"
-
-#: src/Widgets/HeaderBar.vala:40
-msgid "Update docker container list"
-msgstr "Mettre à jour la liste des conteneurs"
-
-#: src/Widgets/HeaderBar.vala:87 src/Widgets/ScreenError.vala:56
-msgid "Open settings"
-msgstr "Ouvrir les paramètres"
-
-#: src/Widgets/ScreenError.vala:33
+#: src/Widgets/ScreenError.vala:44
 msgid ""
 "It looks like Docker requires root rights to use it. Thus, the application "
 "cannot connect to Docker Engine API. Find out how to run docker without root "
@@ -153,7 +244,7 @@ msgstr ""
 "l’application ne pourra pas fonctionner correctement. Ou vérifiez votre "
 "chemin de votre prise vers l’API de Docker dans les paramètres."
 
-#: src/Widgets/ScreenError.vala:42
+#: src/Widgets/ScreenError.vala:53
 msgid ""
 "It looks like Docker is not installed on your system. To find out how to "
 "install it, see <a href=\"https://docs.docker.com/engine/install/\">Docker "
@@ -164,114 +255,133 @@ msgstr ""
 "engine/install/\">Manuels Docker</a>.\n"
 "Ou vérifiez votre chemin de prise vers l’API de Docker dans les paramètres."
 
-#: src/Widgets/ScreenError.vala:50
-msgid "The app cannot connect to Docker API"
-msgstr "L’application ne peut se connecter à l’API Docker"
-
-#: src/Widgets/Screens/DockerContainer/Log.vala:39
-msgid "Autoscroll"
-msgstr "Défilement automatique"
-
-#: src/Widgets/Screens/DockerContainer/Log.vala:51
-msgid "Enable autoscroll to bottom border"
-msgstr "Activer le défilement automatique vers le bord inférieur"
-
-#: src/Widgets/Screens/DockerContainer/TopBarActions.vala:19
-msgid "Start"
-msgstr "Démarrer"
-
-#: src/Widgets/Screens/DockerContainer/TopBarActions.vala:23
-msgid "Stop"
-msgstr "Arrêter"
-
-#: src/Widgets/Screens/DockerContainer/TopBarActions.vala:25
-msgid "Unpause"
-msgstr "Reprendre"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:56
-msgid "Pause"
-msgstr "Mettre en Pause"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:59
-msgid "Container pause error"
-msgstr "Erreur de pause du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:74
-msgid "Restart"
-msgstr "Redémarrer"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:76
-msgid "Container restart error"
-msgstr "Erreur de redémarrage du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:79
-msgid "Restarting container"
-msgstr "Redémarrage du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:94
-msgid "Remove"
-msgstr "Supprimer"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:97
-msgid "Do you really want to remove container?"
-msgstr "Voulez-vous vraiment supprimer le conteneur ?"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:98
-msgid "Yes, remove"
-msgstr "Oui, supprimer"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:99
-msgid "Cancel"
-msgstr "Annuler"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:105
-msgid "Container remove error"
-msgstr "Erreur dans la suppression du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:107
-msgid "Removing container"
-msgstr "Suppression du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:127
-msgid "Info"
-msgstr "Infos"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:129
-msgid "Cannot get information"
-msgstr "Impossible d’obtenir les informations"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:152
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:53
 msgid "Container action error"
 msgstr "Erreur d’action du conteneur"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:157
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:58
 msgid "Container stop error"
 msgstr "Erreur d’arrêt du conteneur"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:158
-msgid "Stopping container"
-msgstr "Arrêt du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:163
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:64
 msgid "Container start error"
 msgstr "Erreur de démarrage du conteneur"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:164
-msgid "Starting container"
-msgstr "Démarrage du conteneur"
-
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:169
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:70
 msgid "Container unpause error"
 msgstr "Erreur de reprise du conteneur"
 
-#: src/Widgets/Screens/Main/ContainerCardActions.vala:174
+#: src/Widgets/Screens/Main/ContainerCardActions.vala:76
 msgid "Container state is unknown"
 msgstr "L’état du conteneur est inconnu"
 
-#: src/Widgets/Screens/Main/ContainersGrid.vala:81
+#: src/Widgets/Screens/Main/ContainersGrid.vala:120
 msgid "No containers"
 msgstr "Pas de conteneurs"
 
-#: src/Widgets/Screens/Main/ContainersGridFilter.vala:53
+#: src/Widgets/Screens/Main/ContainersGridFilter.vala:60
 msgid "Sort by:"
 msgstr "Trier par :"
+
+#~ msgid "Close"
+#~ msgstr "Fermer"
+
+#~ msgid "Settings"
+#~ msgstr "Paramètres"
+
+#~ msgid "Check connection"
+#~ msgstr "Vérifier la connexion"
+
+#~ msgid "Success"
+#~ msgstr "Succès"
+
+#~ msgid "Error"
+#~ msgstr "Erreur"
+
+#, c-format
+#~ msgid "Incorrect socket path \"%s\""
+#~ msgstr "Chemin de prise incorrect « %s »"
+
+#~ msgid "Image"
+#~ msgstr "Image"
+
+#~ msgid "Status"
+#~ msgstr "État"
+
+#~ msgid "Ports"
+#~ msgstr "Connexions"
+
+#~ msgid "Binds"
+#~ msgstr "Liens"
+
+#~ msgid "Env"
+#~ msgstr "Env"
+
+#~ msgid "Back"
+#~ msgstr "Retour"
+
+#~ msgid "Update docker container list"
+#~ msgstr "Mettre à jour la liste des conteneurs"
+
+#~ msgid "Open settings"
+#~ msgstr "Ouvrir les paramètres"
+
+#~ msgid "The app cannot connect to Docker API"
+#~ msgstr "L’application ne peut se connecter à l’API Docker"
+
+#~ msgid "Autoscroll"
+#~ msgstr "Défilement automatique"
+
+#~ msgid "Enable autoscroll to bottom border"
+#~ msgstr "Activer le défilement automatique vers le bord inférieur"
+
+#~ msgid "Start"
+#~ msgstr "Démarrer"
+
+#~ msgid "Stop"
+#~ msgstr "Arrêter"
+
+#~ msgid "Unpause"
+#~ msgstr "Reprendre"
+
+#~ msgid "Pause"
+#~ msgstr "Mettre en Pause"
+
+#~ msgid "Container pause error"
+#~ msgstr "Erreur de pause du conteneur"
+
+#~ msgid "Restart"
+#~ msgstr "Redémarrer"
+
+#~ msgid "Container restart error"
+#~ msgstr "Erreur de redémarrage du conteneur"
+
+#~ msgid "Remove"
+#~ msgstr "Supprimer"
+
+#~ msgid "Do you really want to remove container?"
+#~ msgstr "Voulez-vous vraiment supprimer le conteneur ?"
+
+#~ msgid "Yes, remove"
+#~ msgstr "Oui, supprimer"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "Container remove error"
+#~ msgstr "Erreur dans la suppression du conteneur"
+
+#~ msgid "Removing container"
+#~ msgstr "Suppression du conteneur"
+
+#~ msgid "Info"
+#~ msgstr "Infos"
+
+#~ msgid "Cannot get information"
+#~ msgstr "Impossible d’obtenir les informations"
+
+#~ msgid "Starting container"
+#~ msgstr "Démarrage du conteneur"
+
+#~ msgid "Search container..."
+#~ msgstr "Rechercher un conteneur"

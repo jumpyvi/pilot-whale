@@ -18,8 +18,10 @@ class Widgets.ScreenMain : Gtk.Box {
         this.orientation = Gtk.Orientation.VERTICAL;
         this.spacing = 0;
 
-        this.get_style_context ().add_class ("screen-main");
-        this.pack_start (new ContainersGridFilter (), false, false);
-        this.pack_start (new ContainersGrid (), true, true);
+        ContainersGridFilter container_grid_filter = new ContainersGridFilter ();
+        ContainersGrid container_grid = new ContainersGrid ();
+
+        this.prepend (container_grid);
+        this.prepend (container_grid_filter);
     }
 }

@@ -1,0 +1,13 @@
+.grid_search_bar {
+    margin-bottom: 1.1rem;
+    margin-left: 0.5rem;
+}
+
+.separator {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.list_box label {
+    margin-left: 1rem;
+}

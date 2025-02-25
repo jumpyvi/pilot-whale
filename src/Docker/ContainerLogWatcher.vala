@@ -42,10 +42,16 @@ namespace Docker {
             this.data = new DataInputStream (this.memory);
         }
 
-        public static size_t read_body_data (void* buf, size_t size, size_t nmemb, void* data) {
+        public static size_t read_body_data(void* buf, size_t size, size_t nmemb, void* data) {
             unowned var reader = (FrameReader)data;
+            size_t total_size = size * nmemb;
+            size_t bytes_written = reader.add_memory_stream_data(buf, total_size);
 
-            return reader.add_memory_stream_data (buf, size * nmemb);
+            if (bytes_written != total_size) {
+                print("Error: Could not process all the data. Returning 0 to signal failure.\n");
+                return 0;
+            }
+            return bytes_written;
         }
 
         public async void read () throws FrameReaderError {
@@ -85,7 +91,7 @@ namespace Docker {
                 return;
             }
 
-            // For the correct operation of the algorithm, at least 8 bytes of data are needed.
+            // For the correct of the algorithm, at least 8 bytes of data are needed.
             var data_size = this.prev_unparsed_data_size + size;
 
             // We do not read data until there are 10 bytes
@@ -313,7 +319,7 @@ namespace Docker {
                     try {
                         reader.read.end (res);
                     } catch (FrameReaderError error) {
-                        warning (@"Log reading error: $(error.message)");
+                        //warning (@"Log reading error: $(error.message)"); // TODO - Find the cause of this error being spammed
                     }
                 });
             }

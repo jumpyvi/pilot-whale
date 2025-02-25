@@ -2,6 +2,6 @@ _build
 build
 .flatpak
 .flatpak-builder
-.vscode
+.vscode/settings.json
 *.glade#
 *.glade~

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/sdv43/whaler">
+    <file preprocess="xml-stripblanks">window.ui</file>
+    <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+    <file 
+      alias="/icons/scalable/mimetypes/docker-container-group-symbolic.svg"
+      compressed="true"
+    >../data/images/icons/docker-container-group.svg</file>
+    
+    <file 
+      alias="/icons/scalable/mimetypes/docker-container-symbolic.svg"
+      compressed="true"
+    >../data/images/icons/docker-container.svg</file>
+
+     <file alias="index.css" compressed="true">../data/resources/stylesheets/index.css</file>
+     <file alias="animations.css" compressed="true">../data/resources/stylesheets/animations.css</file>
+     <file alias="widgets.css" compressed="true">../data/resources/stylesheets/widgets.css</file>
+     <file alias="terminal.css" compressed="true">../data/resources/stylesheets/terminal.css</file>
+  </gresource>
+</gresources>
