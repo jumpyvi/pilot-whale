@@ -40,8 +40,7 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow();
         images_list = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
         
-
-        //images_list.append(image_card);
+        images_list.margin_top = 10;
         scrolled_window.vexpand = true;
         scrolled_window.set_child(images_list);
 

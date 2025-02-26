@@ -28,7 +28,9 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         grid.attach(create_checkmark(), 2, 1, 1, 1);
 
         // Star count
-        grid.attach(create_star_count(), 3, 1, 1, 1);
+        Gtk.Widget star_count = create_star_count();
+        star_count.halign = Gtk.Align.END;
+        grid.attach(star_count, 3, 1, 1, 1);
 
         // Grid style
         grid.add_css_class("card");
@@ -38,7 +40,7 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         grid.margin_start = 5;
         grid.margin_end = 5;
         grid.focusable = true;
-        grid.vexpand = false;
+        grid.vexpand = true;
         this.set_child(grid);
     }
 
@@ -61,6 +63,7 @@ class Widgets.Utils.ImageCard : Adw.Bin {
 
     private Gtk.Label create_name(){
         Gtk.Label name_label = new Gtk.Label(this.image.name);
+        name_label.add_css_class("heading");
         name_label.margin_top = 8;
         name_label.margin_start = 10;
         return name_label;
@@ -70,64 +73,28 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         Gtk.Image star_image = new Gtk.Image.from_icon_name("starred-symbolic");
         Gtk.Label star_count_label = new Gtk.Label(this.image.star_count.to_string());
         Gtk.Box star_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
-        star_box.append(star_image);
         star_box.append(star_count_label);
-        star_box.margin_start = 260;
+        star_box.append(star_image);
+        
         star_box.margin_top = 9;
+        star_box.margin_end = 5;
+        star_box.hexpand = true;
         star_box.add_css_class("star");
 
         return star_box;
     }
 
-    private Gtk.Button create_short_description(){
-        string short_description = this.image.description.length > 50 ? this.image.description.substring(0, 30) + "..." : this.image.description;
-        Gtk.Button description_button = new Gtk.Button.with_label("");
+    private Gtk.Label create_short_description(){
+        string short_description = this.image.description.length > 50 ? this.image.description.substring(0, 50) + "..." : this.image.description;
         Gtk.Label description_text = new Gtk.Label(short_description);
 
         description_text.add_css_class("body");
 
-        description_button.set_child(description_text);
-        description_button.margin_top = 1;
-        description_button.margin_bottom = 0;
-        description_button.set_has_frame(false);
-        description_button.hexpand = true;
-        description_button.vexpand = true;
-        description_button.set_tooltip_text("Click for full description");
-        description_button.clicked.connect(() => {
-            show_description_dialog();
-        });
+        description_text.margin_top = 1;
+        description_text.margin_bottom = 0;
+        description_text.hexpand = true;
+        description_text.vexpand = true;
 
-        return description_button;
+        return description_text;
     }
-
-    private void show_description_dialog() {
-        Adw.Dialog dialog = new Adw.Dialog();
-        dialog.set_title("Description of " + this.image.name);
-        dialog.set_content_height(800);
-        dialog.set_content_width(800);
-
-        Adw.HeaderBar headerbar = new Adw.HeaderBar();
-        var toolbarview = new Adw.ToolbarView ();
-        toolbarview.content = build_description_content();
-
-        toolbarview.add_top_bar (headerbar);
-        dialog.child = toolbarview;
-
-
-        dialog.present(this);
-    }
-
-    private Gtk.Widget build_description_content(){
-        Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow();
-        Gtk.TextView description_textview = new Gtk.TextView();
-        description_textview.buffer.text = this.image.description;
-        description_textview.editable = false;
-        description_textview.cursor_visible = false;
-        description_textview.wrap_mode = Gtk.WrapMode.WORD;
-        description_textview.hexpand = true;
-        scrolled_window.set_child(description_textview);
-        scrolled_window.min_content_height = 200;
-
-        return scrolled_window;
-    } 
 }

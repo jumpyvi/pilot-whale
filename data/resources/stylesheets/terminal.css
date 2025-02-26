@@ -13,5 +13,6 @@
 }
 
 scrollbar {
-    color: white;
+    color: #3584e4;
+    border-color: gray !important;
 }
