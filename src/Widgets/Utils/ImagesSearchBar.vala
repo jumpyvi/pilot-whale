@@ -50,10 +50,8 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
 
             if (has_valid_prefix) {
                 action_button.set_label (_("Pull from link"));
-                print("Pulling from link\n");
             }else{
                 action_button.set_label(_("Search"));
-                print("Searching\n");
                 
             }
 
@@ -68,7 +66,7 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
         });
 
         this.append(search);
-        this.append(create_pull_button());
+        this.append(create_action_button());
         this.margin_start = 25;
         this.margin_end = 3;
     }
@@ -78,7 +76,7 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
         this.img_search_dialog = img_search_dialog;
     }
 
-    private Gtk.Button create_pull_button() {
+    private Gtk.Button create_action_button() {
         action_button = new Gtk.Button.with_label("Search");
         action_button.clicked.connect(() => {
             search.search_changed();

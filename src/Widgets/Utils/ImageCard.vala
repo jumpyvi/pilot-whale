@@ -32,6 +32,11 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         star_count.halign = Gtk.Align.END;
         grid.attach(star_count, 3, 1, 1, 1);
 
+        Gtk.Widget download_button = create_pull_button();
+        download_button.halign = Gtk.Align.END;
+        download_button.valign = Gtk.Align.END;
+        grid.attach(download_button, 3, 2, 1, 1);
+
         // Grid style
         grid.add_css_class("card");
         grid.add_css_class("shadow");
@@ -53,7 +58,7 @@ class Widgets.Utils.ImageCard : Adw.Bin {
             official_box.append(checkmark);
             official_box.margin_start = 2;
             official_box.margin_top = 8;
-            checkmark.tooltip_text = "Official image";
+            checkmark.tooltip_text = "Docker official image";
 
             official_box.add_css_class("official");
         }
@@ -77,7 +82,7 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         star_box.append(star_image);
         
         star_box.margin_top = 9;
-        star_box.margin_end = 5;
+        star_box.margin_end = 9;
         star_box.hexpand = true;
         star_box.add_css_class("star");
 
@@ -85,7 +90,7 @@ class Widgets.Utils.ImageCard : Adw.Bin {
     }
 
     private Gtk.Label create_short_description(){
-        string short_description = this.image.description.length > 50 ? this.image.description.substring(0, 50) + "..." : this.image.description;
+        string short_description = this.image.description.length > 43 ? this.image.description.substring(0, 43) + "..." : this.image.description;
         Gtk.Label description_text = new Gtk.Label(short_description);
 
         description_text.add_css_class("body");
@@ -96,5 +101,35 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         description_text.vexpand = true;
 
         return description_text;
+    }
+
+    private Gtk.Button create_pull_button(){
+        Gtk.Button pull_button = new Gtk.Button.from_icon_name("folder-download-symbolic");
+        var api_client = new ApiClient();
+        pull_button.margin_end = 9;
+        pull_button.margin_top = 9;
+        pull_button.clicked.connect(() => {
+            pull_button.set_icon_name("process-working-symbolic");
+            pull_button.sensitive = false;
+            pull_button.add_css_class("load-animation");
+            api_client.pull_image.begin(this.image.name, (obj, res) => {
+                try {
+                    if(api_client.pull_image.end(res)){
+                        print("Image pulled");
+                        pull_button.remove_css_class("load-animation");
+                        pull_button.set_icon_name("emoji-body-symbolic");
+                        pull_button.add_css_class("success-animation");
+                        pull_button.sensitive = false;
+                        pull_button.add_css_class("success");
+                    }
+                } catch (Error e) {
+                    pull_button.set_icon_name("dialog-warning-symbolic");
+                    print("Error: %s\n", e.message);
+                }
+            });
+            
+        });
+
+        return pull_button;
     }
 }

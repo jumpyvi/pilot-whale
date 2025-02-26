@@ -161,6 +161,23 @@ namespace Docker {
             }
         }
 
+        public async bool pull_image (string image_name) throws ApiClientError {
+            try {
+                var resp = yield this.http_client.r_post (@"/images/create?fromImage=" + image_name + ":latest");
+
+                if (resp.code == 404) {
+                    throw new ApiClientError.ERROR ("No such image");
+                }
+                if (resp.code == 500) {
+                    throw new ApiClientError.ERROR ("Server error");
+                }
+
+                return true;
+            } catch (HttpClientError error) {
+                throw new ApiClientError.ERROR (error.message);
+            }
+        }
+
         public async Image[] find_remote_image_from_string (string search_string) throws ApiClientError {
             try {
                 var image_list = new Image[0];
@@ -199,16 +216,6 @@ namespace Docker {
                     image.is_automated = container_object.get_boolean_member_with_default ("is_automated", false);
                     image.description = container_object.get_string_member_with_default ("description", "No description found");
 
-                    //
-                    //  var name_array = container_object.get_array_member ("name");
-
-                    //  foreach (var name_node in name_array.get_elements ()) {
-                    //      image.name = name_node.get_string ();
-                    //      assert_nonnull (image.name);
-                    //      break;
-                    //  }
-
-                    //
                     image_list += image;
                 }
 
