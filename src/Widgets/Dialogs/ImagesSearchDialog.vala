@@ -13,10 +13,10 @@ using Utils;
 using Docker;
 using Widgets.Utils;
 
-class Widgets.Dialogs.ContainerPullDialog : Adw.Dialog {
+class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
     protected Adw.HeaderBar headerbar { get; set; }
 
-    public ContainerPullDialog (){
+    public ImagesSearchDialog (){
         this.set_content_height (600);
         this.set_content_width (420);
 
@@ -30,7 +30,7 @@ class Widgets.Dialogs.ContainerPullDialog : Adw.Dialog {
 
     private Gtk.Widget build_content_area(){
         var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
-        box.append(new Utils.ContainerPullSearchBar());
+        box.append(new Utils.ImagesSearchBar());
         box.append(build_image_list_area());
         return box;
     }
@@ -39,16 +39,10 @@ class Widgets.Dialogs.ContainerPullDialog : Adw.Dialog {
         Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow();
         Gtk.Box images_list = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
 
-        var image = new Docker.Image(){
-            description = "This is a test image",
-            is_official = true,
-            is_automated = true,
-            name = "test_image",
-            star_count = 0,
-        };
 
-        ImageCard image_card = new ImageCard(image);
-        images_list.append(image_card);
+        
+
+        //images_list.append(image_card);
         scrolled_window.vexpand = true;
         scrolled_window.set_child(images_list);
 

@@ -8,7 +8,7 @@
  */
 using Utils;
 using Widgets.Dialogs;
-public class Widgets.Utils.ContainerPullButton : Gtk.Button{
+public class Widgets.Utils.ImagesSearchButton : Gtk.Button{
     private Adw.ButtonContent button_content = new Adw.ButtonContent ();
     private const string BUTTON_ICON_NAME = "folder-download-symbolic";
     private const string TOOLTIP_CONTENT = "Get container image";
@@ -19,12 +19,12 @@ public class Widgets.Utils.ContainerPullButton : Gtk.Button{
         this.set_child (button_content);
 
         this.clicked.connect ((button) => {
-            var dialog = new ContainerPullDialog();
+            var dialog = new ImagesSearchDialog();
             dialog.present(this);
         });
     }
 
-    public ContainerPullButton () {
+    public ImagesSearchButton () {
         Object ();
     }
 }
