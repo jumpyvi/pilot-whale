@@ -15,6 +15,7 @@ using Widgets.Utils;
 
 class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
     protected Adw.HeaderBar headerbar { get; set; }
+    Gtk.Box images_list;
 
     public ImagesSearchDialog (){
         this.set_content_height (600);
@@ -30,16 +31,14 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
 
     private Gtk.Widget build_content_area(){
         var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
-        box.append(new Utils.ImagesSearchBar());
+        box.append(new Utils.ImagesSearchBar(this));
         box.append(build_image_list_area());
         return box;
     }
 
     private Gtk.ScrolledWindow build_image_list_area(){
         Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow();
-        Gtk.Box images_list = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
-
-
+        images_list = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
         
 
         //images_list.append(image_card);
@@ -47,6 +46,16 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         scrolled_window.set_child(images_list);
 
         return scrolled_window;
+    }
+
+    public void update_image_list(Docker.Image[] images){
+        while (images_list.get_first_child() != null){
+            images_list.remove(images_list.get_first_child());
+        }
+
+        foreach (var image in images){
+            images_list.append(new ImageCard(image));
+        }
     }
 
 }

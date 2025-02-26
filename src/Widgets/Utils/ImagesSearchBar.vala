@@ -9,10 +9,11 @@
 
 using Docker;
 
-public class Widgets.Utils.ImagesSearchBar : Gtk.Box {
+class Widgets.Utils.ImagesSearchBar : Gtk.Box {
     Gtk.SearchEntry search;
     Gtk.Button action_button;
     bool is_link;
+    Widgets.Dialogs.ImagesSearchDialog img_search_dialog;
 
     construct {
         var state = State.Root.get_instance();
@@ -21,7 +22,6 @@ public class Widgets.Utils.ImagesSearchBar : Gtk.Box {
         var api_client = new ApiClient();
         bool is_direct_pull = false;
         this.orientation = Gtk.Orientation.HORIZONTAL;
-        //images_found = new Docker.Image[0];
 
         search.width_request = 240;
         search.placeholder_text = _("Search images...");
@@ -50,9 +50,7 @@ public class Widgets.Utils.ImagesSearchBar : Gtk.Box {
             api_client.find_remote_image_from_string.begin(clean_search_text, (obj, res) => {
                 try {
                     var images = api_client.find_remote_image_from_string.end(res);
-                    foreach (var image in images) {
-                        //images_found+=(image);
-                    }
+                    img_search_dialog.update_image_list (images);
                 } catch (Error e) {
                     print("Error: %s\n", e.message);
                 }
@@ -65,8 +63,9 @@ public class Widgets.Utils.ImagesSearchBar : Gtk.Box {
         this.margin_end = 3;
     }
 
-    public ImagesSearchBar() {
+    public ImagesSearchBar(Widgets.Dialogs.ImagesSearchDialog img_search_dialog) {
         Object();
+        this.img_search_dialog = img_search_dialog;
     }
 
     private Gtk.Button create_pull_button() {
