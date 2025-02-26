@@ -200,13 +200,13 @@ namespace Docker {
                     image.description = container_object.get_string_member_with_default ("description", "No description found");
 
                     //
-                    var name_array = container_object.get_array_member ("name");
+                    //  var name_array = container_object.get_array_member ("name");
 
-                    foreach (var name_node in name_array.get_elements ()) {
-                        image.name = name_node.get_string ();
-                        assert_nonnull (image.name);
-                        break;
-                    }
+                    //  foreach (var name_node in name_array.get_elements ()) {
+                    //      image.name = name_node.get_string ();
+                    //      assert_nonnull (image.name);
+                    //      break;
+                    //  }
 
                     //
                     image_list += image;

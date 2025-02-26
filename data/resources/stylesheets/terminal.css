@@ -4,7 +4,7 @@
 
 .terminal {
     background-color: #1e1e1e;
-    color: #EEEEEE;
+    color: #eeee;
     font-family: "Monospace", monospace;
     font-size: 14px;
     padding: 12px;
@@ -14,5 +14,5 @@
 
 scrollbar {
     color: #3584e4;
-    border-color: gray !important;
+    border-color: #484848ee;
 }
