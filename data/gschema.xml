@@ -29,5 +29,10 @@
       <default>"/var/run/docker.sock"</default>
       <summary>Search entry value</summary>
     </key>
+    <key name="valid-registry-prefixes" type="as">
+    <default>[ 'ghcr.io/', 'docker.io/', 'quay.io/', 'registry.gitlab.com/', 'mcr.microsoft.com/' ]</default>
+    <summary>Default Order.</summary>
+    <description>Default Order</description>
+    </key>
   </schema>
 </schemalist>

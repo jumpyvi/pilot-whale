@@ -12,12 +12,10 @@ using Docker;
 class Widgets.Utils.ImagesSearchBar : Gtk.Box {
     Gtk.SearchEntry search;
     Gtk.Button action_button;
-    bool is_link;
     Widgets.Dialogs.ImagesSearchDialog img_search_dialog;
 
     construct {
         var state = State.Root.get_instance();
-        is_link = false;
         search = new Gtk.SearchEntry();
         var api_client = new ApiClient();
         bool is_direct_pull = false;
@@ -35,16 +33,28 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
                     (c >= 'a' && c <= 'z') || 
                     c == '_' || c == '-' || c == '/' || c == '.') {
                     clean_search_text += c.to_string();
-                    if (c == '.') {
-                        is_link = true;
-                    }
                 }
             }
 
-            if (is_link) {
-                action_button.label = _("Pull from link");
-            } else {
-                action_button.label = _("Search");
+            var settings = new GLib.Settings("com.github.sdv43.whaler");
+            string[] valid_registries = settings.get_strv("valid-registry-prefixes");
+
+            bool has_valid_prefix = false;
+
+            foreach (string prefix in valid_registries) {
+                if (clean_search_text.has_prefix(prefix)) {
+                    has_valid_prefix = true;
+                    break;
+                }
+            }
+
+            if (has_valid_prefix) {
+                action_button.set_label (_("Pull from link"));
+                print("Pulling from link\n");
+            }else{
+                action_button.set_label(_("Search"));
+                print("Searching\n");
+                
             }
 
             api_client.find_remote_image_from_string.begin(clean_search_text, (obj, res) => {
@@ -71,11 +81,8 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
     private Gtk.Button create_pull_button() {
         action_button = new Gtk.Button.with_label("Search");
         action_button.clicked.connect(() => {
-            if(is_link){
-                print("Pulling from link");
-            }else{
-                search.search_changed();
-            }
+            search.search_changed();
+
         });
         action_button.margin_start = 10;
         return action_button;
