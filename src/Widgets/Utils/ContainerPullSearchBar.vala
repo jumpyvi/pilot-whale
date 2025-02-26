@@ -60,8 +60,8 @@ public class Widgets.Utils.ContainerPullSearchBar : Gtk.Box {
 
         this.append(search);
         this.append(create_pull_button());
-        this.margin_start = 20;
-        this.margin_end = 20;
+        this.margin_start = 25;
+        this.margin_end = 3;
     }
 
     public ContainerPullSearchBar() {
@@ -77,6 +77,7 @@ public class Widgets.Utils.ContainerPullSearchBar : Gtk.Box {
                 search.search_changed();
             }
         });
+        action_button.margin_start = 10;
         return action_button;
     }
 }

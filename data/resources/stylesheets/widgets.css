@@ -11,3 +11,15 @@
 .list_box label {
     margin-left: 1rem;
 }
+
+.star image {
+    color: #e5a50a;
+}
+
+.official image {
+    color: #1b8553;
+}
+
+.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}

@@ -38,6 +38,7 @@ sources = [
   'Widgets/Utils/BackButton.vala',
   'Widgets/Utils/ContainerInfoDialog.vala',
   'Widgets/Utils/ContainerPullSearchBar.vala',
+  'Widgets/Utils/ImageCard.vala',
 
   'Widgets/Utils/ActionMenu.vala',
   'Widgets/Utils/MainAction.vala',

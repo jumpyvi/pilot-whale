@@ -11,13 +11,14 @@
 
 using Utils;
 using Docker;
+using Widgets.Utils;
 
 class Widgets.Dialogs.ContainerPullDialog : Adw.Dialog {
     protected Adw.HeaderBar headerbar { get; set; }
 
     public ContainerPullDialog (){
         this.set_content_height (600);
-        this.set_content_width (400);
+        this.set_content_width (420);
 
         var toolbarview = new Adw.ToolbarView () {
 			content = build_content_area ()
@@ -34,10 +35,24 @@ class Widgets.Dialogs.ContainerPullDialog : Adw.Dialog {
         return box;
     }
 
-    private Gtk.ListBox build_image_list_area(){
-        Gtk.ListBox images_list = new Gtk.ListBox();
+    private Gtk.ScrolledWindow build_image_list_area(){
+        Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow();
+        Gtk.Box images_list = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
 
-        return images_list;
+        var image = new Docker.Image(){
+            description = "This is a test image",
+            is_official = true,
+            is_automated = true,
+            name = "test_image",
+            star_count = 0,
+        };
+
+        ImageCard image_card = new ImageCard(image);
+        images_list.append(image_card);
+        scrolled_window.vexpand = true;
+        scrolled_window.set_child(images_list);
+
+        return scrolled_window;
     }
 
 }
