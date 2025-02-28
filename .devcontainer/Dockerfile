@@ -1,13 +1,10 @@
-FROM quay.io/fedora/fedora:41
+FROM ghcr.io/ublue-os/arch-distrobox
 
-RUN dnf update -y && dnf install gtk4-devel ninja-build meson libadwaita-devel dbus-x11 libgee-devel json-glib-devel desktop-file-utils libcurl-devel libglvnd-gles vala-language-server valac git vim -y
+RUN useradd -m -s /bin/bash -G wheel adw && echo 'adw:dev' | chpasswd
+RUN usermod -aG render,video adw
+RUN groupadd docker && usermod -aG docker adw
 
-RUN dnf install -y dnf-plugins-core && \
-    dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo && \
-    dnf install -y docker-ce docker-ce-cli containerd.io
+USER adw
 
-RUN useradd -m -s /bin/bash -G wheel dev && echo 'dev:dev' | sudo chpasswd
-RUN usermod -aG render,video dev
-RUN usermod -aG docker dev
-
-USER dev
+RUN paru -Syu --noconfirm && \
+    paru -S --noconfirm gtk4 ninja meson libadwaita libgee json-glib desktop-file-utils curl libglvnd vala-language-server vala vim docker
