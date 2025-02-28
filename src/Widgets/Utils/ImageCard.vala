@@ -72,7 +72,9 @@ class Widgets.Utils.ImageCard : Adw.Bin {
     }
 
     private Gtk.Label create_name(){
-        Gtk.Label name_label = new Gtk.Label(this.image.name);
+        string display_name = this.image.name.length > 30 ? this.image.name.substring(0, 30) + "..." : this.image.name;
+        Gtk.Label name_label = new Gtk.Label(display_name);
+        name_label.set_tooltip_text(this.image.name);
         name_label.add_css_class("heading");
         name_label.margin_top = 8;
         name_label.margin_start = 10;
