@@ -32,6 +32,11 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         star_count.halign = Gtk.Align.END;
         grid.attach(star_count, 3, 1, 1, 1);
 
+        Gtk.Widget browser_button = create_browser_button();
+        browser_button.halign = Gtk.Align.START;
+        browser_button.valign = Gtk.Align.END;
+        grid.attach(browser_button, 1, 2, 1, 1);
+
         Gtk.Widget download_button = create_pull_button();
         download_button.halign = Gtk.Align.END;
         download_button.valign = Gtk.Align.END;
@@ -131,5 +136,24 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         });
 
         return pull_button;
+    }
+
+    private Gtk.Button create_browser_button(){
+        Gtk.LinkButton browser_button = new Gtk.LinkButton.with_label(generate_link(this.image.name), "");
+        browser_button.set_icon_name("web-browser-symbolic");
+        browser_button.margin_start = 9;
+
+        return browser_button;
+    }
+
+    private string generate_link(string image_name){
+        string link = "https://hub.docker.com/not_found";
+
+        if (image_name.contains("/")){
+            link = "https://hub.docker.com/r/" + image_name;
+        }else{
+            link = "https://hub.docker.com/_/" + image_name;
+        }
+        return link;
     }
 }
