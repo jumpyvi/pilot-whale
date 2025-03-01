@@ -85,7 +85,7 @@ public class Whaler.Application : Adw.Application {
     private void on_preferences_action () {
         message ("app.preferences action activated");
         
-        var setting_page = new Widgets.Utils.SettingsWindow();
+        var setting_page = new Widgets.Dialogs.SettingsWindow();
         setting_page.present (this.active_window);
 
     }

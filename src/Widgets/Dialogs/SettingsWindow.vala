@@ -10,7 +10,7 @@
  */
 using Utils.Constants;
 
-class Widgets.Utils.SettingsWindow : Adw.PreferencesDialog {
+class Widgets.Dialogs.SettingsWindow : Adw.PreferencesDialog {
     public SettingsWindow(){
         Object(
           content_width: 450,

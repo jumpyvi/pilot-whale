@@ -31,7 +31,6 @@ sources = [
   'Widgets/ScreenManager.vala',
   'Widgets/ScreenError.vala',
   'Widgets/ScreenDockerContainer.vala',
-  'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
   'Widgets/Utils/PullButton.vala',
@@ -58,6 +57,7 @@ sources = [
 
   # Dialogs
   'Widgets/Dialogs/ImagesSearchDialog.vala',
+  'Widgets/Dialogs/SettingsWindow.vala',
 
   # Utils
   'Utilities/HttpClient.vala',
