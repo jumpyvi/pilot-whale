@@ -8,9 +8,9 @@
 
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
-using Utils.Constants;
+using Utilities.Constants;
 
-class Widgets.Utils.SettingsWindow : Adw.PreferencesDialog {
+class Widgets.Dialogs.SettingsWindow : Adw.PreferencesDialog {
     public SettingsWindow(){
         Object(
           content_width: 450,

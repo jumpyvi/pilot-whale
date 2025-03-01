@@ -9,7 +9,7 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Utils {
+namespace Utilities {
     errordomain HttpClientError {
         ERROR,
         ERROR_ACCESS,
@@ -28,15 +28,15 @@ namespace Utils {
         public string? base_url;
 
         public async HttpClientResponse r_get (string url) throws HttpClientError {
-            return yield this.request (Utils.HttpClientMethod.GET, url, new HttpClientResponse ());
+            return yield this.request (Utilities.HttpClientMethod.GET, url, new HttpClientResponse ());
         }
 
         public async HttpClientResponse r_post (string url) throws HttpClientError {
-            return yield this.request (Utils.HttpClientMethod.POST, url, new HttpClientResponse ());
+            return yield this.request (Utilities.HttpClientMethod.POST, url, new HttpClientResponse ());
         }
 
         public async HttpClientResponse r_delete (string url) throws HttpClientError {
-            return yield this.request (Utils.HttpClientMethod.DELETE, url, new HttpClientResponse ());
+            return yield this.request (Utilities.HttpClientMethod.DELETE, url, new HttpClientResponse ());
         }
 
         public async HttpClientResponse request (HttpClientMethod method, string url, HttpClientResponse response) throws HttpClientError {

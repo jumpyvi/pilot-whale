@@ -11,7 +11,7 @@
 
 using Docker;
 
-namespace Utils {
+namespace Utilities {
     enum DockerContainerType {
         GROUP,
         CONTAINER

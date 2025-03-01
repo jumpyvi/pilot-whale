@@ -13,7 +13,7 @@ configuration.set_quoted('APP_VERSION', meson.project_version())
 configuration.set_quoted('LOCALE_DIR', join_paths(get_option('prefix'), get_option('localedir')))
 
 constants = configure_file(
-  input: 'Utils/Constants.vala.in',
+  input: 'Utilities/Constants.vala.in',
   output: 'Constants.vala',
   configuration: configuration,
 )
@@ -31,7 +31,6 @@ sources = [
   'Widgets/ScreenManager.vala',
   'Widgets/ScreenError.vala',
   'Widgets/ScreenDockerContainer.vala',
-  'Widgets/Utils/SettingsWindow.vala',
   'Widgets/Utils/DockerContainerStatusLabel.vala',
   'Widgets/Utils/ReloadButton.vala',
   'Widgets/Utils/PullButton.vala',
@@ -49,28 +48,29 @@ sources = [
   'Widgets/Screens/Main/ContainerCard.vala',
   'Widgets/Screens/Main/ContainerCardActions.vala',
 
-  'Widgets/Screens/Main/DockerContainer/LogViewer.vala',
-  'Widgets/Screens/Main/DockerContainer/TopBar.vala',
-  'Widgets/Screens/Main/DockerContainer/TopBarActions.vala',
-  'Widgets/Screens/Main/DockerContainer/SideBarItem.vala',
-  'Widgets/Screens/Main/DockerContainer/SideBar.vala',
-  'Widgets/Screens/Main/DockerContainer/SideBarSeparator.vala',
+  'Widgets/Screens/DockerContainer/LogViewer.vala',
+  'Widgets/Screens/DockerContainer/TopBar.vala',
+  'Widgets/Screens/DockerContainer/TopBarActions.vala',
+  'Widgets/Screens/DockerContainer/SideBarItem.vala',
+  'Widgets/Screens/DockerContainer/SideBar.vala',
+  'Widgets/Screens/DockerContainer/SideBarSeparator.vala',
 
   # Dialogs
   'Widgets/Dialogs/ImagesSearchDialog.vala',
+  'Widgets/Dialogs/SettingsWindow.vala',
 
   # Utils
-  'Utils/HttpClient.vala',
-  'Utils/DockerContainer.vala',
-  'Utils/Helpers.vala',
-  'Utils/Reloader.vala',
-  'Utils/ActionHandler.vala',
+  'Utilities/HttpClient.vala',
+  'Utilities/DockerContainer.vala',
+  'Utilities/Helpers.vala',
+  'Utilities/Reloader.vala',
+  'Utilities/ActionHandler.vala',
 
   # Utils/Sorting
-  'Utils/Sorting/SortingInterface.vala',
-  'Utils/Sorting/SortingName.vala',
-  'Utils/Sorting/SortingStatus.vala',
-  'Utils/Sorting/SortingType.vala',
+  'Utilities/Sorting/SortingInterface.vala',
+  'Utilities/Sorting/SortingName.vala',
+  'Utilities/Sorting/SortingStatus.vala',
+  'Utilities/Sorting/SortingType.vala',
 
   # Docker
   'Docker/ApiClient.vala',

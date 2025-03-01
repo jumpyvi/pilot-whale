@@ -6,7 +6,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
- using Utils;
+ using Utilities;
  public class Widgets.Utils.ReloadButton : Gtk.Button {
     private Adw.ButtonContent button_content = new Adw.ButtonContent ();
     private const string BUTTON_ICON_NAME = "view-refresh-symbolic";

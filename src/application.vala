@@ -58,8 +58,6 @@ public class Whaler.Application : Adw.Application {
 		Gtk.StyleContext.add_provider_for_display (
 			Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 			);
-
-        win.set_child (ScreenManager.get_instance ());
         win.present ();
         State.Root.get_instance ().init.begin ();
     }
@@ -85,7 +83,7 @@ public class Whaler.Application : Adw.Application {
     private void on_preferences_action () {
         message ("app.preferences action activated");
         
-        var setting_page = new Widgets.Utils.SettingsWindow();
+        var setting_page = new Widgets.Dialogs.SettingsWindow();
         setting_page.present (this.active_window);
 
     }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-using Utils.Constants;
+using Utilities.Constants;
 int main (string[] args) {
     Intl.bindtextdomain (APP_ID, LOCALE_DIR);
 

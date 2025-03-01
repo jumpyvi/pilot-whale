@@ -9,7 +9,7 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Utils.Sorting.SortingType : Object, SortingInterface {
+class Utilities.Sorting.SortingType : Object, SortingInterface {
     public string code {
         get {
             return "type";

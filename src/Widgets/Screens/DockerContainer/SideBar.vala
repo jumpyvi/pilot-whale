@@ -9,16 +9,18 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Utils;
+using Utilities;
 
-class Widgets.Screens.Container.SideBar : Gtk.ScrolledWindow {
-    public SideBar () {
+class Widgets.Screens.Container.SideBar : Adw.Bin {
+    public SideBar (ScreenDockerContainer parent) {
         var state = State.Root.get_instance ().screen_docker_container;
+        Gtk.ScrolledWindow scrolled_windows = new Gtk.ScrolledWindow ();
         var list_box = new Gtk.ListBox ();
+        list_box.add_css_class ("list_box");
+        child = scrolled_windows;
 
-        this.width_request = 300;
-        this.get_style_context ().add_class ("side-bar");
-        this.add (list_box);
+        scrolled_windows.width_request = 300;
+        scrolled_windows.set_child (list_box);
 
         list_box.activate_on_single_click = false;
         list_box.selection_mode = Gtk.SelectionMode.SINGLE;
@@ -34,39 +36,38 @@ class Widgets.Screens.Container.SideBar : Gtk.ScrolledWindow {
         });
 
         state.notify["container"].connect (() => {
-            this.visible = state.container.type == DockerContainerType.GROUP;
 
-            if (!this.visible) {
-                return;
+
+        this.visible = (state.container.type == DockerContainerType.GROUP);
+        parent.set_show_sidebar(this.visible);
+
+
+        list_box.remove_all ();
+
+        var main_container_item = new SideBarItem (state.container);
+        var separator_item = new SideBarSeparator (_ ("Services"));
+        separator_item.margin_top = 15;
+        separator_item.add_css_class ("separator");
+
+        list_box.append (main_container_item);
+        list_box.append (separator_item);
+
+        var selected_item = main_container_item;
+
+        foreach (var service in state.container.services) {
+            var item = new SideBarItem (service);
+
+            list_box.append (item);
+
+            if (state.service != null && state.service.id == service.id) {
+                selected_item = item;
             }
+        }
 
-            list_box.foreach ((child) => {
-                list_box.remove (child);
-            });
+        state.service = selected_item.service;
 
-            //
-            var main_container_item = new SideBarItem (state.container);
-            var separator_item = new SideBarSeparator (_ ("Services"));
-
-            list_box.add (main_container_item);
-            list_box.add (separator_item);
-
-            var selected_item = main_container_item;
-
-            foreach (var service in state.container.services) {
-                var item = new SideBarItem (service);
-
-                list_box.add (item);
-
-                if (state.service != null && state.service.id == service.id) {
-                    selected_item = item;
-                }
-            }
-
-            state.service = selected_item.service;
-
-            list_box.select_row (selected_item);
-            list_box.show_all ();
-        });
+        list_box.select_row (selected_item);
+        list_box.show ();
+    });
     }
 }

@@ -9,21 +9,9 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Utils;
-using Widgets.Screens.Main;
+interface Utilities.Sorting.SortingInterface : Object {
+    public abstract string code { get; }
+    public abstract string name { get; }
 
-namespace Widgets.Screens.Container {
-    class TopBarActions : Gtk.Box {
-        private DockerContainer container;
-
-        public TopBarActions (DockerContainer container) {
-            this.container = container;
-            this.sensitive = container.state != DockerContainerState.UNKNOWN;
-            this.orientation = Gtk.Orientation.HORIZONTAL;
-            this.spacing = 0;
-            this.margin_start = 15;
-            this.prepend (new Widgets.Utils.MainAction (this.container));
-            this.append (new Widgets.Utils.ActionMenu (this.container));
-        }
-    }
+    public abstract int compare (DockerContainer a, DockerContainer b);
 }

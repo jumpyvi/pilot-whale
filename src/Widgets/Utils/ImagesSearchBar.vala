@@ -8,7 +8,7 @@
  */
 
 using Docker;
-using Utils;
+using Utilities;
 using Widgets.Dialogs;
 
 class Widgets.Utils.ImagesSearchBar : Gtk.Box {

@@ -6,7 +6,7 @@
    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
-using Utils;
+using Utilities;
 
 namespace Widgets.Utils {
     public class DockerContainerStatusLabel : Adw.Bin {
@@ -14,7 +14,6 @@ namespace Widgets.Utils {
 
         construct {
             status_label = new Gtk.Label("");
-            status_label.get_style_context().add_class("docker-container-status-label");
             child = status_label;
         }
 
@@ -24,29 +23,19 @@ namespace Widgets.Utils {
         }
 
         private void update_status(DockerContainer container) {
-            // Remove any existing state classes
-            var context = status_label.get_style_context();
-            context.remove_class("running");
-            context.remove_class("paused");
-            context.remove_class("stopped");
-            context.remove_class("unknown");
 
             // Add appropriate class and text based on container state
             switch (container.state) {
                 case DockerContainerState.RUNNING:
-                    context.add_class("running");
                     status_label.set_text(_("Running"));
                     break;
                 case DockerContainerState.PAUSED:
-                    context.add_class("paused");
                     status_label.set_text(_("Paused"));
                     break;
                 case DockerContainerState.STOPPED:
-                    context.add_class("stopped");
                     status_label.set_text(_("Stopped"));
                     break;
                 case DockerContainerState.UNKNOWN:
-                    context.add_class("unknown");
                     status_label.set_text(_("Unknown"));
                     break;
             }
