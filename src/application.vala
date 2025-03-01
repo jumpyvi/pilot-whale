@@ -58,8 +58,6 @@ public class Whaler.Application : Adw.Application {
 		Gtk.StyleContext.add_provider_for_display (
 			Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 			);
-
-        win.set_child (ScreenManager.get_instance ());
         win.present ();
         State.Root.get_instance ().init.begin ();
     }

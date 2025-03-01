@@ -24,8 +24,10 @@ namespace Widgets.Screens.Container {
 
 
             state_docker_container.notify["service"].connect (() => {
-                this.remove (this.get_first_child ());
-                this.remove(this.get_first_child ());
+                if(this.get_first_child () != null){
+                    this.remove (this.get_first_child ());
+                    this.remove(this.get_first_child ());
+                }
                 this.container = state_docker_container.service;
                 assert_nonnull (this.container);
 
