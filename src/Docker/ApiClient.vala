@@ -163,7 +163,7 @@ namespace Docker {
 
         public async bool pull_image (string image_name) throws ApiClientError {
             try {
-                var resp = yield this.http_client.r_post (@"/images/create?fromImage=" + image_name + ":latest");
+                var resp = yield this.http_client.r_post (@"/images/create?fromImage=" + image_name);
 
                 if (resp.code == 404) {
                     throw new ApiClientError.ERROR ("No such image");

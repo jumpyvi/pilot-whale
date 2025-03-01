@@ -10,6 +10,7 @@
  */
 using Docker;
 using Adw;
+using Utils;
 
 class Widgets.Utils.ImageCard : Adw.Bin {
     private Image image;
@@ -37,9 +38,14 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         browser_button.valign = Gtk.Align.END;
         grid.attach(browser_button, 1, 2, 1, 1);
 
-        Gtk.Widget download_button = create_pull_button();
-        download_button.halign = Gtk.Align.END;
-        download_button.valign = Gtk.Align.END;
+        Utils.PullButton download_button = new PullButton(){
+            image_name = this.image.name,
+            append_tag_latest = true,
+            halign = Gtk.Align.END,
+            valign = Gtk.Align.END,
+            margin_top = 9,
+            margin_end = 9
+        };
         grid.attach(download_button, 3, 2, 1, 1);
 
         // Grid style
@@ -108,36 +114,6 @@ class Widgets.Utils.ImageCard : Adw.Bin {
         description_text.vexpand = true;
 
         return description_text;
-    }
-
-    private Gtk.Button create_pull_button(){
-        Gtk.Button pull_button = new Gtk.Button.from_icon_name("folder-download-symbolic");
-        var api_client = new ApiClient();
-        pull_button.margin_end = 9;
-        pull_button.margin_top = 9;
-        pull_button.clicked.connect(() => {
-            pull_button.set_icon_name("process-working-symbolic");
-            pull_button.sensitive = false;
-            pull_button.add_css_class("load-animation");
-            api_client.pull_image.begin(this.image.name, (obj, res) => {
-                try {
-                    if(api_client.pull_image.end(res)){
-                        print("Image pulled");
-                        pull_button.remove_css_class("load-animation");
-                        pull_button.set_icon_name("emoji-body-symbolic");
-                        pull_button.add_css_class("success-animation");
-                        pull_button.sensitive = false;
-                        pull_button.add_css_class("success");
-                    }
-                } catch (Error e) {
-                    pull_button.set_icon_name("dialog-warning-symbolic");
-                    print("Error: %s\n", e.message);
-                }
-            });
-            
-        });
-
-        return pull_button;
     }
 
     private Gtk.Button create_browser_button(){

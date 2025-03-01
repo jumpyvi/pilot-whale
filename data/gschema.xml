@@ -30,9 +30,9 @@
       <summary>Search entry value</summary>
     </key>
     <key name="valid-registry-prefixes" type="as">
-    <default>[ 'ghcr.io/', 'docker.io/', 'quay.io/', 'registry.gitlab.com/', 'mcr.microsoft.com/' ]</default>
-    <summary>Default Order.</summary>
-    <description>Default Order</description>
+    <default>[ 'ghcr.io/', 'docker.io/', 'quay.io/', 'registry.gitlab.com/', 'lscr.io/linuxserver/', 'mcr.microsoft.com/' ]</default>
+    <summary>Valid registries</summary>
+    <description>A list of registries from where images can be pulled</description>
     </key>
   </schema>
 </schemalist>

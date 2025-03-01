@@ -8,67 +8,32 @@
  */
 
 using Docker;
+using Utils;
+using Widgets.Dialogs;
 
 class Widgets.Utils.ImagesSearchBar : Gtk.Box {
-    Gtk.SearchEntry search;
-    Gtk.Button action_button;
+    private Gtk.SearchEntry search_bar;
+    Gtk.Image search_image;
     Widgets.Dialogs.ImagesSearchDialog img_search_dialog;
 
     construct {
         var state = State.Root.get_instance();
-        search = new Gtk.SearchEntry();
-        var api_client = new ApiClient();
-        bool is_direct_pull = false;
+        search_bar = new Gtk.SearchEntry();
+        search_image = new Gtk.Image();
         this.orientation = Gtk.Orientation.HORIZONTAL;
+        
 
-        search.width_request = 240;
-        search.placeholder_text = _("Search images...");
-        search.search_delay = 600;
-        search.search_changed.connect(() => {
-            string clean_search_text = "";
+        search_bar.width_request = 240;
+        search_bar.placeholder_text = _("Search DockerHub...");
+        search_bar.search_delay = 600;
 
-            foreach (char c in search.text.to_utf8()) {
-                if ((c >= '0' && c <= '9') || 
-                    (c >= 'A' && c <= 'Z') || 
-                    (c >= 'a' && c <= 'z') || 
-                    c == '_' || c == '-' || c == '/' || c == '.') {
-                    clean_search_text += c.to_string();
-                }
-            }
-
-            var settings = new GLib.Settings("com.github.sdv43.whaler");
-            string[] valid_registries = settings.get_strv("valid-registry-prefixes");
-
-            bool has_valid_prefix = false;
-
-            foreach (string prefix in valid_registries) {
-                if (clean_search_text.has_prefix(prefix)) {
-                    has_valid_prefix = true;
-                    break;
-                }
-            }
-
-            if (has_valid_prefix) {
-                action_button.set_label (_("Pull from link"));
-            }else{
-                action_button.set_label(_("Search"));
-                
-            }
-
-            api_client.find_remote_image_from_string.begin(clean_search_text, (obj, res) => {
-                try {
-                    var images = api_client.find_remote_image_from_string.end(res);
-                    img_search_dialog.update_image_list (images);
-                } catch (Error e) {
-                    print("Error: %s\n", e.message);
-                }
-            });
+        search_bar.search_changed.connect(() => {
+            update_search();
         });
 
-        this.append(search);
-        this.append(create_action_button());
-        this.margin_start = 25;
-        this.margin_end = 3;
+        this.append(search_bar);
+        this.append(search_image);
+        this.halign = Gtk.Align.CENTER;
     }
 
     public ImagesSearchBar(Widgets.Dialogs.ImagesSearchDialog img_search_dialog) {
@@ -76,13 +41,20 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
         this.img_search_dialog = img_search_dialog;
     }
 
-    private Gtk.Button create_action_button() {
-        action_button = new Gtk.Button.with_label("Search");
-        action_button.clicked.connect(() => {
-            search.search_changed();
+    private void update_search(){
+        var api_client = new ApiClient();
 
+        api_client.find_remote_image_from_string.begin(clean_image_name(search_bar.text), (obj, res) => {
+        try {
+            var images = api_client.find_remote_image_from_string.end(res);
+            img_search_dialog.update_image_list (images);
+        } catch (Error e) {
+            print("Error: %s\n", e.message);
+        }
         });
-        action_button.margin_start = 10;
-        return action_button;
+    }
+
+    public Gtk.SearchEntry get_search_bar(){
+        return search_bar;
     }
 }
