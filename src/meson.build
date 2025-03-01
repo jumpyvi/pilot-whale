@@ -49,12 +49,12 @@ sources = [
   'Widgets/Screens/Main/ContainerCard.vala',
   'Widgets/Screens/Main/ContainerCardActions.vala',
 
-  'Widgets/Screens/Main/DockerContainer/LogViewer.vala',
-  'Widgets/Screens/Main/DockerContainer/TopBar.vala',
-  'Widgets/Screens/Main/DockerContainer/TopBarActions.vala',
-  'Widgets/Screens/Main/DockerContainer/SideBarItem.vala',
-  'Widgets/Screens/Main/DockerContainer/SideBar.vala',
-  'Widgets/Screens/Main/DockerContainer/SideBarSeparator.vala',
+  'Widgets/Screens/DockerContainer/LogViewer.vala',
+  'Widgets/Screens/DockerContainer/TopBar.vala',
+  'Widgets/Screens/DockerContainer/TopBarActions.vala',
+  'Widgets/Screens/DockerContainer/SideBarItem.vala',
+  'Widgets/Screens/DockerContainer/SideBar.vala',
+  'Widgets/Screens/DockerContainer/SideBarSeparator.vala',
 
   # Dialogs
   'Widgets/Dialogs/ImagesSearchDialog.vala',
