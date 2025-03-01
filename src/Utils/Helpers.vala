@@ -13,4 +13,19 @@ namespace Utils {
     string ucfirst (string str) {
         return str.up (1) + str.substring (1);
     }
+
+    string clean_image_name(string name){
+        string clean_search_text = "";
+
+        foreach (char c in name.to_utf8()) {
+                if ((c >= '0' && c <= '9') || 
+                    (c >= 'A' && c <= 'Z') || 
+                    (c >= 'a' && c <= 'z') || 
+                    c == '_' || c == '-' || c == '/' || c == '.' || c == ':') {
+                    clean_search_text += c.to_string();
+                }
+            }
+
+        return clean_search_text;
+    }
 }

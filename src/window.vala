@@ -34,5 +34,6 @@ public class Whaler.Window : Adw.ApplicationWindow {
         screen_manager_placeholder.set_child (ScreenManager.get_instance ());
         headerbar_buttons_box.append (new BackButton());
         headerbar_buttons_box.append (new ReloadButton());
+        headerbar_buttons_box.append (new ImagesSearchButton ());
     }
 }

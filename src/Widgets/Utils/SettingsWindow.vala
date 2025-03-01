@@ -66,7 +66,7 @@ private Adw.PreferencesPage get_pref(){
     var privacy_policy_row = new Adw.ActionRow();
     privacy_policy_row.activatable = false;
     privacy_policy_row.title = _( "Privacy Policy" );
-    privacy_policy_row.subtitle = _( "We collect absolutely nothing" );
+    privacy_policy_row.subtitle = _( "Whaler collects absolutely nothing. \nDockerHub, registries and pulled images might." );
     privacy_group.add(privacy_policy_row);
 
     page.add(docker_group);
