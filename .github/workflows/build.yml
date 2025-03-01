@@ -59,7 +59,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        dnf install -y gtk4-devel ninja-build meson libadwaita-devel libgee-devel json-glib-devel desktop-file-utils libcurl-devel vala vala-language-server valadoc
+        dnf install -y gtk4-devel ninja-build meson libadwaita-devel libgee-devel json-glib-devel desktop-file-utils libcurl-devel vala vala-language-server valadoc graphviz
 
     - name: Build project
       run: |
