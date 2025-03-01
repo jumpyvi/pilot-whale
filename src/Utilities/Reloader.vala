@@ -1,4 +1,4 @@
-public class Utils.Reloader {
+public class Utilities.Reloader {
     public static void reload (){
         var state = State.Root.get_instance ();
         state.containers_load.begin ((_, res) => {

@@ -9,8 +9,8 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Utils.Sorting;
-using Utils.Constants;
+using Utilities.Sorting;
+using Utilities.Constants;
 
 class Widgets.Screens.Main.ContainersGridFilter : Gtk.Box {
     public ContainersGridFilter () {

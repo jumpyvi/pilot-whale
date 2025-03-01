@@ -9,7 +9,7 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Utils;
+using Utilities;
 
 namespace Widgets.Screens.Container {
     class TopBar : Gtk.Box {
@@ -51,7 +51,7 @@ namespace Widgets.Screens.Container {
         }
 
         private Gtk.Widget? build_container_status_label () {
-            var label = Utils.DockerContainerStatusLabel.create_by_container (this.container);
+            var label = Widgets.Utils.DockerContainerStatusLabel.create_by_container (this.container);
 
             if (label == null) {
                 return null;

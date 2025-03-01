@@ -9,7 +9,7 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-using Utils;
+using Utilities;
 
 class Widgets.Screens.Container.SideBarItem : Gtk.ListBoxRow {
     public DockerContainer service;

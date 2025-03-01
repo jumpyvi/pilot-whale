@@ -8,7 +8,7 @@
  */
 using Widgets;
 
-class Utils.ActionHandler {
+class Utilities.ActionHandler {
     public static void handle(Gtk.Widget widget, DockerContainer container) {
         button_main_action_handler.begin (container, (_, res) => {
                 button_main_action_handler.end (res);

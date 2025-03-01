@@ -9,7 +9,7 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Utils {
+namespace Utilities {
     string ucfirst (string str) {
         return str.up (1) + str.substring (1);
     }

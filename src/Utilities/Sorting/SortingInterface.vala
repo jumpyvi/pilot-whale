@@ -9,7 +9,7 @@
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
 
-interface Utils.Sorting.SortingInterface : Object {
+interface Utilities.Sorting.SortingInterface : Object {
     public abstract string code { get; }
     public abstract string name { get; }
 

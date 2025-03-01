@@ -6,7 +6,7 @@
    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
  */
-using Utils;
+using Utilities;
 
 namespace Widgets.Utils {
     public class DockerContainerStatusLabel : Adw.Bin {

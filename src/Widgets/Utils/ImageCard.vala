@@ -10,7 +10,7 @@
  */
 using Docker;
 using Adw;
-using Utils;
+using Utilities;
 
 class Widgets.Utils.ImageCard : Adw.Bin {
     private Image image;
