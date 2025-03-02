@@ -3,9 +3,7 @@
 {
 	"name": "Adwaita",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"build": {
-		"dockerfile": "./Dockerfile"
-	},
+	"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

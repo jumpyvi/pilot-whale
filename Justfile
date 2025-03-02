@@ -25,11 +25,15 @@ meson-reconfigure:
 
 # Launch the project
 launch:
-    ./build/src/com.github.sdv43.whaler
+    ./build/src/com.github.jumpyvi.whale-pilot
 
 # Install firefox for test xdg-open redirect
 install-test-browser:
-    paru -Syu --no-confirm firefox-bin alsa-lib
+    paru -Syu --noconfirm firefox-bin alsa-lib
 
-generate_valadoc:
-    valadoc --package-name="com.github.sdv43.whaler" --vapidir=$(pwd)/vapi --pkg gtk4 --pkg libadwaita-1 --pkg json-glib-1.0 --pkg gio-2.0 --pkg gee-0.8 --pkg posix --pkg libcurl -o docs $(find src -name "*.vala") build/src/Constants.vala build/src/Build.vala
+# Generate the valadoc locally
+generate-valadoc:
+    valadoc --package-name="com.github.jumpyvi.whale-pilot" --vapidir=$(pwd)/vapi --pkg gtk4 --pkg libadwaita-1 --pkg json-glib-1.0 --pkg gio-2.0 --pkg gee-0.8 --pkg posix --pkg libcurl -o docs $(find src -name "*.vala") build/src/Constants.vala build/src/Build.vala
+
+# Perfect task for first run
+init-build: meson-build ninja install launch
