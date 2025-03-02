@@ -24,7 +24,7 @@ jobs:
       id: tag
       run: |
         TAG=$(sed -n "s/^.*version: '\([^']*\)'.*$/\1/p" meson.build | head -n1)
-        echo "release_tag=${TAG:-adw-0.0.1}" >> $GITHUB_OUTPUT
+        echo "release_tag=${TAG:-UNKOWN}" >> $GITHUB_OUTPUT
 
     - name: Create and push tag
       run: |
