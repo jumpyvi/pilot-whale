@@ -63,12 +63,12 @@ public class Blubber.Application : Adw.Application {
             translator_credits = _("translator-credits"),
             version = Build.VERSION,
             license_type = Gtk.License.GPL_3_0,
-            issue_url = "https://www.github.com/jumpyvi/Blubber-gtk4/issues",
+            issue_url = "https://github.com/jumpyvi/blubber/issues",
         };
-        about.add_credit_section ("Original code from Blubber", {"sdv43"});
-        about.add_credit_section ("Adwaita fork", {"jumpyvi"});
-        about.add_link ("Get source code", "https://www.github.com/jumpyvi/Blubber-gtk4");
-        about.add_link ("Get original project", "https://www.github.com/sdv43/Blubber");
+        about.add_credit_section ("Original code from Whaler", {"sdv43"});
+        about.add_credit_section ("The Bubbler fork (this)", {"jumpyvi"});
+        about.add_link ("Get source code", "https://github.com/jumpyvi/blubber");
+        about.add_link ("Get original project", "https://www.github.com/sdv43/whaler");
 
         about.present (this.active_window);
     }

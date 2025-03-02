@@ -110,7 +110,7 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         Utils.PullButton pull_button = new Utils.PullButton();
         other_registries_box.halign = Gtk.Align.BASELINE_CENTER;
 
-        var settings = new GLib.Settings("com.github.jumpyvi.Blubber");
+        var settings = new GLib.Settings("com.github.jumpyvi.blubber");
         string[] valid_registries = settings.get_strv("valid-registry-prefixes");
 
         var registry_model = new Gtk.StringList(valid_registries);
