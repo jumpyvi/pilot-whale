@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>com.github.jumpyvi.blubber</id>
-  <launchable type="desktop-id">com.github.jumpyvi.blubber.desktop</launchable>
-  <name>Blubber</name>
+  <id>com.github.jumpyvi.pilot-whale</id>
+  <launchable type="desktop-id">com.github.jumpyvi.pilot-whale.desktop</launchable>
+  <name>Pilot Whale</name>
   <summary>Docker Container Management</summary>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <developer_name>Selivestrov Dmitriy</developer_name>
+  <developer_name>Selivestrov Dmitriy, this port by @jumpyvi</developer_name>
   <description>
     <p>
-      Blubber provides basic functionality for managing Docker containers.
+      Pilot Whale provides basic functionality for managing Docker containers.
       The app can start and stop both standalone containers and docker-compose applications.
       Also, it supports viewing container logs.
     </p>

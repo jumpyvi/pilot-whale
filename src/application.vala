@@ -1,5 +1,5 @@
 /*
-   This file is part of Bubbler, a fork of Whaler by sdv43.
+   This file is part of Pilot Whale, a fork of Whaler by sdv43.
 
    Whaler is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
    as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -8,16 +8,16 @@
 
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
 
-   This fork, Bubbler, was created and modified by jumpyvi in 2025.
+   This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
 
 using Widgets;
 
 
-public class Blubber.Application : Adw.Application {
+public class PilotWhale.Application : Adw.Application {
     public Application () {
         Object (
-            application_id: "com.github.jumpyvi.blubber",
+            application_id: "com.github.jumpyvi.pilot-whale",
             flags: ApplicationFlags.DEFAULT_FLAGS
         );
     }
@@ -35,7 +35,7 @@ public class Blubber.Application : Adw.Application {
 
     public override void activate () {
         base.activate ();
-        var win = this.active_window ?? new Blubber.Window (this);
+        var win = this.active_window ?? new PilotWhale.Window (this);
 
         // --- Error Widget test --- //
         //var error_widget = ScreenError.build_error_docker_not_avialable (
@@ -45,7 +45,7 @@ public class Blubber.Application : Adw.Application {
         //            ScreenManager.screen_error_show_widget (error_widget); 
 
         var provider = new Gtk.CssProvider ();
-		provider.load_from_resource ("/com/github/blubber/Blubber/index.css");
+		provider.load_from_resource ("/com/github/jumpyvi/pilot-whale/index.css");
 
         // Nothing has replaced this yet, will need to be update when gtk5 releases
 		Gtk.StyleContext.add_provider_for_display (
@@ -57,17 +57,17 @@ public class Blubber.Application : Adw.Application {
 
     private void on_about_action () {
         var about = new Adw.AboutDialog () {
-            application_name = "Blubber",
-            application_icon = "com.github.jumpyvi.blubber",
-            developer_name = "Blubber Developpers",
+            application_name = "Pilot Whale",
+            application_icon = "com.github.jumpyvi.pilot-whale",
+            developer_name = "Pilot Whale Developpers",
             translator_credits = _("translator-credits"),
             version = Build.VERSION,
             license_type = Gtk.License.GPL_3_0,
-            issue_url = "https://github.com/jumpyvi/blubber/issues",
+            issue_url = "https://github.com/jumpyvi/pilot-whale/issues",
         };
         about.add_credit_section ("Original code from Whaler", {"sdv43"});
-        about.add_credit_section ("The Bubbler fork (this)", {"jumpyvi"});
-        about.add_link ("Get source code", "https://github.com/jumpyvi/blubber");
+        about.add_credit_section ("The Pilot Whale fork (this)", {"jumpyvi"});
+        about.add_link ("Get source code", "https://github.com/jumpyvi/pilot-whale");
         about.add_link ("Get original project", "https://www.github.com/sdv43/whaler");
 
         about.present (this.active_window);

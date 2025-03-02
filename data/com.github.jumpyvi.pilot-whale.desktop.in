@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Blubber
-GenericName=Docker Client
+Name=Pilot Whale
+GenericName=Container Manager
 Comment=Manage your Docker containers
 Categories=GTK;Development;Utility;
-Exec=com.github.jumpyvi.blubber
-Icon=com.github.jumpyvi.blubber
+Exec=com.github.jumpyvi.pilot-whale
+Icon=com.github.jumpyvi.pilot-whale
 Terminal=false
 Type=Application
 Keywords=Docker;Virtualizaton;Development;

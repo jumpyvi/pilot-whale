@@ -1,5 +1,5 @@
 project(
-  'com.github.jumpyvi.blubber',
+  'com.github.jumpyvi.pilot-whale',
   ['vala', 'c'],
   version: 'v4.2.2',
   meson_version: '>= 1.0.0',

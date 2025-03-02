@@ -1,4 +1,4 @@
-application_id = 'com.github.jumpyvi.blubber'
+application_id = 'com.github.jumpyvi.pilot-whale'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

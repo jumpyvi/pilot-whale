@@ -35,8 +35,8 @@ jobs:
 
     - uses: flathub-infra/flatpak-github-actions/flatpak-builder@4388a4c5fc8bab58e1dfb7fc63267dca0f7b4976
       with:
-        bundle: "blubber-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak"
-        manifest-path: "com.github.jumpyvi.blubber"
+        bundle: "pilot-whale-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak"
+        manifest-path: "com.github.jumpyvi.pilot-whale"
         arch: x86_64
 
     - name: Publish release package
@@ -45,4 +45,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
-        files: blubber-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
+        files: pilot-whale-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
