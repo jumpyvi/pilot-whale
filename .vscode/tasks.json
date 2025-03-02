@@ -6,7 +6,7 @@
         {
             "label": "Ninja",
             "type": "shell",
-            "command": "cd build && ninja",
+            "command": "just ninja",
             "problemMatcher": [],
             "icon": {
                 "id": "sync"
@@ -15,20 +15,65 @@
         {
             "label": "Install",
             "type": "shell",
-            "command": "cd build && sudo ninja install",
+            "command": "just install",
             "problemMatcher": [],
             "icon": {
-                "id": "arrow-down"
+                "id": "package"
             }
         },
         {
-            "label": "Launch application",
+            "label": "Ninja Run",
             "type": "shell",
-            "command": "DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --fork --config-file=/usr/share/dbus-1/session.conf --print-address` ./build/src/com.github.jumpyvi.pilot-whale",
+            "command": "just ninja-run",
             "problemMatcher": [],
             "icon": {
-                "id": "run"
+                "id": "play"
             }
         },
+        {
+            "label": "Meson Build",
+            "type": "shell",
+            "command": "just meson-build",
+            "problemMatcher": [],
+            "icon": {
+                "id": "tools"
+            }
+        },
+        {
+            "label": "Meson Reconfigure",
+            "type": "shell",
+            "command": "just meson-reconfigure",
+            "problemMatcher": [],
+            "icon": {
+                "id": "refresh"
+            }
+        },
+        {
+            "label": "Launch",
+            "type": "shell",
+            "command": "just launch",
+            "problemMatcher": [],
+            "icon": {
+                "id": "rocket"
+            }
+        },
+        {
+            "label": "Install Test Browser",
+            "type": "shell",
+            "command": "just install-test-browser",
+            "problemMatcher": [],
+            "icon": {
+                "id": "browser"
+            }
+        },
+        {
+            "label": "Generate valadoc",
+            "type": "shell",
+            "command": "just generate_valadoc",
+            "problemMatcher": [],
+            "icon": {
+                "id": "book"
+            }
+        }
     ]
 }

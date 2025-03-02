@@ -1,8 +1,6 @@
 {
 	"name": "Adwaita",
-	"build": {
-		"dockerfile": "./Dockerfile"
-	},
+	"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer",
 	"remoteUser": "adw",
 	"runArgs": [
 		"--net=host",
@@ -25,7 +23,9 @@
 				"vivaxy.vscode-conventional-commits",
 				"zachflower.uncrustify",
 				"prince781.vala",
-				"bierner.markdown-preview-github-styles"
+				"bierner.markdown-preview-github-styles",
+				"mkhl.mkhl-just",
+				"nefrob.vscode-just-syntax"
 			]
 		}
 	}
