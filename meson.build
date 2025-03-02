@@ -1,7 +1,7 @@
 project(
-  'com.github.sdv43.whaler',
+  'com.github.jumpyvi.pilot-whale',
   ['vala', 'c'],
-  version: 'adw-0.1.3',
+  version: 'v4.2.2',
   meson_version: '>= 1.0.0',
   default_options: [
     'warning_level=2',

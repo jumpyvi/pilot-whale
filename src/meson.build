@@ -1,6 +1,6 @@
 configuration = configuration_data()
-configuration.set_quoted('GETTEXT_PACKAGE', 'whaler')
-configuration.set_quoted('APPLICATION_ID', 'com.github.sdv43.whaler')
+configuration.set_quoted('GETTEXT_PACKAGE', 'pilot-whale')
+configuration.set_quoted('APPLICATION_ID', 'com.github.jumpyvi.pilot-whale')
 configuration.set_quoted('VERSION', meson.project_version())
 configuration.set_quoted('PREFIX', get_option('prefix'))
 configuration.set_quoted('DATADIR', join_paths(get_option('prefix'), get_option('datadir')))
@@ -85,7 +85,7 @@ sources = [
 
 
 
-whaler_deps = [
+pilotwhale_deps = [
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
   dependency('libadwaita-1', version: '>= 1.4'),
@@ -97,7 +97,7 @@ whaler_deps = [
   meson.get_compiler('c').find_library('libcurl', dirs: vapi_dir),
 ]
 
-sources += gnome.compile_resources('whaler-resources', 'whaler.gresource.xml', c_name: 'whaler')
+sources += gnome.compile_resources('pilotwhale-resources', 'pilot-whale.gresource.xml', c_name: 'pilotwhale')
 
 sources += configure_file(
     input : 'Build.vala.in',
@@ -109,7 +109,7 @@ executable(
   meson.project_name(),
   constants,
   sources,
-  dependencies: whaler_deps,
+  dependencies: pilotwhale_deps,
   install: true,
 )
 
