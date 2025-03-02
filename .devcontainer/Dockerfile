@@ -7,4 +7,4 @@ RUN groupadd docker && usermod -aG docker adw
 USER adw
 
 RUN paru -Syu --noconfirm && \
-    paru -S --noconfirm gtk4 ninja meson libadwaita libgee json-glib desktop-file-utils curl libglvnd vala-language-server vala vim docker
+    paru -S --noconfirm gtk4 ninja meson libadwaita libgee json-glib desktop-file-utils curl libglvnd vala-language-server fzf just vala vim docker

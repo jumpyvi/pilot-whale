@@ -29,7 +29,9 @@
 				"vivaxy.vscode-conventional-commits",
 				"zachflower.uncrustify",
 				"prince781.vala",
-				"bierner.markdown-preview-github-styles"
+				"bierner.markdown-preview-github-styles",
+				"mkhl.mkhl-just",
+				"nefrob.vscode-just-syntax"
 			]
 		}
 	}
