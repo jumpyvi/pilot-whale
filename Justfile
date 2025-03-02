@@ -30,3 +30,6 @@ launch:
 # Install firefox for test xdg-open redirect
 install-test-browser:
     paru -Syu --no-confirm firefox-bin alsa-lib
+
+generate_valadoc:
+    valadoc --package-name="com.github.sdv43.whaler" --vapidir=$(pwd)/vapi --pkg gtk4 --pkg libadwaita-1 --pkg json-glib-1.0 --pkg gio-2.0 --pkg gee-0.8 --pkg posix --pkg libcurl -o docs $(find src -name "*.vala") build/src/Constants.vala build/src/Build.vala

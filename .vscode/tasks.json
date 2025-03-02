@@ -65,6 +65,15 @@
             "icon": {
                 "id": "browser"
             }
+        },
+        {
+            "label": "Generate valadoc",
+            "type": "shell",
+            "command": "just generate_valadoc",
+            "problemMatcher": [],
+            "icon": {
+                "id": "book"
+            }
         }
     ]
 }
