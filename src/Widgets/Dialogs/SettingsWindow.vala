@@ -1,5 +1,5 @@
 /*
-   This file is part of Whaler.
+   This file is part of Bubbler, a fork of Whaler by sdv43.
 
    Whaler is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
    as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -7,7 +7,10 @@
    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
+
+   This fork, Bubbler, was created and modified by jumpyvi in 2025.
  */
+
 using Utilities.Constants;
 
 class Widgets.Dialogs.SettingsWindow : Adw.PreferencesDialog {
@@ -66,7 +69,7 @@ private Adw.PreferencesPage get_pref(){
     var privacy_policy_row = new Adw.ActionRow();
     privacy_policy_row.activatable = false;
     privacy_policy_row.title = _( "Privacy Policy" );
-    privacy_policy_row.subtitle = _( "Whaler collects absolutely nothing. \nDockerHub, registries and pulled images might." );
+    privacy_policy_row.subtitle = _( "Blubber collects absolutely nothing. \nDockerHub, registries and pulled images might." );
     privacy_group.add(privacy_policy_row);
 
     page.add(docker_group);

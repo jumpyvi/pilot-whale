@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/sdv43/whaler/" id="com.github.sdv43.whaler">
+  <schema path="/com/github/jumpyvi/blubber/" id="com.github.jumpyvi.blubber">
     <key name="window-position" type="(ii)">
       <default>(-1,-1)</default>
       <summary>Window position</summary>

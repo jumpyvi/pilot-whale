@@ -24,7 +24,7 @@
         {
             "label": "Launch application",
             "type": "shell",
-            "command": "DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --fork --config-file=/usr/share/dbus-1/session.conf --print-address` ./build/src/com.github.sdv43.whaler",
+            "command": "DBUS_SESSION_BUS_ADDRESS=`dbus-daemon --fork --config-file=/usr/share/dbus-1/session.conf --print-address` ./build/src/com.github.jumpyvi.blubber",
             "problemMatcher": [],
             "icon": {
                 "id": "run"

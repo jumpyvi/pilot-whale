@@ -1,5 +1,5 @@
 project(
-  'com.github.sdv43.whaler',
+  'com.github.jumpyvi.blubber',
   ['vala', 'c'],
   version: 'adw-0.1.3',
   meson_version: '>= 1.0.0',

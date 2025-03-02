@@ -1,10 +1,10 @@
-id: com.github.sdv43.whaler
+id: com.github.jumpyvi.blubber
 runtime: org.gnome.Platform
 runtime-version: "47"
 sdk: "org.gnome.Sdk"
 sdk-extensions:
     - org.freedesktop.Sdk.Extension.vala
-command: "com.github.sdv43.whaler"
+command: "com.github.jumpyvi.blubber"
 finish-args:
     - '--share=network'
     - '--share=ipc'
@@ -31,7 +31,7 @@ cleanup:
     - '*.la'
     - '*.a'
 modules:
-  - name: whaler
+  - name: blubber
     buildsystem: meson
     sources:
       - type: dir

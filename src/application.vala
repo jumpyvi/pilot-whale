@@ -1,30 +1,23 @@
-/* application.vala
- *
- * Copyright 2025 Whaler Developpers
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *
- * SPDX-License-Identifier: GPL-3.0-or-later
+/*
+   This file is part of Bubbler, a fork of Whaler by sdv43.
+
+   Whaler is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+   Whaler is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+   of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License along with Whaler. If not, see <https://www.gnu.org/licenses/>.
+
+   This fork, Bubbler, was created and modified by jumpyvi in 2025.
  */
 
 using Widgets;
 
 
-public class Whaler.Application : Adw.Application {
+public class Blubber.Application : Adw.Application {
     public Application () {
         Object (
-            application_id: "com.github.sdv43.whaler",
+            application_id: "com.github.jumpyvi.blubber",
             flags: ApplicationFlags.DEFAULT_FLAGS
         );
     }
@@ -42,7 +35,7 @@ public class Whaler.Application : Adw.Application {
 
     public override void activate () {
         base.activate ();
-        var win = this.active_window ?? new Whaler.Window (this);
+        var win = this.active_window ?? new Blubber.Window (this);
 
         // --- Error Widget test --- //
         //var error_widget = ScreenError.build_error_docker_not_avialable (
@@ -52,7 +45,7 @@ public class Whaler.Application : Adw.Application {
         //            ScreenManager.screen_error_show_widget (error_widget); 
 
         var provider = new Gtk.CssProvider ();
-		provider.load_from_resource ("/com/github/sdv43/whaler/index.css");
+		provider.load_from_resource ("/com/github/blubber/Blubber/index.css");
 
         // Nothing has replaced this yet, will need to be update when gtk5 releases
 		Gtk.StyleContext.add_provider_for_display (
@@ -64,18 +57,18 @@ public class Whaler.Application : Adw.Application {
 
     private void on_about_action () {
         var about = new Adw.AboutDialog () {
-            application_name = "whaler",
-            application_icon = "com.github.sdv43.whaler",
-            developer_name = "Whaler Developpers",
+            application_name = "Blubber",
+            application_icon = "com.github.jumpyvi.blubber",
+            developer_name = "Blubber Developpers",
             translator_credits = _("translator-credits"),
             version = Build.VERSION,
             license_type = Gtk.License.GPL_3_0,
-            issue_url = "https://www.github.com/jumpyvi/whaler-gtk4/issues",
+            issue_url = "https://www.github.com/jumpyvi/Blubber-gtk4/issues",
         };
-        about.add_credit_section ("Original code and project", {"sdv43"});
+        about.add_credit_section ("Original code from Blubber", {"sdv43"});
         about.add_credit_section ("Adwaita fork", {"jumpyvi"});
-        about.add_link ("Get source code", "https://www.github.com/jumpyvi/whaler-gtk4");
-        about.add_link ("Get original project", "https://www.github.com/sdv43/whaler");
+        about.add_link ("Get source code", "https://www.github.com/jumpyvi/Blubber-gtk4");
+        about.add_link ("Get original project", "https://www.github.com/sdv43/Blubber");
 
         about.present (this.active_window);
     }
