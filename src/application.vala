@@ -39,7 +39,6 @@ public class PilotWhale.Application : Adw.Application {
 
     /**
      * Activates the application.
-     * @deprecated
      */
     public override void activate () {
         base.activate ();
