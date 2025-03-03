@@ -1,5 +1,7 @@
 {
 	"name": "Adwaita",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	//"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer:latest",
 	"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer",
 	"remoteUser": "adw",
 	"runArgs": [

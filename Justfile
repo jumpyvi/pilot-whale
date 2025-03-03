@@ -29,7 +29,7 @@ launch:
 
 # Install firefox for test xdg-open redirect
 install-test-browser:
-    paru -Syu --noconfirm firefox-bin alsa-lib
+    sudo dnf install firefox alsa-lib -y
 
 # Generate the valadoc locally
 generate-valadoc:

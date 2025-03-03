@@ -1,13 +1,19 @@
-# Gets base image from ublue (has paru, xdg and base-devel preinstalled)
-FROM ghcr.io/ublue-os/arch-distrobox
+# Gets fedora 41 image
+FROM quay.io/fedora/fedora:41
 
-# Add the "adw" user as a root user with the video, render and docker group
-RUN useradd -m -s /bin/bash -G wheel adw && echo 'adw:dev' | chpasswd
+# Adds required developement dependencies
+RUN dnf update -y && dnf install fzf just gtk4-devel moby-engine docker-cli ninja-build meson libadwaita-devel dbus-x11 libgee-devel json-glib-devel desktop-file-utils libcurl-devel libglvnd-gles vala-language-server graphviz valadoc valac git vim sudo -y
+
+# Creates the user
+RUN useradd -m -s /bin/bash -G wheel adw && echo 'adw:dev' | sudo chpasswd
 RUN usermod -aG render,video adw
-RUN groupadd docker && usermod -aG docker adw
+RUN usermod -aG docker adw
 
-# Switch to the "adw" user
+# Allow adw to run sudo commands without a password
+RUN echo 'adw ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/adw
+
+# Switch to the user
 USER adw
 
-# Add developement dependencies
-RUN paru -Syyu --noconfirm gtk4 ninja meson libadwaita libgee json-glib desktop-file-utils curl libglvnd vala-language-server fzf just vala docker
+# Adds just completion to ~/.bashrc if they don't already exist
+RUN grep -qxF 'source <(just --completions bash)' /home/adw/.bashrc || echo 'source <(just --completions bash)' >> /home/adw/.bashrc
