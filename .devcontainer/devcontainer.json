@@ -1,8 +1,8 @@
 {
 	"name": "Adwaita",
-	"build": {
-		"dockerfile": "./Dockerfile"
-	},
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	//"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer:latest",
+	"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer",
 	"remoteUser": "adw",
 	"runArgs": [
 		"--net=host",
@@ -25,7 +25,9 @@
 				"vivaxy.vscode-conventional-commits",
 				"zachflower.uncrustify",
 				"prince781.vala",
-				"bierner.markdown-preview-github-styles"
+				"bierner.markdown-preview-github-styles",
+				"mkhl.mkhl-just",
+				"nefrob.vscode-just-syntax"
 			]
 		}
 	}

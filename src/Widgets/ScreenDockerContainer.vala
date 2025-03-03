@@ -36,6 +36,10 @@ class Widgets.ScreenDockerContainer : Adw.Bin {
         Object ();
     }
 
+    /**
+    * Create the log output
+    * @return The log output GtkBox
+    */
     private Gtk.Widget build_log_output () {
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
@@ -45,6 +49,10 @@ class Widgets.ScreenDockerContainer : Adw.Bin {
         return box;
     }
 
+    /**
+    * Show or hide the sidebar
+    * @param If true show the sidebar, else hide it
+    */
     public void set_show_sidebar(bool is_showed){
         view.set_show_sidebar (is_showed);
     }

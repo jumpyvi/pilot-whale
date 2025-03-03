@@ -24,23 +24,56 @@ namespace Utilities {
         DELETE,
     }
 
+    /**
+     * The http client for making requests.
+     */
     class HttpClient : Object {
         public bool verbose = false;
         public string? unix_socket_path {get; set;}
         public string? base_url;
 
+        /**
+         * Creates a GET request to the specified url.
+         *
+         * @param url The url for the request.
+         * @return The http response.
+         * @throws HttpClientError If an error occurs during the request.
+         */
         public async HttpClientResponse r_get (string url) throws HttpClientError {
             return yield this.request (Utilities.HttpClientMethod.GET, url, new HttpClientResponse ());
         }
 
+        /**
+         * Makes a POST request to the specified url.
+         *
+         * @param url The url for the request.
+         * @return The http response.
+         * @throws HttpClientError If an error occurs during the request.
+         */
         public async HttpClientResponse r_post (string url) throws HttpClientError {
             return yield this.request (Utilities.HttpClientMethod.POST, url, new HttpClientResponse ());
         }
 
+        /**
+         * Makes a DELETE request to the specified url.
+         *
+         * @param url The url for the request.
+         * @return The http response.
+         * @throws HttpClientError If an error occurs during the request.
+         */
         public async HttpClientResponse r_delete (string url) throws HttpClientError {
             return yield this.request (Utilities.HttpClientMethod.DELETE, url, new HttpClientResponse ());
         }
 
+        /**
+         * Makes an HTTP request with the specified method and URL.
+         *
+         * @param method The http method to use.
+         * @param url The url for the request.
+         * @param response The http response object.
+         * @return The http response object.
+         * @throws HttpClientError If an error occurs during the request.
+         */
         public async HttpClientResponse request (HttpClientMethod method, string url, HttpClientResponse response) throws HttpClientError {
             var curl = new Curl.EasyHandle ();
 
@@ -58,8 +91,6 @@ namespace Utilities {
             assert_true (r == Curl.Code.OK);
             r = curl.setopt (Curl.Option.WRITEFUNCTION, HttpClientResponse.read_body_data);
             assert_true (r == Curl.Code.OK);
-
-            //  debug ("call api method: %s - %s", this.get_request_method (method), url);
 
             yield this.perform (curl);
 
@@ -85,6 +116,12 @@ namespace Utilities {
             throw new HttpClientError.ERROR (Curl.Global.strerror (r));
         }
 
+        /**
+         * Gets the string of the http method.
+         *
+         * @param method The http method.
+         * @return The string version of the method.
+         */
         public string get_request_method (HttpClientMethod method) {
             var result = "";
 
@@ -105,6 +142,13 @@ namespace Utilities {
             return result;
         }
 
+        /**
+         * Performs the curl request.
+         *
+         * @param curl The curl easy handle.
+         * @return The curl code.
+         * @throws HttpClientError If an error occurs while performing the request.
+         */
         private async Curl.Code perform (Curl.EasyHandle curl) throws HttpClientError {
             string? err_msg = null;
             var r = Curl.Code.OK;
@@ -137,17 +181,32 @@ namespace Utilities {
         }
     }
 
+    /**
+     * An HTTP response.
+     */
     class HttpClientResponse : Object {
         public int code;
         public MemoryInputStream memory_stream {get; construct set;}
         public DataInputStream body_data_stream {get; construct set;}
 
+        /**
+         * Creates a new HttpClientResponse.
+         */
         public HttpClientResponse() {
             this.code = 0;
             this.memory_stream = new MemoryInputStream ();
             this.body_data_stream = new DataInputStream (this.memory_stream);
         }
 
+        /**
+         * Reads the body data from the response.
+         *
+         * @param buf The buffer.
+         * @param size The size of each element.
+         * @param nmemb The number of elements.
+         * @param data The response memory stream.
+         * @return The number of bytes read.
+         */
         public static size_t read_body_data (void* buf, size_t size, size_t nmemb, void* data) {
             size_t real_size = size * nmemb;
             uint8[] buffer = new uint8[real_size];
@@ -155,8 +214,6 @@ namespace Utilities {
 
             Posix.memcpy ((void*)buffer, buf, real_size);
             response_memory_stream.add_data (buffer);
-
-            //  debug ("http client bytes read: %d", (int)real_size);
 
             return real_size;
         }

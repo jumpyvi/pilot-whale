@@ -14,9 +14,16 @@
 using Utilities;
 
 namespace Widgets.Screens.Container {
+
+    /**
+    * The top action in the container view
+    */
     class TopBar : Gtk.Box {
         private DockerContainer container;
 
+        /**
+        * Create a new TopBar
+        */
         public TopBar () {
             var state_docker_container = State.Root.get_instance ().screen_docker_container;
 
@@ -38,6 +45,10 @@ namespace Widgets.Screens.Container {
             });
         }
 
+        /**
+        * Create a new container to the visual list
+        * @return A box wit the container
+        */
         private Gtk.Widget build_container_block () {
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
@@ -47,6 +58,10 @@ namespace Widgets.Screens.Container {
             return box;
         }
 
+        /**
+        * Create the container label
+        * @return The created container label
+        */
         private Gtk.Widget build_container_name () {
             var container_name = new Gtk.Label (this.container.name);
             container_name.halign = Gtk.Align.START;
@@ -54,6 +69,10 @@ namespace Widgets.Screens.Container {
             return container_name;
         }
 
+        /**
+        * Create the container status label
+        * @return The created container status label
+        */
         private Gtk.Widget? build_container_status_label () {
             var label = Widgets.Utils.DockerContainerStatusLabel.create_by_container (this.container);
 
@@ -66,6 +85,10 @@ namespace Widgets.Screens.Container {
             return label;
         }
 
+        /**
+        * Create the container image label
+        * @return The created container image label
+        */
         private Gtk.Widget build_container_image () {
             var label = new Gtk.Label (this.container.image);
             label.halign = Gtk.Align.START;
@@ -73,6 +96,10 @@ namespace Widgets.Screens.Container {
             return label;
         }
 
+        /**
+        * Create the top bar actions
+        * @return The created top bar actions
+        */
         private Gtk.Widget build_container_actions () {
             var actions = new TopBarActions (this.container);
             actions.valign = Gtk.Align.CENTER;

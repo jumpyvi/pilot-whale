@@ -32,6 +32,11 @@ namespace Docker {
 
         public signal void new_line (string line);
 
+        /**
+         * Creates a new FrameReader instance.
+         *
+         * @param container The container to read logs from.
+         */
         public FrameReader (Container container) {
             this.since = "0";
             this.is_reading = false;
@@ -44,6 +49,16 @@ namespace Docker {
             this.data = new DataInputStream (this.memory);
         }
 
+
+        /**
+         * Reads body data from the buffer.
+         *
+         * @param buf The buffer to read from.
+         * @param size The size of each element.
+         * @param nmemb The number of elements.
+         * @param data The FrameReader instance.
+         * @return The number of bytes written.
+         */
         public static size_t read_body_data(void* buf, size_t size, size_t nmemb, void* data) {
             unowned var reader = (FrameReader)data;
             size_t total_size = size * nmemb;
@@ -56,6 +71,11 @@ namespace Docker {
             return bytes_written;
         }
 
+        /**
+         * Reads container logs.
+         *
+         * @throws FrameReaderError If an error occurs while reading logs.
+         */
         public async void read () throws FrameReaderError {
             try {
                 if (this.is_reading) {
@@ -70,6 +90,13 @@ namespace Docker {
             }
         }
 
+        /**
+         * Adds data to the memory stream.
+         *
+         * @param buf The buffer to read from.
+         * @param size The size of the data.
+         * @return The size of the data added.
+         */
         public size_t add_memory_stream_data (void* buf, size_t size) {
             var settings = new Settings (APP_ID);
             var buffer = new uint8[size];
@@ -88,6 +115,11 @@ namespace Docker {
             return size;
         }
 
+        /**
+         * Parses a frame from the data stream.
+         *
+         * @param size The size of the data.
+         */
         public void parse_frame (int size) {
             if (!this.is_reading) {
                 return;
@@ -153,6 +185,11 @@ namespace Docker {
             }
         }
 
+        /**
+         * Parses a Podman frame from the data stream.
+         *
+         * @param size The size of the data.
+         */
         public void parse_podman_frame (int size) {
             try {
                 uint8[] buff = new uint8[size];
@@ -168,6 +205,11 @@ namespace Docker {
             }
         }
 
+        /**
+         * Performs a CURL request to read logs.
+         *
+         * @throws HttpClientError If an error occurs while performing the request.
+         */
         private async void curl_request () throws HttpClientError {
             var settings = new Settings (APP_ID);
             var curl = new Curl.EasyHandle ();
@@ -201,6 +243,13 @@ namespace Docker {
             //  debug ("curl request http code: %d", http_code);
         }
 
+        /**
+         * Performs a curl request.
+         *
+         * @param curl The curl handle.
+         * @return The curl return code.
+         * @throws HttpClientError If an error occurs while performing the request.
+         */
         private async Curl.Code curl_perform (Curl.EasyHandle curl) throws HttpClientError {
             string? err_msg = null;
             var r = Curl.Code.OK;
@@ -240,6 +289,11 @@ namespace Docker {
         public Array<uint8> data;
         public DataInputStream stream;
 
+        /**
+         * Creates a new Frame instance.
+         *
+         * @param stream The data input stream.
+         */
         public Frame (DataInputStream stream) {
             this.type = -1;
             this.size = 0;
@@ -247,6 +301,12 @@ namespace Docker {
             this.stream = stream;
         }
 
+        /**
+         * Reads the frame type.
+         *
+         * @return The number of bytes read.
+         * @throws IOError If an error occurs while reading.
+         */
         public int read_type () throws IOError {
             // stream type https://docs.docker.com/engine/api/v1.41/#operation/ContainerAttach
             this.stream.byte_order = DataStreamByteOrder.LITTLE_ENDIAN;
@@ -256,12 +316,24 @@ namespace Docker {
             return 4;
         }
 
+        /**
+         * Reads the frame size.
+         *
+         * @return The number of bytes read.
+         * @throws IOError If an error occurs while reading.
+         */
         public int read_size () throws IOError {
             this.size = (int)this.stream.read_uint32 ();
 
             return 4;
         }
 
+        /**
+         * Reads the frame body.
+         *
+         * @return The number of bytes read.
+         * @throws IOError If an error occurs while reading.
+         */
         public int read_body () throws IOError {
             uint8[] buff = new uint8[this.size - this.data.length];
 
@@ -280,6 +352,11 @@ namespace Docker {
             return bytes_read_total;
         }
 
+        /**
+         * Checks if the frame has finished reading.
+         *
+         * @return True if the frame has finished reading, false otherwise.
+         */
         public bool is_finish_reading () {
             return this.size == this.data.length;
         }
@@ -291,6 +368,12 @@ namespace Docker {
         public Gee.HashMap<DockerContainer, FrameReader> readers;
         private bool is_label_visible;
 
+        /**
+         * Creates a new ContainerLogWatcher instance.
+         *
+         * @param container The container to watch logs for.
+         * @param buffer The text buffer to append logs to.
+         */
         public ContainerLogWatcher (DockerContainer container, Gtk.TextBuffer buffer) {
             this.is_label_visible = container.type == DockerContainerType.GROUP;
             this.text_buffer = buffer;
@@ -308,6 +391,9 @@ namespace Docker {
             }
         }
 
+        /**
+         * Starts watching logs for the containers.
+         */
         public void watching_start () {
             foreach (var container in this.containers) {
                 var reader = this.readers[container];
@@ -327,12 +413,21 @@ namespace Docker {
             }
         }
 
+        /**
+         * Stops watching logs for the containers.
+         */
         public void watching_stop () {
             foreach (var container in this.containers) {
                 this.readers[container].reading_cancel.cancel ();
             }
         }
 
+        /**
+         * Creates a FrameReader for the specified container.
+         *
+         * @param container The container to create a reader for.
+         * @return The created FrameReader.
+         */
         private FrameReader create_reader (DockerContainer container) {
             assert_true (container.api_container != null);
 
@@ -348,6 +443,13 @@ namespace Docker {
             return reader;
         }
 
+        /**
+         * Appends a line to the buffer.
+         *
+         * @param label The label to prepend.
+         * @param str The line to append.
+         * @param length The length of the line.
+         */
         private void buffer_append (string label, string str, int length) {
             Idle.add (() => {
                 text_buffer.insert_at_cursor (label, label.length);

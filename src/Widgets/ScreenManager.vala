@@ -11,6 +11,9 @@
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
 
+/**
+ * Manages the different screens of the application.
+ */
 public class Widgets.ScreenManager : Gtk.Box {
     private static ScreenManager? instance;
     private ScreenError screen_error;
@@ -45,10 +48,18 @@ public class Widgets.ScreenManager : Gtk.Box {
         this.append (toast_overlay);
     }
 
+    /**
+     * Creates a new ScreenManager instance.
+     */
     private ScreenManager () {
         Object ();
     }
 
+    /**
+     * Gets the instance of ScreenManager.
+     *
+     * @return The instance of ScreenManager.
+     */
     public static ScreenManager get_instance () {
         if (ScreenManager.instance == null) {
             ScreenManager.instance = new ScreenManager ();
@@ -56,6 +67,12 @@ public class Widgets.ScreenManager : Gtk.Box {
         return ScreenManager.instance;
     }
 
+    /**
+     * Shows a toast with the specified content and timeout.
+     *
+     * @param content The content of the toast.
+     * @param timeout The timeout for the toast in milliseconds.
+     */
     public static void show_toast_with_content (string content, uint timeout){
         Adw.Toast toast = new Adw.Toast (content);
         toast.set_timeout (timeout);
@@ -63,6 +80,11 @@ public class Widgets.ScreenManager : Gtk.Box {
     }
 
 
+    /**
+     * Shows an error widget on the screen.
+     *
+     * @param widget The error widget to show.
+     */
     public static void screen_error_show_widget (Adw.AlertDialog widget) {
         widget.add_response ("dismiss", "Dismiss");
 

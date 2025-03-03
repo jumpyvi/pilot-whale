@@ -1,6 +1,6 @@
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "docs", "environment-update"]
   pull_request:
 
 concurrency:
@@ -10,6 +10,7 @@ concurrency:
 name: CI
 
 jobs:
+  # Builds the flatpak and release it
   flatpak-builder:
     name: "Flatpak Builder"
     runs-on: ubuntu-latest
@@ -46,3 +47,50 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         files: pilot-whale-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
+
+  # Generate the valadoc and push it to github pages
+  generate-valadoc:
+    name: "Valadoc"
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:41
+      options: --privileged
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        dnf install -y just dbus-daemon gtk4-devel ninja-build meson libadwaita-devel libgee-devel json-glib-devel desktop-file-utils libcurl-devel vala vala-language-server valadoc graphviz git
+
+    - name: Build project
+      run: |
+        just meson-build 
+
+    - name: Generate Valadoc
+      run: |
+        just generate-valadoc
+
+    - name: Upload Valadoc to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+  # Pre-build the devcontainer docker image and push it to ghcr.io
+  build-and-publish-docker:
+    name: "Build and Publish Devcontainer Dockerfile"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Log in to GitHub Container Registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build Docker image
+      run: docker build -t ghcr.io/${{ github.repository_owner }}/pilotwhale-devcontainer:latest -f ./dev.Dockerfile .
+
+    - name: Push Docker image
+      run: docker push ghcr.io/${{ github.repository_owner }}/pilotwhale-devcontainer:latest
+

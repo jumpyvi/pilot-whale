@@ -12,6 +12,13 @@
  */
 
 using Utilities.Constants;
+
+/**
+ * The entry point for the application.
+ *
+ * @param args The command-line arguments.
+ * @return The exit code of the application.
+ */
 int main (string[] args) {
     Intl.bindtextdomain (APP_ID, LOCALE_DIR);
 

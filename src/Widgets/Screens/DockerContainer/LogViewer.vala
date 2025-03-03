@@ -14,7 +14,14 @@
 using Utilities;
 using Docker;
 
+/**
+* Shows container logs to the user
+*/
 class Widgets.Screens.Container.LogViewer : Adw.Bin {
+
+    /**
+    * Create a new LogViewer
+    */
     public LogViewer () {
         Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow ();
         var state_root = State.Root.get_instance ();

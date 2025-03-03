@@ -16,6 +16,12 @@ namespace Utilities {
         return str.up (1) + str.substring (1);
     }
 
+    /**
+    * Clean the image name to remove spaces and unwanted char
+    *
+    * @param name The image name to clear.
+    * @return The cleaned image name.
+    */
     string clean_image_name(string name){
         string clean_search_text = "";
 

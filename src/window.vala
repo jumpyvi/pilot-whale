@@ -15,6 +15,9 @@ using Widgets;
 using Widgets.Utils;
 using Adw;
 
+/**
+ * The main application window for Pilot Whale.
+ */
 [GtkTemplate (ui = "/com/github/jumpyvi/pilot-whale/window.ui")]
 public class PilotWhale.Window : Adw.ApplicationWindow {
     [GtkChild]
@@ -22,6 +25,11 @@ public class PilotWhale.Window : Adw.ApplicationWindow {
     [GtkChild]
     private unowned Gtk.Box headerbar_buttons_box;
 
+    /**
+     * Creates a new Window instance.
+     *
+     * @param app The application instance.
+     */
     public Window (Gtk.Application app) {
         Object (application: app);
 

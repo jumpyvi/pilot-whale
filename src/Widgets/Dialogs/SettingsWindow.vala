@@ -13,7 +13,13 @@
 
 using Utilities.Constants;
 
+/**
+ * A dialog for configuring application settings.
+ */
 class Widgets.Dialogs.SettingsWindow : Adw.PreferencesDialog {
+    /**
+     * Creates a new SettingsWindow.
+     */
     public SettingsWindow(){
         Object(
           content_width: 450,
@@ -26,6 +32,11 @@ class Widgets.Dialogs.SettingsWindow : Adw.PreferencesDialog {
     }
 }
 
+/**
+ * Builds the preferences page for the settings dialog.
+ *
+ * @return The preferences page.
+ */
 private Adw.PreferencesPage get_pref(){
     var page = new Adw.PreferencesPage();
     page.title = "Preferences";
@@ -78,6 +89,12 @@ private Adw.PreferencesPage get_pref(){
     return page;
 }
 
+/**
+ * Tests the connection to the Docker socket.
+ *
+ * @param socket_path The path to the Docker socket.
+ * @param button The button to update with the connection status.
+ */
 private async void check_socket_connection(string socket_path, Gtk.Button button) {
     var api_client = new Docker.ApiClient();
     button.remove_css_class("success");

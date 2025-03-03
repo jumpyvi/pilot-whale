@@ -56,6 +56,9 @@ namespace Docker {
         public string api_version;
     }
 
+    /**
+    * Creates a new ApiClient instance.
+    */
     class ApiClient : Object {
         public HttpClient http_client;
 
@@ -66,6 +69,13 @@ namespace Docker {
             this.http_client.unix_socket_path = DOCKER_ENGINE_SOCKET_PATH;
         }
 
+        /**
+         * Parses JSON and returns the root Json.Node.
+         *
+         * @param data The JSON string to parse.
+         * @return The root Json.Node.
+         * @throws ApiClientError If the JSON cannot be parsed.
+         */
         private static Json.Node parse_json (string data) throws ApiClientError {
             try {
                 var parser = new Json.Parser ();
@@ -83,6 +93,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Lists all containers.
+         *
+         * @return An array of container.
+         * @throws ApiClientError If an error occurs while listing containers.
+         */
         public async Container[] list_containers () throws ApiClientError {
             try {
                 var container_list = new Container[0];
@@ -163,6 +179,13 @@ namespace Docker {
             }
         }
 
+        /**
+         * Pulls an image from a repo.
+         *
+         * @param image_name The name/path of the image to pull.
+         * @return True if the image was pulled successfully.
+         * @throws ApiClientError If an error occurs while pulling the image.
+         */
         public async bool pull_image (string image_name) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_post (@"/images/create?fromImage=" + image_name);
@@ -180,6 +203,13 @@ namespace Docker {
             }
         }
 
+        /**
+         * Searches for remote images matching a search string.
+         *
+         * @param search_string The search string to use.
+         * @return An array of Image.
+         * @throws ApiClientError If an error occurs while searching for images.
+         */
         public async Image[] find_remote_image_from_string (string search_string) throws ApiClientError {
             try {
                 var image_list = new Image[0];
@@ -235,6 +265,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Starts a container.
+         *
+         * @param container The container to start.
+         * @throws ApiClientError If an error occurs while starting the container.
+         */
         public async void start_container (Container container) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_post (@"/containers/$(container.id)/start");
@@ -253,6 +289,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Stops a container.
+         *
+         * @param container The container to stop.
+         * @throws ApiClientError If an error occurs while stopping the container.
+         */
         public async void stop_container (Container container) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_post (@"/containers/$(container.id)/stop");
@@ -271,6 +313,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Pauses a container.
+         *
+         * @param container The container to pause.
+         * @throws ApiClientError If an error occurs while pausing the container.
+         */
         public async void pause_container (Container container) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_post (@"/containers/$(container.id)/pause");
@@ -286,6 +334,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Restarts a container.
+         *
+         * @param container The container to restart.
+         * @throws ApiClientError If an error occurs while restarting the container.
+         */
         public async void restart_container (Container container) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_post (@"/containers/$(container.id)/restart");
@@ -301,6 +355,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Unpauses a container.
+         *
+         * @param container The container to unpause.
+         * @throws ApiClientError If an error occurs while unpausing the container.
+         */
         public async void unpause_container (Container container) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_post (@"/containers/$(container.id)/unpause");
@@ -316,6 +376,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Removes a container.
+         *
+         * @param container The container to remove.
+         * @throws ApiClientError If an error occurs while removing the container.
+         */
         public async void remove_container (Container container) throws ApiClientError {
             try {
                 var resp = yield this.http_client.r_delete (@"/containers/$(container.id)");
@@ -337,6 +403,13 @@ namespace Docker {
             }
         }
 
+        /**
+         * Returns info about a container.
+         *
+         * @param container The container to inspect.
+         * @return A ContainerInspectInfo struct with detailed information.
+         * @throws ApiClientError If an error occurs while inspecting the container.
+         */
         public async ContainerInspectInfo inspect_container (Container container) throws ApiClientError {
             try {
                 var container_info = ContainerInspectInfo ();
@@ -431,6 +504,12 @@ namespace Docker {
             }
         }
 
+        /**
+         * Gets the Docker version.
+         *
+         * @return Info about the version.
+         * @throws ApiClientError If an error occurs while retrieving the version information.
+         */
         public async DockerVersionInfo version () throws ApiClientError {
             try {
                 var version = Docker.DockerVersionInfo ();
@@ -455,6 +534,11 @@ namespace Docker {
             }
         }
 
+        /**
+         * Check if remote is accessible
+         *
+         * @throws ApiClientError If an error occurs while pinging the server.
+         */
         public async void ping () throws ApiClientError {
             try {
                 yield this.http_client.r_get ("/_ping");

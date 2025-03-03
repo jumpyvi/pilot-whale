@@ -15,12 +15,18 @@ using Utilities;
 using Docker;
 using Widgets.Utils;
 
+/**
+ * A dialog for searching Docker images.
+ */
 class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
     protected Adw.HeaderBar headerbar { get; set; }
     Gtk.Box images_list;
     Gtk.Stack content_view;
     ImagesSearchBar searchbar;
 
+    /**
+     * Creates a new ImagesSearchDialog.
+     */
     public ImagesSearchDialog (){
         this.set_content_height (600);
         this.set_content_width (420);
@@ -37,13 +43,18 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         content_view.set_visible_child_name("info_view");
 
         var toolbarview = new Adw.ToolbarView () {
-			content = build_content_area()
-		};
-		headerbar = new Adw.HeaderBar ();
-		toolbarview.add_top_bar (headerbar);
-		this.child = toolbarview;
+            content = build_content_area()
+        };
+        headerbar = new Adw.HeaderBar ();
+        toolbarview.add_top_bar (headerbar);
+        this.child = toolbarview;
     }
 
+    /**
+     * Builds the content area of the dialog.
+     *
+     * @return The content area widget.
+     */
     private Gtk.Widget build_content_area(){
         var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
         box.append(searchbar);
@@ -52,6 +63,11 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         return box;
     }
 
+    /**
+     * Builds the image list area of the dialog.
+     *
+     * @return The image list area widget.
+     */
     private Gtk.Widget build_image_list_area(){
         Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow();
 
@@ -64,6 +80,11 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         return scrolled_window;
     }
 
+    /**
+     * Updates the image list with the provided Docker images.
+     *
+     * @param images The Docker images to display.
+     */
     public void update_image_list(Docker.Image[] images){
         if (clean_image_name(searchbar.get_search_bar().text).length != 0){
             content_view.set_visible_child_name("image-list");
@@ -80,6 +101,11 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         }
     }
 
+    /**
+     * Builds the info view of the dialog.
+     *
+     * @return The info view widget.
+     */
     private Gtk.Box build_info_view(){
         Gtk.Box info_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
         info_box.set_valign(Gtk.Align.CENTER);
@@ -100,10 +126,14 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
         info_box.append(other_registries_info_label);
         info_box.append(build_other_registries_view());
 
-
         return info_box;
     }
 
+    /**
+     * Builds the view for pulling images from non-dockerhub registries.
+     *
+     * @return The other registries view widget.
+     */
     private Gtk.Box build_other_registries_view() {
         Gtk.Box other_registries_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
         other_registries_box.margin_top = 14;
@@ -137,13 +167,10 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
             pull_button.reset();
         });
 
-
         other_registries_box.append(registry_dropdown);
         other_registries_box.append(name_entry);
-
         other_registries_box.append(pull_button);
 
         return other_registries_box;
-}
-
+    }
 }

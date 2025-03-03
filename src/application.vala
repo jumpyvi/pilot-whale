@@ -13,8 +13,13 @@
 
 using Widgets;
 
-
+/**
+ * The main application class for Pilot Whale.
+ */
 public class PilotWhale.Application : Adw.Application {
+    /**
+     * Creates a new Application instance.
+     */
     public Application () {
         Object (
             application_id: "com.github.jumpyvi.pilot-whale",
@@ -30,36 +35,33 @@ public class PilotWhale.Application : Adw.Application {
         };
         this.add_action_entries (action_entries, this);
         this.set_accels_for_action ("app.quit", {"<primary>q"});
-
     }
 
+    /**
+     * Activates the application.
+     */
     public override void activate () {
         base.activate ();
         var win = this.active_window ?? new PilotWhale.Window (this);
 
-        // --- Error Widget test --- //
-        //var error_widget = ScreenError.build_error_docker_not_avialable (
-        //                false
-        //            );
-        //
-        //            ScreenManager.screen_error_show_widget (error_widget); 
-
         var provider = new Gtk.CssProvider ();
-		provider.load_from_resource ("/com/github/jumpyvi/pilot-whale/index.css");
+        provider.load_from_resource ("/com/github/jumpyvi/pilot-whale/index.css");
 
-        // Nothing has replaced this yet, will need to be update when gtk5 releases
-		Gtk.StyleContext.add_provider_for_display (
-			Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-			);
+        Gtk.StyleContext.add_provider_for_display (
+            Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
         win.present ();
         State.Root.get_instance ().init.begin ();
     }
 
+    /**
+     * Shows the about dialog.
+     */
     private void on_about_action () {
         var about = new Adw.AboutDialog () {
             application_name = "Pilot Whale",
             application_icon = "com.github.jumpyvi.pilot-whale",
-            developer_name = "Pilot Whale Developpers",
+            developer_name = "Pilot Whale Developers",
             translator_credits = _("translator-credits"),
             version = Build.VERSION,
             license_type = Gtk.License.GPL_3_0,
@@ -73,11 +75,13 @@ public class PilotWhale.Application : Adw.Application {
         about.present (this.active_window);
     }
 
+    /**
+     * Shows the preferences dialog.
+     */
     private void on_preferences_action () {
         message ("app.preferences action activated");
         
         var setting_page = new Widgets.Dialogs.SettingsWindow();
         setting_page.present (this.active_window);
-
     }
 }
