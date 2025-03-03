@@ -13,9 +13,15 @@
 
 using Widgets.Screens.Main;
 
+/**
+ * The main screen widget for the application.
+ */
 class Widgets.ScreenMain : Gtk.Box {
     public const string CODE = "main";
 
+    /**
+     * Creates a new ScreenMain instance.
+     */
     public ScreenMain () {
         this.orientation = Gtk.Orientation.VERTICAL;
         this.spacing = 0;

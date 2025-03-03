@@ -11,7 +11,14 @@
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
 
+/**
+* Class to manage container reloading
+*/
 public class Utilities.Reloader {
+
+    /**
+    * Reload the container status
+    */
     public static void reload (){
         var state = State.Root.get_instance ();
         state.containers_load.begin ((_, res) => {

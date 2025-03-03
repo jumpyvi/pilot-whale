@@ -13,9 +13,16 @@
 
 using Utilities;
 
+/**
+* An item in the docker container view sidebar
+*/
 class Widgets.Screens.Container.SideBarItem : Gtk.ListBoxRow {
     public DockerContainer service;
 
+    /**
+    * Create a new item in the sidebar
+    * @param The docker container to add as an item
+    */
     public SideBarItem (DockerContainer service) {
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 

@@ -11,6 +11,9 @@
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
 
+/**
+* Shows a simple separator
+*/
 class Widgets.Screens.Container.SideBarSeparator : Gtk.ListBoxRow {
     public SideBarSeparator (string text) {
         this.can_focus = false;

@@ -13,6 +13,9 @@
 
 using Utilities;
 
+/**
+* A sidebar to switch bettween container when in docker compose (group) mode
+*/
 class Widgets.Screens.Container.SideBar : Adw.Bin {
     public SideBar (ScreenDockerContainer parent) {
         var state = State.Root.get_instance ().screen_docker_container;

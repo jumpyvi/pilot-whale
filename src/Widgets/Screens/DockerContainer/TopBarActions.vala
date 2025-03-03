@@ -15,9 +15,17 @@ using Utilities;
 using Widgets.Screens.Main;
 
 namespace Widgets.Screens.Container {
+    /**
+     * A widget that provides top bar actions for a Docker container.
+     */
     class TopBarActions : Gtk.Box {
         private DockerContainer container;
 
+        /**
+         * Creates a new TopBarActions instance.
+         *
+         * @param container The Docker container for which to create the actions.
+         */
         public TopBarActions (DockerContainer container) {
             this.container = container;
             this.sensitive = container.state != DockerContainerState.UNKNOWN;

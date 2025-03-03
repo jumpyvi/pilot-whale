@@ -13,33 +13,35 @@
 
 using Gtk;
 
+/**
+* Create the error screen manager
+*/
 class Widgets.ScreenError : Gtk.Grid {
     public static string CODE = "error";
 
+    /**
+    * Create a new ScreenError
+    */
     public ScreenError () {
         this.valign = Gtk.Align.CENTER;
         this.halign = Gtk.Align.CENTER;
     }
 
-    //  public void show_error (string error, string description) {
-    //      this.foreach ((child) => {
-    //          this.remove (child);
-    //      });
-
-    //      var alert = new Granite.Widgets.AlertView (error, description, "dialog-error");
-    //      alert.get_style_context ().add_class ("alert");
-    //      this.add (alert);
-
-    //      this.show_all ();
-    //  }
-
+    /**
+    * Create a new ScreenError
+    */
     public void show_widget (Adw.AlertDialog widget) {
         // TODO - remove all child
 
         widget.present (this);
         this.attach (widget, 0, 0, 10, 10);
     }
-
+    
+    /**
+    * Create the AlertDialog for docker detection error
+    * @param no_entry True if docker is not installed at all
+    * @return The created alert dialog
+    */
     public static Adw.AlertDialog build_error_docker_not_avialable (bool no_entry) {
         var description = _ (
             "It looks like Docker requires root rights to use it. Thus, the application " +
