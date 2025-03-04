@@ -1,7 +1,7 @@
 project(
   'com.github.jumpyvi.pilot-whale',
   ['vala', 'c'],
-  version: 'v4.2.2',
+  version: 'v4.2.3',
   meson_version: '>= 1.0.0',
   default_options: [
     'warning_level=2',

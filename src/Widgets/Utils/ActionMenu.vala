@@ -133,7 +133,6 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
         var state = State.Root.get_instance ();
 
         info_button.clicked.connect (() => {
-            print("info..");
             info_button.sensitive = false;
             
             state.container_inspect.begin (container, (_, res) => {

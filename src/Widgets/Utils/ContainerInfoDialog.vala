@@ -74,8 +74,10 @@ class Widgets.Utils.ContainerInfoDialog : Adw.Dialog {
         }
 
         scrolled_window.set_child (box);
-        scrolled_window.margin_start = 10;
-        scrolled_window.margin_top = 10;
+        scrolled_window.set_vexpand (true);
+        scrolled_window.margin_start = 9;
+        scrolled_window.margin_top = 9;
+        scrolled_window.margin_bottom = 9;
 
         return scrolled_window;
     }
