@@ -55,9 +55,10 @@ sources = [
   'Widgets/Screens/DockerContainer/SideBarSeparator.vala',
 
   # Dialogs
-  'Widgets/Dialogs/ImagesManager/ImageManagerView.vala',
+  'Widgets/Dialogs/ImagesManager/LocalImageView.vala',
   'Widgets/Dialogs/ImagesManager/ImagePullerView.vala',
   'Widgets/Dialogs/ImagesManager/ImagesDialog.vala',
+  'Widgets/Dialogs/ImagesManager/LocalImageCard.vala',
   'Widgets/Dialogs/SettingsWindow.vala',
   'Widgets/Dialogs/ContainerInfoDialog.vala',
 

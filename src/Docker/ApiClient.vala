@@ -41,6 +41,14 @@ namespace Docker {
         public int64 star_count;
     }
 
+    struct LocalImage {
+        public string? name;
+        public string tag;
+        public string id;
+        public Date created_date;
+        public float size;
+    }
+
     struct ContainerInspectInfo {
         public string name;
         public string image;

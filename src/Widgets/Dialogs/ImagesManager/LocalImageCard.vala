@@ -11,21 +11,14 @@
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
 
-class Widgets.Dialogs.ImagesManager.ImageManagerView : Adw.Bin {
+using Docker;
 
-    public ImageManagerView(){
-        this.set_child(build_content_area());
+class Widgets.Dialogs.ImageManager.LocalImageCard : Adw.Bin {
+    private Image image;
+
+    public LocalImageCard(Image image){
+        this.image = image;
+        Gtk.Grid grid = new Gtk.Grid ();
+        Gtk.CheckButton check_button = new Gtk.CheckButton ();
     }
-
-    /**
-     * Builds the content area of the dialog.
-     *
-     * @return The content area widget.
-     */
-    private Gtk.Widget build_content_area(){
-        var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
-        box.append(new Gtk.Label("NYI"));
-        return box;
-    }
-
 }
