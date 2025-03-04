@@ -10,44 +10,27 @@
 
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
-
-using Utilities;
-using Docker;
 using Widgets.Utils;
+using Utilities;
 
-/**
- * A dialog for searching Docker images.
- */
-class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
-    protected Adw.HeaderBar headerbar { get; set; }
+class Widgets.Dialogs.ImagesManager.ImagePullerView : Adw.Bin {
     Gtk.Box images_list;
     Gtk.Stack content_view;
     ImagesSearchBar searchbar;
 
-    /**
-     * Creates a new ImagesSearchDialog.
-     */
-    public ImagesSearchDialog (){
-        this.set_content_height (600);
-        this.set_content_width (420);
+    public ImagePullerView(){
         content_view = new Gtk.Stack(){
             transition_type = Gtk.StackTransitionType.SLIDE_UP_DOWN,
             transition_duration = 500
         };
 
-        searchbar = new Utils.ImagesSearchBar(this);
+        searchbar = new ImagesSearchBar(this);
 
         content_view.add_named(build_info_view(), "info_view");
         content_view.add_named(build_image_list_area(), "image-list");
 
         content_view.set_visible_child_name("info_view");
-
-        var toolbarview = new Adw.ToolbarView () {
-            content = build_content_area()
-        };
-        headerbar = new Adw.HeaderBar ();
-        toolbarview.add_top_bar (headerbar);
-        this.child = toolbarview;
+        this.set_child(build_content_area());
     }
 
     /**
@@ -173,4 +156,5 @@ class Widgets.Dialogs.ImagesSearchDialog : Adw.Dialog {
 
         return other_registries_box;
     }
+
 }

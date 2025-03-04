@@ -138,7 +138,7 @@ class Widgets.Utils.ActionMenu : Adw.Bin {
             
             state.container_inspect.begin (container, (_, res) => {
                 try {
-                    Utils.ContainerInfoDialog dialog = new Utils.ContainerInfoDialog(state.container_inspect.end (res));
+                    Widgets.Dialogs.ContainerInfoDialog dialog = new Widgets.Dialogs.ContainerInfoDialog(state.container_inspect.end (res));
                     menu_button.popover.closed();
                     dialog.present(this);
                     info_button.sensitive = true;

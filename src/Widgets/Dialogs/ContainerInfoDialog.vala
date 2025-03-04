@@ -14,7 +14,7 @@
 using Utilities;
 using Docker;
 
-class Widgets.Utils.ContainerInfoDialog : Adw.Dialog {
+class Widgets.Dialogs.ContainerInfoDialog : Adw.Dialog {
     Gee.HashMap<DockerContainer, ContainerInspectInfo?> containers_info;
     protected Adw.HeaderBar headerbar { get; set; }
 

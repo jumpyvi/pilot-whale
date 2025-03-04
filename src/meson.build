@@ -36,7 +36,6 @@ sources = [
   'Widgets/Utils/PullButton.vala',
   'Widgets/Utils/ImagesSearchButton.vala',
   'Widgets/Utils/BackButton.vala',
-  'Widgets/Utils/ContainerInfoDialog.vala',
   'Widgets/Utils/ImagesSearchBar.vala',
   'Widgets/Utils/ImageCard.vala',
 
@@ -56,8 +55,11 @@ sources = [
   'Widgets/Screens/DockerContainer/SideBarSeparator.vala',
 
   # Dialogs
-  'Widgets/Dialogs/ImagesSearchDialog.vala',
+  'Widgets/Dialogs/ImagesManager/ImageManagerView.vala',
+  'Widgets/Dialogs/ImagesManager/ImagePullerView.vala',
+  'Widgets/Dialogs/ImagesManager/ImagesDialog.vala',
   'Widgets/Dialogs/SettingsWindow.vala',
+  'Widgets/Dialogs/ContainerInfoDialog.vala',
 
   # Utils
   'Utilities/HttpClient.vala',

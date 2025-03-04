@@ -11,28 +11,21 @@
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
 
+class Widgets.Dialogs.ImagesManager.ImageManagerView : Adw.Bin {
 
-using Utilities;
-using Widgets.Dialogs.ImagesManager;
-using Widgets.Dialogs;
-
-public class Widgets.Utils.ImagesSearchButton : Gtk.Button{
-    private Adw.ButtonContent button_content = new Adw.ButtonContent ();
-    private const string BUTTON_ICON_NAME = "folder-pictures-symbolic";
-    private const string TOOLTIP_CONTENT = "Manage images";
-
-    construct{
-        button_content.set_icon_name (BUTTON_ICON_NAME);
-        button_content.set_tooltip_text (TOOLTIP_CONTENT);
-        this.set_child (button_content);
-
-        this.clicked.connect ((button) => {
-            var dialog = new ImagesDialog ();
-            dialog.present(this);
-        });
+    public ImageManagerView(){
+        this.set_child(build_content_area());
     }
 
-    public ImagesSearchButton () {
-        Object ();
+    /**
+     * Builds the content area of the dialog.
+     *
+     * @return The content area widget.
+     */
+    private Gtk.Widget build_content_area(){
+        var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
+        box.append(new Gtk.Label("NYI"));
+        return box;
     }
+
 }

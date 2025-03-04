@@ -14,11 +14,12 @@
 using Docker;
 using Utilities;
 using Widgets.Dialogs;
+using Widgets.Dialogs.ImagesManager;
 
 class Widgets.Utils.ImagesSearchBar : Gtk.Box {
     private Gtk.SearchEntry search_bar;
     Gtk.Image search_image;
-    Widgets.Dialogs.ImagesSearchDialog img_search_dialog;
+    ImagePullerView img_search_dialog;
 
     construct {
         var state = State.Root.get_instance();
@@ -40,7 +41,7 @@ class Widgets.Utils.ImagesSearchBar : Gtk.Box {
         this.halign = Gtk.Align.CENTER;
     }
 
-    public ImagesSearchBar(Widgets.Dialogs.ImagesSearchDialog img_search_dialog) {
+    public ImagesSearchBar(ImagePullerView img_search_dialog) {
         Object();
         this.img_search_dialog = img_search_dialog;
     }
