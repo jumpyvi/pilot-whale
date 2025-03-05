@@ -114,7 +114,7 @@ paru -Syu gtk4 ninja meson libadwaita libgee json-glib desktop-file-utils curl l
 ## 🔨 Building
 > All the command must be ran from the project root
 
-#### With [just](https://github.com/casey/just) (recommanded)
+#### With [just](https://github.com/casey/just) (recommended)
 
 First build of the project:
 ```

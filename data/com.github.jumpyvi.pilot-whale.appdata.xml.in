@@ -3,11 +3,12 @@
   <id>com.github.jumpyvi.pilot-whale</id>
   <launchable type="desktop-id">com.github.jumpyvi.pilot-whale.desktop</launchable>
   <name>Pilot Whale</name>
-  <summary>Docker Container Management</summary>
+  <summary>Pilot your docker containers</summary>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <developer_name>Selivestrov Dmitriy, this port by @jumpyvi</developer_name>
+  <developer_name>Pilot Whale Contributors</developer_name>
   <description>
+    <i>A fork of Selivestrov Dmitriy's Whaler</i>
     <p>
       Pilot Whale provides basic functionality for managing Docker containers.
       The app can start and stop both standalone containers and docker-compose applications.
@@ -19,6 +20,16 @@
       For the app to run correctly, make sure that Docker is installed on your system.
     </p>
   </description>
+  <releases>
+    <release version="4.2.2" date="2025-03-04">
+      <description>
+        <ul>
+          <li>Ported the app to GTK4/Adwaita</li>
+          <li>Added an image searcher</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
   <releases>
     <release version="1.2.3" date="2024-11-12">
       <description>
@@ -102,10 +113,10 @@
 
     </screenshot>
   </screenshots>
-  <url type="homepage">https://github.com/sdv43/whaler</url>
-  <url type="bugtracker">https://github.com/sdv43/whaler/issues</url>
+  <url type="homepage">https://github.com/jumpyvi/pilot-whale</url>
+  <url type="bugtracker">https://github.com/jumpyvi/pilot-whale/issues</url>
   <content_rating type="oars-1.1" />
   <provides>
-    <binary>com.github.sdv43.whaler</binary>
+    <binary>com.github.jumpyvi.pilot-whale</binary>
   </provides>
 </component>
