@@ -10,11 +10,23 @@
 
    This fork, Pilot Whale, was created and modified by jumpyvi in 2025.
  */
-
+using Docker;
 class Widgets.Dialogs.ImagesManager.LocalImageView : Adw.Bin {
 
     public LocalImageView(){
         this.set_child(build_content_area());
+        ApiClient api = new ApiClient();
+
+        api.list_local_images.begin((obj, res) => {
+            try {
+                var values = api.list_local_images.end(res);
+                foreach (var value in values) {
+                    print("%s\n", value.name);
+                }
+            } catch (Error e) {
+                warning("Failed to list local images: %s", e.message);
+            }
+        });
     }
 
     /**
@@ -30,6 +42,19 @@ class Widgets.Dialogs.ImagesManager.LocalImageView : Adw.Bin {
 
     private Gtk.ListBox build_local_image_list(){
         Gtk.ListBox list = new Gtk.ListBox();
+        var api_client = new ApiClient();
+
+        api_client.list_local_images.begin((obj, res) => {
+        try {
+            var local_images = api_client.list_local_images.end(res);
+            foreach (var image in local_images) {
+                //add to list
+            }
+        } catch (Error e) {
+            print("Error: %s\n", e.message);
+        }
+        });
+
 
         return list;
     }

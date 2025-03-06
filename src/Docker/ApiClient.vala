@@ -45,8 +45,9 @@ namespace Docker {
         public string? name;
         public string tag;
         public string id;
-        public Date created_date;
+        public DateTime created_date;
         public float size;
+        public int n_attached_containers;
     }
 
     struct ContainerInspectInfo {
@@ -100,6 +101,72 @@ namespace Docker {
                 throw new ApiClientError.ERROR_JSON (error.message);
             }
         }
+
+
+        public async LocalImage[] list_local_images () throws ApiClientError {
+            try {
+                var local_image_list = new LocalImage[0];
+                var resp = yield this.http_client.r_get ("/images/json");
+
+                //
+                if (resp.code == 400) {
+                    throw new ApiClientError.ERROR ("Bad parameter");
+                }
+                if (resp.code == 500) {
+                    throw new ApiClientError.ERROR ("Server error");
+                }
+
+                //
+                var json = "";
+                string? line = null;
+
+                while ((line = yield resp.body_data_stream.read_line_utf8_async ()) != null) {
+                    json += line;
+                }
+
+                //
+                var root_node = parse_json (json);
+                var root_array = root_node.get_array ();
+                assert_nonnull (root_array);
+
+                foreach (var image_node in root_array.get_elements ()) {
+                    var local_image = LocalImage ();
+                    var local_image_object = image_node.get_object ();
+                    assert_nonnull (local_image_object);
+
+                    //
+                    local_image.id = local_image_object.get_string_member_with_default ("Id", "00000");
+                    var repo_tags = local_image_object.get_array_member ("RepoTags");
+                    if (repo_tags != null && repo_tags.get_length () > 0) {
+                        var repo_tag = repo_tags.get_string_element (0);
+                        var parts = repo_tag.split (":");
+                        local_image.name = parts[0];
+                        local_image.tag = parts.length > 1 ? parts[1] : "latest";
+                    } else {
+                        local_image.name = "Unnamed";
+                        local_image.tag = "latest";
+                    }
+                    local_image.size = local_image_object.get_int_member_with_default ("Size", 1294338799);
+                    GLib.DateTime created_time = new GLib.DateTime.from_unix_utc (local_image_object.get_int_member ("Created"));
+                    local_image.created_date = created_time;
+
+                    local_image_list += local_image;
+                }
+
+                return local_image_list;
+            } catch (HttpClientError error) {
+                if (error is HttpClientError.ERROR_NO_ENTRY) {
+                    throw new ApiClientError.ERROR_NO_ENTRY (error.message);
+                } else if (error is HttpClientError.ERROR_ACCESS) {
+                    throw new ApiClientError.ERROR_ACCESS (error.message);
+                } else {
+                    throw new ApiClientError.ERROR (error.message);
+                }
+            } catch (IOError error) {
+                throw new ApiClientError.ERROR (error.message);
+            }
+        }
+
 
         /**
          * Lists all containers.

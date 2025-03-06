@@ -13,7 +13,7 @@
 
 using Docker;
 
-class Widgets.Dialogs.ImageManager.LocalImageCard : Adw.Bin {
+class Widgets.Dialogs.ImagesManager.LocalImageCard : Adw.Bin {
     private Image image;
 
     public LocalImageCard(Image image){
