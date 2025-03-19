@@ -14,12 +14,12 @@
 using Utilities;
 using Utilities.Sorting;
 
-class State.ScreenMain : Object {
+class State.ScreenMainState : Object {
     public string search_term {get; set;}
     public SortingInterface? sorting {get; set;}
     public Gee.ArrayList<DockerContainer> containers_prepared {get; private set;}
 
-    public ScreenMain (Root root) {
+    public ScreenMainState (Root root) {
         this.search_term = "";
         this.sorting = new SortingName ();
         this.containers_prepared = new Gee.ArrayList<DockerContainer> (DockerContainer.equal);

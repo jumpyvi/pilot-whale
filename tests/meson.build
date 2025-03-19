@@ -1,8 +1,7 @@
-sources = files(
-  'ApiClient.test.vala',
-)
+# unit_test_files = [
+#     'GreetingService'
+# ]
 
-test_unit = 'unit-test'
-
-exe = executable(test_unit, sources: sources, dependencies : pilotwhale_deps)
-test(test_unit, exe)
+# foreach name : unit_test_files
+#     test(name, executable(name, name + 'Test.vala', src_files, dependencies: dependencies))
+# endforeach

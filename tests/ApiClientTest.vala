@@ -1,0 +1,23 @@
+public void test_pull(){
+    bool pulled = false;
+
+    //  api_client.pull_image.begin("alpine/psql", (obj, res) => {
+    //              try {
+    //                  if(api_client.pull_image.end(res)){
+    //                      pulled = true;
+    //                  }
+    //              } catch (Error e) {
+    //                  pulled = false;
+    //              }
+    //          }); 
+    assert (pulled);
+}
+
+public int main (string[] args){
+    Test.init (ref args);
+
+    Test.add_func ("/test_pull", test_pull);
+
+
+    return Test.run ();
+}
