@@ -14,11 +14,23 @@
 using Docker;
 
 class Widgets.Dialogs.ImagesManager.LocalImageCard : Adw.Bin {
-    private Image image;
+    private LocalImage image;
 
-    public LocalImageCard(Image image){
+    public LocalImageCard(LocalImage image){
         this.image = image;
         Gtk.Grid grid = new Gtk.Grid ();
         Gtk.CheckButton check_button = new Gtk.CheckButton ();
+
+        grid.attach (new Gtk.Label (image.name.length > 30 ? this.image.name.substring (0, 30) + "..." : this.image.name), 1, 1, 1, 1);
+
+        grid.add_css_class("card");
+        grid.add_css_class("shadow");
+        grid.margin_top = 4;
+        grid.margin_start = 5;
+        grid.margin_end = 5;
+        grid.focusable = true;
+        grid.vexpand = true;
+
+        this.set_child (grid);
     }
 }

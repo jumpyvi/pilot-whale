@@ -36,19 +36,19 @@ class Widgets.Dialogs.ImagesManager.LocalImageView : Adw.Bin {
      */
     private Gtk.Widget build_content_area(){
         var box = new Gtk.Box(Gtk.Orientation.VERTICAL,0);
-        box.append(new Gtk.Label("NYI"));
+        box.append(build_local_image_list());
         return box;
     }
 
-    private Gtk.ListBox build_local_image_list(){
-        Gtk.ListBox list = new Gtk.ListBox();
+    private Gtk.Box build_local_image_list(){
+        Gtk.Box local_images_list = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
         var api_client = new ApiClient();
 
         api_client.list_local_images.begin((obj, res) => {
         try {
             var local_images = api_client.list_local_images.end(res);
             foreach (var image in local_images) {
-                //add to list
+                local_images_list.append(new LocalImageCard(image));
             }
         } catch (Error e) {
             print("Error: %s\n", e.message);
@@ -56,7 +56,7 @@ class Widgets.Dialogs.ImagesManager.LocalImageView : Adw.Bin {
         });
 
 
-        return list;
+        return local_images_list;
     }
 
 }
