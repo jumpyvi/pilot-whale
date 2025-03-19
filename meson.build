@@ -2,7 +2,7 @@ project(
   'com.github.jumpyvi.pilot-whale',
   ['vala', 'c'],
   version: 'v4.2.3',
-  meson_version: '>= 0.56.0',
+  meson_version: '>= 0.57.0',
   default_options: [
     'warning_level=2',
     'werror=false',
@@ -51,7 +51,7 @@ pilotwhale_deps = [
 
 executable(
   meson.project_name(),
-  sources,
+  sources_with_main,
   dependencies: pilotwhale_deps,
   install: true,
 )

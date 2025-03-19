@@ -12,7 +12,6 @@ sources += configure_file(
 
 sources += files([
   # Main
-  'main.vala',
   'application.vala',
   'window.vala',
 
@@ -73,6 +72,8 @@ sources += files([
 ])
 
 sources += gnome.compile_resources('pilotwhale-resources', 'pilot-whale.gresource.xml', c_name: 'pilotwhale')
+
+sources_with_main = sources + files(['main.vala'])
 
 
 

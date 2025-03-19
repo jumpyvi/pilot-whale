@@ -37,21 +37,9 @@ launch:
 install-test-browser:
     sudo dnf install firefox alsa-lib -y
 
-# # Run all tests (only builds TestsSyntaxHighlighter if it dosent already exist)
-# run-all-tests:
-#     if [ ! -f ./TestsSyntaxHighlighter ]; then valac tests/Utils/TestsSyntaxHighlighter.vala; fi; \
-#     for file in ./tests/*.test.vala; do vala "$file" | ./TestsSyntaxHighlighter; done
-
 ninja-test:
-    ninja test -C build
-
-# run-single-test +FILE:
-#     @if [ ! -f ./TestsSyntaxHighlighter ]; then valac tests/Utils/TestsSyntaxHighlighter.vala; fi; \
-#     if [ -f "tests/{{FILE}}.test.vala" ]; then \
-#         vala tests/{{FILE}}.test.vala | ./TestsSyntaxHighlighter; \
-#     else \
-#         echo "File {{FILE}} not found! Only use the test file title (example.test.vala becomes example)"; \
-#     fi
+    if [ ! -f ./TestsSyntaxHighlighter ]; then valac tests/Utils/TestsSyntaxHighlighter.vala; fi; \
+    ninja test -C build | ./TestsSyntaxHighlighter
 
 # Generate the valadoc locally
 generate-valadoc:

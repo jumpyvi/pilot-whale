@@ -1,7 +1,8 @@
-# unit_test_files = [
-#     'GreetingService'
-# ]
+unit_test_files = [
+    'ApiClient',
+    'Template'
+]
 
-# foreach name : unit_test_files
-#     test(name, executable(name, name + 'Test.vala', src_files, dependencies: dependencies))
-# endforeach
+foreach name : unit_test_files
+    test(name, executable(name, name + '.test.vala', sources, dependencies: pilotwhale_deps))
+endforeach
