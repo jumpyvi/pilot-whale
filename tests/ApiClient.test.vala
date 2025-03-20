@@ -1,20 +1,32 @@
 using Docker;
 
-public void test_pull(){
+public void test_pull() {
     bool pulled = false;
-    var api_client = new ApiClient ();
+    var api_client = new ApiClient();
 
-    //  api_client.pull_image.begin("alpine/psql", (obj, res) => {
-    //              try {
-    //                  if(api_client.pull_image.end(res)){
-    //                      pulled = true;
-    //                  }
-    //              } catch (Error e) {
-    //                  pulled = false;
-    //              }
-    //          }); 
-    assert (api_client != null);
+    // Create a main loop to wait for async operation
+    var loop = new MainLoop();
+
+    api_client.pull_image.begin("hello-world", (obj, res) => {
+        try {
+            if (api_client.pull_image.end(res)) {
+                print("pulled\n");
+                pulled = true;
+            }
+        } catch (Error e) {
+            print(e.message);
+            pulled = false;
+        }
+        loop.quit();
+    });
+
+    loop.run();
+
+    // Will assert after the loop ran
+    assert(pulled);
+    print("after assert");
 }
+
 
 public int main (string[] args){
     Test.init (ref args);
