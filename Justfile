@@ -4,6 +4,10 @@ export DISPLAY := ':0'
 alias run := ninja-run
 alias l := launch
 alias i := init-build
+alias b := meson-build
+alias test := run-tests
+alias reconf := meson-reconfigure
+alias build := meson-build
 
 default: 
     just --choose
@@ -37,9 +41,9 @@ launch:
 install-test-browser:
     sudo dnf install firefox alsa-lib -y
 
-ninja-test:
-    if [ ! -f ./TestsSyntaxHighlighter ]; then valac tests/Utils/TestsSyntaxHighlighter.vala; fi; \
-    ninja test -C build | ./TestsSyntaxHighlighter
+# Run all tests
+run-tests:
+    ninja test -C build
 
 # Generate the valadoc locally
 generate-valadoc:
