@@ -1,5 +1,6 @@
 /**
-* This is just a template, this always passes
+* This is just a reference template, this always passes.
+* If it doesn't, something has gone horribly wrong.
 */
 
 public void always_passes(){
