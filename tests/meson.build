@@ -1,5 +1,6 @@
 unit_test_files = [
     'ApiClient',
+    'HttpClient',
     'Template'
 ]
 
