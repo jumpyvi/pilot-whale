@@ -6,3 +6,4 @@ build
 *.glade#
 *.glade~
 docs
+TestsSyntaxHighlighter

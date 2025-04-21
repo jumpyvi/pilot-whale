@@ -1,30 +1,24 @@
-configuration = configuration_data()
-configuration.set_quoted('GETTEXT_PACKAGE', 'pilot-whale')
-configuration.set_quoted('APPLICATION_ID', 'com.github.jumpyvi.pilot-whale')
-configuration.set_quoted('VERSION', meson.project_version())
-configuration.set_quoted('PREFIX', get_option('prefix'))
-configuration.set_quoted('DATADIR', join_paths(get_option('prefix'), get_option('datadir')))
-configuration.set_quoted('PROFILE', 'default')
-configuration.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
-configuration.set_quoted('GNOMELOCALEDIR', join_paths(get_option('prefix'), get_option('localedir'), 'gnome'))
-
-configuration.set_quoted('APP_ID', meson.project_name())
-configuration.set_quoted('APP_VERSION', meson.project_version())
-configuration.set_quoted('LOCALE_DIR', join_paths(get_option('prefix'), get_option('localedir')))
-
-constants = configure_file(
+sources += configure_file(
   input: 'Utilities/Constants.vala.in',
   output: 'Constants.vala',
   configuration: configuration,
 )
 
+sources += configure_file(
+    input : 'Build.vala.in',
+    output : 'Build.vala',
+    configuration : configuration
+)
 
-
-sources = [
+sources += files([
   # Main
-  'main.vala',
   'application.vala',
   'window.vala',
+
+  # States
+  'State/Root.vala',
+  'State/ScreenMainState.vala',
+  'State/ScreenDockerContainerState.vala',
 
   # Widgets
   'Widgets/ScreenMain.vala',
@@ -75,41 +69,12 @@ sources = [
   # Docker
   'Docker/ApiClient.vala',
   'Docker/ContainerLogWatcher.vala',
-
-  # States
-  'State/Root.vala',
-  'State/ScreenMain.vala',
-  'State/ScreenDockerContainer.vala',
-]
-
-
-
-
-pilotwhale_deps = [
-  dependency('gtk4'),
-  dependency('libadwaita-1', version: '>= 1.4'),
-  dependency('libadwaita-1', version: '>= 1.4'),
-  dependency('json-glib-1.0'),
-  dependency('gio-2.0'),
-  dependency('gee-0.8'),
-  meson.get_compiler('vala').find_library('posix'),
-  meson.get_compiler('vala').find_library('libcurl', dirs: vapi_dir),
-  meson.get_compiler('c').find_library('libcurl', dirs: vapi_dir),
-]
+])
 
 sources += gnome.compile_resources('pilotwhale-resources', 'pilot-whale.gresource.xml', c_name: 'pilotwhale')
 
-sources += configure_file(
-    input : 'Build.vala.in',
-    output : 'Build.vala',
-    configuration : configuration
-)
+sources_with_main = sources + files(['main.vala'])
 
-executable(
-  meson.project_name(),
-  constants,
-  sources,
-  dependencies: pilotwhale_deps,
-  install: true,
-)
+
+
 

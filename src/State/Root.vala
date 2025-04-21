@@ -25,8 +25,8 @@ class State.Root : Object {
     public string active_screen {get; set;}
     public Gee.ArrayList<DockerContainer> containers {get; set;}
 
-    public ScreenMain screen_main {get; private set;}
-    public ScreenDockerContainer screen_docker_container {get; private set;}
+    public ScreenMainState screen_main {get; private set;}
+    public ScreenDockerContainerState screen_docker_container {get; private set;}
 
     private Root () {
         var settings = new Settings (APP_ID);
@@ -35,8 +35,8 @@ class State.Root : Object {
         this.button_back_visible = false;
         this.active_screen = Widgets.ScreenMain.CODE;
         this.containers = new Gee.ArrayList<DockerContainer> (DockerContainer.equal);
-        this.screen_main = new ScreenMain (this);
-        this.screen_docker_container = new ScreenDockerContainer (this);
+        this.screen_main = new ScreenMainState (this);
+        this.screen_docker_container = new ScreenDockerContainerState (this);
 
         settings.bind ("docker-api-socket-path", this.api_client.http_client, "unix_socket_path", SettingsBindFlags.GET);
     }

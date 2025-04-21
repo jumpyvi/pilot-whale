@@ -4,6 +4,10 @@ export DISPLAY := ':0'
 alias run := ninja-run
 alias l := launch
 alias i := init-build
+alias b := meson-build
+alias test := run-tests
+alias reconf := meson-reconfigure
+alias build := meson-build
 
 default: 
     just --choose
@@ -31,11 +35,15 @@ meson-reconfigure:
 
 # Launch the project
 launch:
-    ./build/src/com.github.jumpyvi.pilot-whale
+    ./build/com.github.jumpyvi.pilot-whale
 
 # Install firefox for test xdg-open redirect
 install-test-browser:
     sudo dnf install firefox alsa-lib -y
+
+# Run all tests
+run-tests:
+    ninja test -C build
 
 # Generate the valadoc locally
 generate-valadoc:

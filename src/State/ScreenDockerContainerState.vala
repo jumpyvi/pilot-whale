@@ -13,7 +13,7 @@
 
 using Utilities;
 
-class State.ScreenDockerContainer : Object {
+class State.ScreenDockerContainerState : Object {
     private Root root;
 
     public bool is_sidebar_enabled {get; set;}
@@ -21,7 +21,7 @@ class State.ScreenDockerContainer : Object {
     public DockerContainer? container {get; set;}
     public DockerContainer? service {get; set;}
 
-    public ScreenDockerContainer (Root root) {
+    public ScreenDockerContainerState (Root root) {
         this.root = root;
         this.is_sidebar_enabled = false;
         this.is_autoscroll_enabled = false;
