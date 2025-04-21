@@ -61,7 +61,7 @@ All dependencies are already present in the devcontainer.
 3. You can launch premade tasks from the VSCode task menu, this includes tasks for build and running the app.
 
 ### For vim
-1. Get devcontainer-cli from [linuxbrew](), [nixpkgs](https://search.nixos.org/packages?channel=24.11&show=devcontainer&from=0&size=50&sort=relevance&type=packages&query=devcontainer) or [npm](https://github.com/devcontainers/cli?tab=readme-ov-file#npm-install)
+1. Get devcontainer-cli from [linuxbrew](), [the aur](https://aur.archlinux.org/packages/devcontainer-cli) or [npm](https://github.com/devcontainers/cli?tab=readme-ov-file#npm-install)
 2. If you want to use your own VIM config uncomment ``Mounts for VIM config file`` in [devcontainer.json](.devcontainer/devcontainer.json)
 3. From the project root run:
 ```bash
@@ -89,15 +89,15 @@ devcontainer up --workspace-folder $(pwd) && devcontainer exec --workspace-folde
 * ninja
 * valac
 
-### You can also get these optional tools for running tasks, code completion and generating doc:
+#### You can also get these recommended, but optional tools for running tasks, code completion and generating doc:
 
 * just
 * fzf
 * valadoc
 * vala-language-server
 
-### Install all for Fedora 41
-> You will also need to manually get Docker for testing
+### Install all for Fedora 41/42
+> You will also need to get [Docker](https://docs.docker.com/engine/install/fedora/) for testing
 
 ```bash
 sudo dnf install gtk4-devel ninja-build meson libadwaita-devel libgee-devel json-glib-devel desktop-file-utils libcurl-devel vala vala-language-server valadoc graphviz libglvnd just fzf
@@ -111,19 +111,14 @@ sudo dnf install gtk4-devel ninja-build meson libadwaita-devel libgee-devel json
 paru -Syu gtk4 ninja meson libadwaita libgee json-glib desktop-file-utils curl libglvnd vala-language-server vala docker just fzf
 ```
 
-## 🔨 Building
+## 🔨 Building and running
 > All the command must be ran from the project root
 
-#### With [just](https://github.com/casey/just) (recommended)
+#### Requires [just](https://github.com/casey/just)
 
-First build of the project:
+Bild the project for the first time:
 ```
 just init-build
-```
-
-Build the doc locally:
-```
-just generate-valadoc
 ```
 
 Run ninja and launch the app
@@ -131,21 +126,23 @@ Run ninja and launch the app
 just ninja-run
 ```
 
-Re-install the app
+(Re)install the app
 ```
 just install
 ```
 
-
-#### Manually
+## 📚️ Generating doc
+> A pre-generated version of the doc is available [here](https://github.com/jumpyvi/pilot-whale/deployments/github-pages)
 
 ```
-meson build --prefix=/usr
-cd build
-ninja
+just generate-valadoc
+```
 
-sudo ninja install
-./build/src/com.github.sdv43.whaler
+## 🧪 Running tests
+> Requires docker and an internet connection
+
+```
+just run-tests
 ```
 
 ## License
