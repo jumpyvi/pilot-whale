@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Whaler is a tool to manage your Docker containers and images with a graphical interface.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
