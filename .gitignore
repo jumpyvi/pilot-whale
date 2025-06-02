@@ -7,3 +7,4 @@ build
 *.glade~
 docs
 TestsSyntaxHighlighter
+result # Nix build result
