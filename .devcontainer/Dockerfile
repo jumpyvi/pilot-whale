@@ -6,7 +6,7 @@ RUN apk update && \
     bash sudo fzf just git vim meson ninja build-base pkgconf \
     gtk4.0-dev libadwaita-dev dbus-x11 libgee-dev json-glib-dev \
     desktop-file-utils curl-dev mesa-dev vala vala-doc graphviz \
-    docker
+    docker openssh
 
 # Create the user 'adw', set password, and add to groups
 RUN adduser -D -s /bin/bash adw && \
