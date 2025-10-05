@@ -1,21 +1,15 @@
 {
 	"name": "Adwaita",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	//"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer:latest",
-	"image": "ghcr.io/jumpyvi/pilotwhale-devcontainer",
+	// Use the local Dockerfile to build the dev container image
+	"build": {
+		"dockerfile": "./Dockerfile"
+	},
 	"remoteUser": "adw",
 	"runArgs": [
 		"--net=host",
 		"--volume=/var/run/docker.sock:/var/run/docker.sock",
 		"--device=/dev/dri"
 	],
-
-	// --- Mounts for VIM config file --- //
-	
-	//"mounts": [
-	//	"source=${localEnv:HOME}${localEnv:USERPROFILE}/.vimrc,target=/home/adw/.vimrc,type=bind,consistency=cached"
-	//],
-
 
 	"customizations": {
 		"vscode": {
