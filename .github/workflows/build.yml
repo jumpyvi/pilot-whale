@@ -77,20 +77,3 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
 
-  # Pre-build the devcontainer docker image and push it to ghcr.io
-  build-and-publish-docker:
-    name: "Build and Publish Devcontainer Dockerfile"
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Log in to GitHub Container Registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-    - name: Build Docker image
-      run: docker build -t ghcr.io/${{ github.repository_owner }}/pilotwhale-devcontainer:latest -f ./dev.Dockerfile .
-
-    - name: Push Docker image
-      run: docker push ghcr.io/${{ github.repository_owner }}/pilotwhale-devcontainer:latest
-
