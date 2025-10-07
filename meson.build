@@ -44,9 +44,9 @@ pilotwhale_deps = [
   dependency('json-glib-1.0'),
   dependency('gio-2.0'),
   dependency('gee-0.8'),
+  dependency('libcurl'),
   meson.get_compiler('vala').find_library('posix'),
   meson.get_compiler('vala').find_library('libcurl', dirs: vapi_dir),
-  meson.get_compiler('c').find_library('libcurl', dirs: vapi_dir),
 ]
 
 executable(
